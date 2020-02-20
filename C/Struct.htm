@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Struct
+		</div>
+
+		<div class = "subtitle">Define a Struct</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#ifndef CAR_H
+#define CAR_H
+
+struct Car
+{
+	char maker[80];
+	int year;
+};
+#endif
+		</pre>
+		</div>
+		<div class = "subtitle">Pass Struct to Function</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include "car.h"
+
+void changeMaker(struct Car *c, char * m) // pass by reference
+{
+	strcpy(c-&gt;maker, m);
+}
+
+void disp(struct Car c) // pass by value
+{
+	printf("Maker: %s, Year: %d\n", c.maker, c.year);
+}
+
+int main()
+{
+	struct Car car;
+
+	strcpy(car.maker, "Buick");
+	car.year = 1998;
+
+	changeMaker(&car, "Honda");
+	disp(car);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Bit Field</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+struct status1
+{
+	unsigned int active;
+	unsigned int sex;
+};
+
+struct status2
+{
+	unsigned int active:1;
+	unsigned int sex:1;
+};
+
+int main()
+{
+	printf("Bytes: %lu\n", sizeof(struct status1)); // 4*2 bytes
+	printf("Bytes: %lu\n", sizeof(struct status2)); // 2 bites, 4 bytes
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Union</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+union Employee
+{
+	// age and hours share the same memory
+	int age;
+	int hours;
+};
+
+int main()
+{
+	union Employee e;
+
+	e.age = 39;
+	e.hours = 40;
+
+	printf("%d: %d\n", e.hours, e.age); // 40 40
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Java</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span.red {color: red; font-weight: bold;}
+			span.blue {color: blue; font-weight: bold;}
+			th, td { border-bottom: 1px solid #ddd;}
+		</style>
+	</head>
+	<body>
+		<div class = "subtitle">Data type (Java)</div>
+		<div class = "block">
+			<table style = "font-size: 24px; border: 1px solid black;">
+				<tr><th>Type</th><th>Size</th><th>Example</th></tr>
+				<tr><td>byte</td><th>1 byte</th><th>-128 to 127</th></tr>
+				<tr><td>short</td><th>2 bytes</th><th>-32768 to 32767</th></tr>
+				<tr><td><span class = "red">int</span></td><th>4 bytes</th><th>-1, 1, 0, 100</th></tr>
+				<tr><td>long</td><th>8 bytes</th><th>-1, 1, 0, 100</th></tr>
+				<tr><td>float</td><th>4 bytes</th><th>3.14, -0.1</th></tr>
+				<tr><td><span class = "red">double</span></td><th>8 bytes</th><th>3.14, -0.1</th></tr>
+				<tr><td><span class = "red">boolean</span></td><th>1 bits</th><th>true, false</th></tr>
+			</table>
+		</div>
+		<div class = "subtitle">Variable decelerations</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums" style = "font-size: 24px">
+int a; // declare a variable a, its data type is integer
+			</pre>
+			<p style = "text-align:center;"><img src = "img/Variable.png" width = "60%"></p>
+			<li style = "font-size: 24px">Allocate the memory for an integer</li>
+			<li style = "font-size: 24px">Define a variable name "a", pointing to the allocated memory</li>
+		</div>
+		<div class = "subtitle">Variable Assignment</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums" style = "font-size: 24px">
+a = 10; // assign 10 to variable a
+			</pre>
+			<p style = "text-align:center;"><img src = "img/Variable_2.png" width = "20%"></p>
+			<li style = "font-size: 24px">Save <span class = "red">10</span> to the memory for variable <span class = "red">a</span></li>
+			<li style = "font-size: 24px"><span class = "red">=</span> is not "equals to"</li>
+		</div>
+		<div class = "subtitle">Variable decelerations</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums" style = "font-size: 24px">
+public class Variable
+{
+	public static void main(String args[])
+	{
+		int a; // declare an integer variable a
+		a = 10; // assign 10 to variable a
+
+		//int a = 10;
+
+		// print out the value of variable a
+		System.out.printf("a: %d\n", a);
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>

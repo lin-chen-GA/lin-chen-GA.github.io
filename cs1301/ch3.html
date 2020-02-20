@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Chapter 3
+		</div>
+
+		<div class = "subtitle">Boolean Data Type</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch_3_1
+{
+	public static void main(String[] args) {
+		boolean a = true;
+
+		System.out.println(a); // true
+
+		boolean b = (1 &gt; 3);
+
+		System.out.println(b); // false
+
+		int c = 10, d = 100;
+
+		System.out.println(c == d); // false
+
+		int e = 32;
+
+		System.out.println(e%2 == 0); // true
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li><span>boolean</span> data type have the value either <span>true</span> or <span>false</span></li>
+			<li>Relational Operators
+				<ul>
+					<li>&lt;, &lt;=, &gt;, &gt;=, ==, !=</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "subtitle">AdditionQuiz</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Ch_3_2
+{
+	public static void main(String[] args) {
+		int a = 10, b = 100;
+
+		System.out.println("What is the value of "+a+" + "+b+"?");
+
+		Scanner input = new Scanner(System.in);
+		int result = input.nextInt();
+
+		System.out.println("Your answer is "+(result == (a+b)));
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.1B</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E1
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter an integer number: ");
+
+		int num = input.nextInt();
+
+		// print true if number is even, otherwise print false
+		// add your code here
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">If ... Else ... Statements</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+ 
+public class Ch_3_3
+{
+	public static void main(String args[])
+	{
+		int age;
+		Scanner s = new Scanner(System.in);
+ 
+		System.out.println("Enter you age: ");
+		age = s.nextInt();
+ 
+		if (age &gt;= 21)
+		{
+			System.out.println("You can drink alcohol");
+		}
+		else
+		{
+			System.out.println("You are not allowed to drink alcohol");
+		}
+
+		System.out.println("Other Statements ...");
+	}
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/Chapter_3_1.png" width=40% /></p>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.2B</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E2
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter an integer number: ");
+
+		int num = input.nextInt();
+
+		// print "Even" if number is even, otherwise print "Odd"
+		// add your code here
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li><span>Else</span> statement is optional</li>
+			<pre class = "prettyprint linenums">
+if (age == 21)
+{
+	System.out.println("Please Update your Driver's License ...");
+}
+			</pre>
+			<li><span>{}</span> can be ignored if there is only one statement in the block</li>
+			<pre class = "prettyprint linenums">
+if (age == 21)
+	System.out.println("Please Update your Driver's License ...");
+			</pre>
+		</div>
+		<div class = "subtitle">If ... else if ... else Statements</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+ 
+public class Ch_3_3
+{
+	public static void main(String args[])
+	{
+		int grade;
+		Scanner s = new Scanner(System.in);
+ 
+		System.out.println("Enter you grade: ");
+		grade = s.nextInt();
+ 
+		if (grade &gt;= 80)
+			System.out.println("Great ...");
+		else if (grade &gt;= 70)
+			System.out.println("Pass ...");
+		else
+			System.out.println("Fail ...");
+
+		System.out.println("Enjoy Java Programming ...");
+	}
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/Chapter_3_2.png" width=60% /></p>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.3B</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E3
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter your grade: ");
+
+		int grade = input.nextInt();
+
+		// print out "A" if your grade is &gt;= 90
+		// print out "B" if your grade is between 80 and 90
+		// print out "C" if your grade is between 70 and 80
+		// print out "D" if your grade is between 60 and 70
+		// print out "F" otherwise
+		// add your code here
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.3C</span></div>
+		<div class = "block">
+			<li>Write a Java program, read your exam score and print out the letter score. "A": 90 - 100, "B": 80 - 89, "C": 70 - 79, "D": 60 - 69, "F": &lt; 60</li>
+		</div>
+		<div class = "subtitle">Nested if ... else ... Statements</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+ 
+public class Ch_3_5
+{
+	public static void main(String args[])
+	{
+		double grade;
+		Scanner s = new Scanner(System.in);
+ 
+		System.out.println("Enter you grade: ");
+		grade = s.nextInt();
+ 
+		if (grade &gt;= 80)
+			System.out.println("Great ...");
+		else
+		{
+			if (grade &gt;= 70)
+				System.out.println("Pass ...");
+			else
+				System.out.println("Fail ...");
+		}
+
+		System.out.println("Enjoy Java Programming ...");
+	}
+}
+
+			</pre>
+		</div>
+		<div class = "subtitle">Common Errors and Pitfalls</div>
+		<div class = "block">
+			<li>Forgetting Necessary Braces</li>
+			<li>Wrong Semicolon at the if Line</li>
+			<li>Redundant Testing of Boolean Values</li>
+			<li>Dangling else Ambiguity</li>
+			<li>Equality Test of Two Floating-Point Values</li>
+		</div>
+		<div class = "subtitle">Random Number</div>
+		<div class = "block">
+			<li><a href = "https://docs.oracle.com/javase/8/docs/api/java/lang/Math.html">Math Class</a></li>
+			<li>Math.random() generate a random number [0.0, 1.0)</li>
+			<pre class = "prettyprint linenums">
+public class Ch_3_6
+{
+	public static void main(String[] args) {
+		double num = Math.random(); // [0, 1)
+
+		System.out.println(num);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.4C</span></div>
+		<div class = "block">
+			<li>Write a Java program, print out a random integer number [1, 10]</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.5A</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Ch_3_6
+{
+	public static void main(String[] args) {
+		int num_1 = (int)(Math.random()*10);
+		int num_2 = (int)(Math.random()*10);
+
+		// swap two number if num_1 is less than num_2
+		if (num_1 &lt; num_2)
+		{
+			int temp;
+			temp = num_1;
+			num_1 = num_2;
+			num_2 = temp;
+		}
+
+		// print out question
+		System.out.println("Question: "+num_1+" - "+num_2+" = ?");
+
+		// student input the answer
+		Scanner input = new Scanner(System.in);
+		int answer = input.nextInt();
+
+		// check solution
+		if ((num_1 - num_2) == answer)
+			System.out.println("Correct ...");
+		else
+			System.out.println("Your Answer is Wrong ...");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>Math.random()</li>
+			<li>Random numbers in Java are pseudo numbers</li>
+			<li>Swap two numbers</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.6B</span></div>
+		<div class = "block">
+			<li><a href = "https://en.wikipedia.org/wiki/Body_mass_index">Body mass index</a></li>
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E3_6
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter weight in pounds: ");
+		double weight = input.nextDouble();
+
+		System.out.println("Enter height in inchess: ");
+		double height = input.nextDouble();
+
+		// convert to standard units, kiograms and meters
+		weight = weight * 0.4535; // convert pounds to kiograms
+		height = height * 0.0254; // convert inches to meters
+
+		// calculate BMI
+		double BMI;
+		// calculate BMI and print out its value
+		// add your code here
+
+		// BMI &lt; 18.5, Underweight
+		// 18.5 &lt;= BMI &lt; 25.0, Normal
+		// 25.0 &lt;= BMI &lt; 30.0, Overweight
+		// 30.0 &lt;= BMI, Obese
+		// print out BMI Interpretation
+		// add your code here
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>Logical Operators
+				<ul>
+					<li>!, not</li>
+					<li>&amp;&amp;, and</li>
+					<li>||, or</li>
+					<li>^, exclusive or</li>
+				</ul>
+			</li>
+			<p style = "text-align:center;"><img src = "./img/Logical.png" width=40% /></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Ch_3_8
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter your age: ");
+		int age = input.nextInt();
+
+		System.out.println("Enter your BMI: ");
+		double BMI = input.nextDouble();
+
+		if (age &lt; 30 &amp;&amp; BMI &lt; 25) // and
+			System.out.println("Fit ...");
+
+		if (age &gt; 30 || BMI &gt; 25) // or
+			System.out.println("Take Care ...");
+
+		if (!(BMI &lt;= 30.0)) // not
+			System.out.println("More Exercises ...");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.7C</span></div>
+		<div class = "block">
+			<li><a href = "https://www.mathsisfun.com/leap-years.html">Calcualte Leap Year</a></li>
+			<li>Write a Java Program, read a year from the keyboard and tell if it is the leap year</li>
+		</div>
+		<div class = "subtitle">Switch Statements</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Ch_3_9
+{
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("What is your letter score (A|B|C|D|F): ");
+		String c = input.next();
+
+		switch (c)
+		{
+			case "A": System.out.println("You have the score above 90 ...");
+					  break; // what is break doing?
+			case "B": System.out.println("You have the score above 80 ...");
+					  break;
+			default:  System.out.println("Work harder ...");
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>When the value in a case statement <span>matches</span> the value of the switch-expression, the statements for this case are executed until a break statement or the end of the switch statement</li>
+			<li>The <span>break</span> statement immediately ends the switch statement</li>
+			<li>The <span>default</span> case is optional, which is used to perform actions when one of the specified cases matches the switch-expression</li>
+			<li>Do not forget to use a <span>break</span> statment in a case statement</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.8C</span></div>
+		<div class = "block">
+			<li>We know Sunday is the 1st day of a week, Monday is the 2nd day of a week, and so on, write a Java Program, read an integer number (1 - 7), print out which day it is, e.g., enter "4", output should be "Wednesday"</li>
+		</div>
+		<div class = "subtitle">Conditional Operators</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Ch_3_10
+{
+	public static void main(String[] args) {
+		int x = 10;
+
+		boolean y;
+
+		y = (x%2 == 0)?true:false;
+
+		System.out.println(y);
+
+		int num_1 = 1, num_2 = 2;
+		int max;
+
+		max = (num_1 &gt; num_2)?num_1:num_2;
+
+		System.out.println(max);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>logical-expression<span>?</span>true-value<span>:</span>false-value is called a conditional operator, or known as a ternary operator</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 3.9C</span></div>
+		<div class = "block">
+			<li>Write a program that prompts the user to enter the exchange rate from currency in U.S. dollars to Chinese RMB. Prompt the user to enter 0 to convert from U.S. dollars to Chinese RMB and 1 to convert from Chinese RMB to U.S. dollars. Prompt the user to enter the amount in U.S. dollars or Chinese RMB to convert it to Chinese RMB or U.S. dollars, respectively</li>
+			<pre class = "prettyprint linenums">
+Enter the exchange rate from U.S. dollars to RMB: 6.81
+Enter 0 to convert dollars to RMB and 1 vice versa: 0
+Enter the dollar amount: 100
+$100.0 U.S. dollars is 681.0 Chinese Yuan
+			</pre>
+		</div>
+		<div class = "subtitle">Operators Precedence</div>
+		<div class = "block">
+			<table border align="center">
+				<tr><th>Operators</th><th>Meaning</th></tr>
+				<tr><th>var++, var--</th><th>Postfix</th></tr>
+				<tr><th>+, -, ++var, --var</th><th>Prefix</th></tr>
+				<tr><th>(int)(3.14)</th><th>Type Casting</th></tr>
+				<tr><th>!</th><th>Not</th></tr>
+				<tr><th>*, /, %</th><th>Multiplicaiton, division, and remainder</th></tr>
+				<tr><th>+, -</th><th>Binary addition and substraction</th></tr>
+				<tr><th>&lt;, &lt;=, &gt;, &gt;=</th><th>Relational</th></tr>
+				<tr><th>==, !=</th><th>Equality</th></tr>
+				<tr><th>^</th><th>Exclusive OR</th></tr>
+				<tr><th>&amp;&amp;</th><th>AND</th></tr>
+				<tr><th>||</th><th>OR</th></tr>
+				<tr><th>=, +=, -=, *=, /=, %=</th><th>Assignment Operators</th></tr>
+			</table>
+		</div>
+		<div class = "subtitle"><a href = "./e3.html">Exercise Solution</a></div>
+	</body>
+</html>

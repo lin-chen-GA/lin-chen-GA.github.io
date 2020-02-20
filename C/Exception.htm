@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Exception
+		</div>
+
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;string.h&gt;
+#include &lt;assert.h&gt;
+
+int main()
+{
+	int a = 10, b = 0;
+
+	assert (b != 0);
+
+	if(b == 0)
+	{
+		printf("Errno: %d\n", errno);
+		perror("Divided by zero: ");
+		fprintf(stderr, "Divided by zero: %s\n", strerror(errno));
+	}
+	else
+		printf("%d / %d = %f\n", a, b, (float)a/b);
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>

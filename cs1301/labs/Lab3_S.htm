@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Lab Exercises</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			div.question {color: navy; font-weight: bold; width: 75%; margin: auto 10px; border-left: 1px dotted; position: relative; padding: 10px 5px 10px 5px;}
+		</style>
+	</head>
+	<body>
+		<div class = "subtitle">Q1</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Lab3_1
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		double celsius, fahrenheit;
+
+		System.out.print("Enter celsius temperature: ");
+		celsius = input.nextDouble();
+
+		fahrenheit = (9 / 5.0) * celsius + 32;
+
+		System.out.printf("Celsius temperature %.2f is Fahrenheit temperature %.2f\n", celsius, fahrenheit);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Q2</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Lab3_2
+{
+	public static void main(String [] args)
+	{
+		double PI = 3.1415926;
+		double radius, length, area, volume;
+
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter radius and length: ");
+		radius= input.nextDouble();
+		length = input.nextDouble();
+
+		area = radius * radius * PI;
+		volume = area * length;
+
+		System.out.println("Area is " + area);
+		System.out.println("Volume is " + volume);
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>

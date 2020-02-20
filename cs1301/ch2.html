@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Chapter 2
+		</div>
+		<div class = "subtitle">Simple Computation</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+/* Listing 2.1
+ * CS 1301
+ * Area = radius * radius * pi
+ */
+
+public class ComputeArea
+{
+	public static void main(String [] args)
+	{
+		//define variables
+		double radius;
+		double area;
+
+		//assign value to variable
+		radius = 20;
+
+		//compute area
+		area = radius * radius * 3.1415926;
+
+		//output result
+		//string concatenation
+		System.out.println("The area for the circle of radius " + radius + " is " + area); 
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<ol>
+				<li><a href = "Variables.htm">Define variables with data types</a>
+					<ul>
+						<li>1, int</li>
+						<li>1.0, double</li>
+						<li>"1", String</li>
+					</ul>
+				</li>
+				<li>Assignment, "="</li>
+				<li>Mathematical operation</li>
+				<li>String concatenation, cast <span>double</span> data to <span>string</span></li>
+			</ol>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.1A</span></div>
+		<div class = "block">
+			<span>Read</span> the following code, understantd what the code is doing with the code without running the code
+			<pre class = "prettyprint linenums">
+public class C2F
+{
+	public static void main(String [] args)
+	{
+		double celsius = 40;
+		double fahrenheit;
+
+		fahrenheit = (9 / 5.0) * celsius + 32; // why 5.0 instead of 5
+
+		System.out.println(celsius + " Celsius is " + fahrenheit + " Fahrenheit");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.1B</span></div>
+		<div class = "block">
+			<span>Complete</span> the following code
+			<pre class = "prettyprint linenums">
+public class C2F
+{
+	public static void main(String [] args)
+	{
+		double celsius = 40, fahrenheit;
+
+		// add your code to convert celsius to fahrenheit
+
+		System.out.println(celsius + " Celsius is " + fahrenheit + " Fahrenheit");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.1C</span></div>
+		<div class = "block">
+			<span>Write</span> a Java program, convert the celsius tempearture to the fahrenheit, the value of the celsius temperature is 40 degree
+		</div>
+		<div class = "subtitle">Read Input from Console</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner; // import Scanner class defined in java.util package
+
+public class ComputeAreaWithInput
+{
+	public static void main(String[] args)
+	{
+		//define a Scanner object, which can read from standard input
+		Scanner input = new Scanner(System.in);
+
+		//read radius from keyboard
+		System.out.print("Enter a number for radius: ");
+		double radius = input.nextDouble();
+
+		//compute area
+		double area = radius * radius *3.1415926;
+
+		//output result
+		System.out.println("The area for the circle of radius " + radius + " is " + area);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<ol>
+				<li>A variable must be declared and initialized before it can be used</li>
+				<li><a href = "https://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html">Scanner Class</a></li>
+				<li>System.in, standard input</li>
+				<li>Call methods of an object with a dot</li>
+				<li>What will happen if enter a string from the keyboard instead of a integer/float number</li>
+				<li><span>Identifiers</span>
+					<ul>
+						<li>Consists of letters, digits, underscores, and dollar signs</li>
+						<li>Start with a letter, underscore, or dollar sign, cannot start with a digit</li>
+						<li>Cannot be a <a href = "https://www.computerhope.com/jargon/j/java_reserved_words.htm">reserved word</a></li>
+						<li>Cannot be true, false, or null</li>
+						<li>Can be of any length</li>
+					</ul>
+				</li>
+			</ol>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.2B</span></div>
+		<div class = "block">
+			<span>Complete</span> the following code
+			<pre class = "prettyprint linenums">
+import java.util.Scanner; // import Scanner class defined in java.util package
+
+public class ComputeAreaWithInput
+{
+	public static void main(String[] args)
+	{
+		double radius, area;
+
+		//define a Scanner object, which can read from standard input
+		Scanner input = new Scanner(System.in);
+
+		//read radius from keyboard
+		System.out.print("Enter a number for radius: ");
+		//add your code here
+
+		//compute area
+		//add your code here
+
+		//output result
+		System.out.println("The area for the circle of radius " + radius + " is " + area);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.2C</span></div>
+		<div class = "block">
+			<span>Write</span> a Java program, which can read the radius from the keyboard and calculate the area of the circle, then print out the area value to the console</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.3A Compute Average</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class ComputeAverage
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		double num1, num2, num3;
+
+		System.out.print("Enter the first number: ");
+		num1 = input.nextDouble();
+
+		System.out.print("Enter the second number: ");
+		num2 = input.nextDouble();
+
+		System.out.print("Enter the third number: ");
+		num3 = input.nextDouble();
+
+		double avg = (num1 + num2 + num3)/3;
+
+		System.out.println("The average is: "+avg);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.3C</span></div>
+		<div class = "block">
+			Write a Java program, read three numbers from the keyboard, calculate their average, then print the average value to the console
+		</div>
+		<div class = "subtitle"><span>Exercise 2.4B</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class C2F
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+		double celsius, fahrenheit;
+
+		System.out.print("Enter a degree in Celsius: ");
+		// add your code to read value for celsius
+
+		// fahrenheit = (9 / 5.0) * celsius + 32
+		// add your code to convert celsius to fahrenheit
+
+		System.out.println(celsius + " Celsius is " + fahrenheit + " Fahrenheit");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.4C</span></div>
+		<div class = "block">
+			Write a Java program, read a Celsius temperature from the keyboard, convert it to Fahrenheit temperature, print out both the Celsius temperature and the Fahrenheit temperature to the console</li>
+		</div>
+		<div class = "subtitle">Named Constants</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+/* Listing 2.1
+ * CS 1301
+ * Area = radius * radius * pi
+ */
+
+public class ComputeAreaWithConstant
+{
+	public static void main(String [] args)
+	{
+		final double PI = 3.1415926;
+
+		//PI = 10; //error
+
+		//define variables
+		double radius = 20, area;
+
+		//compute area
+		area = radius * radius * PI;
+
+		//output result
+		System.out.println("The area for the circle of radius " + radius + " is " + area);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>Constant represents permanent data that never changes, must be declared and initialized in the same statement</li>
+			<li>Naming Conventions
+				<ul>
+					<li>Lowercase for variables and methods</li>
+					<li>Capitalize the first letter of each word in a class name</li>
+					<li>Capitalize every letter in a constant</li>
+				</ul>
+			</li>
+			<li>Numeric Operators
+				<ul>
+					<li>+, -</li>
+					<li>*, /</li>
+					<li>%, 10 % 3 = 1</li>
+					<li>Math.pow, exponent operation</li>
+				</ul>
+			</li>
+			<li>Precedence
+				<ol>
+					<li>()</li>
+					<li>*, /, %</li>
+					<li>+, -</li>
+				</ol>
+			</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.5B</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+/* Input the seconds from the keyborad
+ * Convert the input second to minutes and seconds in integer
+ * For example, 70 seconds is 1 minute and 10 seconds
+ */
+import java.util.Scanner;
+
+public class DisplayTime
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter an integer for seconds: ");
+		int seconds = input.nextInt();
+
+		int minutes, remainingSeconds;
+		// add your code here
+
+		System.out.println(seconds + " seconds is "+ minutes + " minutes and " + remainingSeconds + " seconds ...");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2.6B</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class ShowCurrentTime
+{
+	public static void main(String [] args)
+	{
+		// Obtain the total milliseconds since midnight, Jan 1, 1970
+		long totalMilliseconds = System.currentTimeMillis();
+
+		// Write code to show the current time, for example, 17:31:8
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exponent Operations</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Exponent
+{
+	public static void main(String [] args)
+	{
+		// 2^3
+		double a = Math.pow(2, 3);
+		System.out.println(a);
+
+		// 4 ^ 0.5
+		System.out.println(Math.pow(4, 0.5));
+
+		// 4 ^ -2
+		System.out.println(Math.pow(4, -2));
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Numeric Literals</div>
+		<div class = "block">
+			<li>A literal is a constant value that appears directly in a program, such as, int num = 34</li>
+			<pre class = "prettyprint linenums">
+byte b = 10; // 10 is treated as byte
+int c = 10; // 10 is treated as int
+long d = 1234L; // L stands for long integer
+float f = 3.14F; // float number
+double g = 3.14D; // double number
+0B1111; // binary number
+07777; // octal number
+0xFFFF; // hexadecimal integer
+3e+2; // 300
+1.23456e-2; // 0.0123456
+			</pre>
+		</div>
+		<div class = "subtitle">More Assignment Operators</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Assignment
+{
+	public static void main(String [] args)
+	{
+		// Augmented Assignment Operators
+		int a = 10;
+
+		a += 1; // or a = a + 1
+		a -= 1; // or a = a - 1
+
+		a *= 2; // or a = a * 2
+		a /= 2; // or a = a / 2
+		a %= 2; // or a = a % 2
+
+		// Increment and Decrement Operators
+		int b = 100;
+		b++; // 101
+		b--; // 100
+
+		int c = 100;
+		++c; // 101
+		--c; // 100
+
+		// What is the difference between i++ and ++i
+		int i = 1000;
+		System.out.println(i++); // 1000, print out i, then do i = i + 1
+		System.out.println(i); // 1001
+
+		int j = 1000;
+		System.out.println(++j); // 1001, do j = j + 1, then print out j
+		System.out.println(j);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Type Casting</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Convert
+{
+	public static void main(String [] args)
+	{
+		// implicit type casting
+		double a = 10; // convert integer 10 to double 10.0
+
+		System.out.println(9.0/5); // convert integer 5 to double 5.0 since 9.0 is a double number
+
+		// explicit type casting
+		double b = 3.14;
+
+		int c = (int)b;
+
+		System.out.println(c);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Common Errors and Pitfalls</div>
+		<div class = "block">
+			<li>Undeclared/Uninitialized Variables and Unused Variables</li>
+			<li>Integer Overflow</li>
+			<li>Round-off Errors</li>
+			<li>Unintended Integer Division</li>
+			<li>Redundant Input Objects</li>
+		</div>
+		<div class = "subtitle"><a href = "./e2.html">Exercise Solution</a></div>
+	</body>
+</html>

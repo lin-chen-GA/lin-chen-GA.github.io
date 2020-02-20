@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Function
+		</div>
+
+		<div class = "subtitle">Pass by value</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void doubleNum(int n)
+{
+	printf("In fuction: %d, %p\n", n, &n);
+	n *= 2;
+	printf("In fuction: %d, %p\n", n, &n);
+}
+
+int main()
+{
+	int a = 10;
+
+	printf("Value: %d, Address: %p\n", a, &a);
+
+	doubleNum(a);
+
+	printf("After calling function: %d, %p\n", a, &a);
+}
+		</pre>
+		</div>
+
+		<div class = "subtitle">Pass by reference</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void doubleNum(int *n)
+{
+	printf("In fuction: %d, %p\n", *n, n);
+	*n *= 2;
+	printf("In fuction: %d, %p\n", *n, n);
+}
+
+int main()
+{
+	int a = 10;
+
+	printf("Value: %d, Address: %p\n", a, &a);
+
+	doubleNum(&a);
+
+	printf("After calling function: %d, %p\n", a, &a);
+}
+		</pre>
+		</div>
+
+		<div class = "subtitle">Layout in single file</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+
+int doubleNum(int n)
+{
+	int num;
+	num = 2*n;
+
+	return num;
+}
+
+int main()
+{
+	srand(time(NULL)); // take a random seed
+	int r = rand()%100; // generate a random number within [0, 100)
+
+	printf("Value: %d\n", doubleNum(r));
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+
+int doubleNum(int);
+
+int main()
+{
+	srand(time(NULL)); // take a random seed
+	int r = rand()%100; // generate a random number within [0, 100)
+
+	printf("Value: %d\n", doubleNum(r));
+}
+
+int doubleNum(int n)
+{
+	int num;
+	num = 2*n;
+
+	return num;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Layout in multiple files</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// f3.c
+#include &lt;stdio.h&gt;
+#include &lt;time.h&gt;
+#include &lt;stdlib.h&gt;
+#include "util.h"
+
+int main()
+{
+	srand(time(NULL)); // take a random seed
+	int r = rand()%100; // generate a random number within [0, 100)
+
+	printf("Value: %d\n", doubleNum(r));
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.c
+#include "util.h"
+
+int doubleNum(int n)
+{
+	int num;
+	num = 2*n;
+
+	return num;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+int doubleNum(int);
+#endif
+		</pre>
+		</div>
+	</body>
+</html>

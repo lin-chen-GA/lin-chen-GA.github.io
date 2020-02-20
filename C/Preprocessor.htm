@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Preprocessor
+		</div>
+
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#define PI 3.14
+
+//#undef PI
+#ifndef PI
+	#error "Not define PI ..." // compile error
+#endif
+
+#define DISP(a) printf("Parameter is " #a "\n");
+#define SQUARE(x) ((x)*(x))
+
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	printf("Date: %s\n", __DATE__);
+	printf("Time: %s\n", __TIME__);
+	printf("File: %s\n", __FILE__);
+	printf("Line: %d\n", __LINE__);
+	printf("STDC: %d\n", __STDC__); // defined as 1 when the compiler complies with the ANSI standard
+
+	DISP(TEMP); // Parameter is TEMP
+
+	printf("Square of %d is: %d\n", 10, SQUARE(10));
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>
