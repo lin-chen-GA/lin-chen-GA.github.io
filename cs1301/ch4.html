@@ -61,7 +61,7 @@ public class Ch4_1
 		<div class = "block">
 			<li>Math functions, inputs (parameters), output</li>
 			<li>Degree to radian, radian to degree</li>
-			<li>sin, asin, cos, acos, tan, atan</li>
+			<li><span>sin, asin, cos, acos, tan, atan</span></li>
 		</div>
 		<div class = "subtitle"><span>Exercise 4.1C</span></div>
 		<div class = "block">
@@ -154,9 +154,9 @@ public class Ch4_5
 		<div class = "subtitle">Knowledge Points</div>
 		<div class = "block">
 			<li>Radian PI== Degree 180</li>
-			<li>ceil, round up to the nearest integer</li>
-			<li>floor, round down to the nearest integer</li>
-			<li>rint, round to the nearest integer, if equally close to two integers, the even one is returned as a double value
+			<li><span>ceil</span>, round up to the nearest integer</li>
+			<li><span>floor</span>, round down to the nearest integer</li>
+			<li><span>rint</span>, round to the nearest integer, if equally close to two integers, the even one is returned as a double value
 				<ul>
 					<li>rint(2.1), 2</li>
 					<li>rint(2.6), 3</li>
@@ -164,14 +164,15 @@ public class Ch4_5
 					<li>rint(2.5), 2</li>
 				</ul>
 			</li>
-			<li>round, return (int)Math.floor(x+0.5)
+			<li><span>round</span>, return (int)Math.floor(x+0.5)
 				<ul>
 					<li>round(3.1), 3</li>
 					<li>round(4.5), 5</li>
 					<li>round(5.6), 6</li>
 				</ul>
 			</li>
-			<li>a+Math.random()*b, [a, a+b)</li>
+			<li>a+<span>Math.random()</span>*b, [a, a+b)</li>
+			<li><span>min, max, and abs</span></li>
 		</div>
 		<div class = "block">
 			<p style = "text-align:center;"><img src = "./img/Ch4_1.png" width=40% /></p>
@@ -210,9 +211,6 @@ public class E4_2
 		</div>
 		<div class = "subtitle">Character Data</div>
 		<div class = "block">
-			<li><a href = "http://www.asciitable.com/">ASCII Table</a></li>
-			<li>Encoding, map a character to its binary representation</li>
-			<li>8-bit, 128 ASCII character</li>
 			<pre class = "prettyprint linenums">
 public class Ch4_6
 {
@@ -229,6 +227,12 @@ public class Ch4_6
 	}
 }
 			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>Mapping a character to its binary representation is called <span>encoding</span></li>
+			<li><a href = "http://www.asciitable.com/">ASCII Table</a>, 8-bit, 128 ASCII character</li>
+			<li><a href = "https://en.wikipedia.org/wiki/Unicode">Unicode</a>, 137,994 characters in Unicode 12.1</li>
 		</div>
 		<div class = "subtitle">Character Methods</div>
 		<div class = "block">
@@ -259,13 +263,6 @@ public class Ch4_7
 		</div>
 		<div class = "subtitle">Escape</div>
 		<div class = "block">
-			<li>\b, backspace</li>
-			<li>\t, tab</li>
-			<li>\n, new line</li>
-			<li>\f, fromfeed</li>
-			<li>\r, carriage return</li>
-			<li>\\, backslash</li>
-			<li>\", double quote</li>
 			<pre class = "prettyprint linenums">
 public class Ch4_8
 {
@@ -274,6 +271,10 @@ public class Ch4_8
 		System.out.println("Hello \"Lin\" ..."); // escape \*
 
 		System.out.println("Hello Lin\n Chen ...");
+
+		System.out.println("Hello Lin\t Chen ...");
+
+		System.out.printf("Hello %10s\n %10s ...", "Lin", "Chen");
 	}
 }
 			</pre>
@@ -295,21 +296,45 @@ public class Ch4_9
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Exercise</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>Char
+				<ul>
+					<li>&lt;, &lt;=, ==, &gt;=, &gt;</li>
+					<li>isDigit, isLetter, isLetterDigit, isLowerCase, isUpperCase, toLowerCase, toUpperCase</li>
+				</ul>
+			</li>
+			<li>Escape
+				<ul>
+					<li>\b, backspace</li>
+					<li>\t, tab</li>
+					<li>\n, new line</li>
+					<li>\f, fromfeed</li>
+					<li>\r, carriage return</li>
+					<li>\\, backslash</li>
+					<li>\", double quote</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 4.4B</span></div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
 public class E2
 {
 	public static void main(String [] args)
 	{
+		Scanner input = new Scanner(System.in);
+
 		//Read a character from the keyboard
-		//add your code here
-		
+		System.out.print("Please enter a character:");
+		char c = input.next().charAt(0);
 
 		//Use if ... else ... to check if the entered character is a letter or not
 		//add your code here
 
-		//Compare the entered character with 'A'
+		//Compare the entered character with 'A', if yes, print out "Match"
 		//add your code here
 	}
 }
