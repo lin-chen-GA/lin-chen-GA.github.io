@@ -343,34 +343,37 @@ public class E2
 		<div class = "subtitle">String Methods</div>
 		<div class = "block">
 			<li><a href = "https://docs.oracle.com/javase/7/docs/api/java/lang/String.html">String Class</a></li>
-			<li>instance methods,variable.methodName(parameters)</li>
-			<li>static methods, ClassName.methodName(parameters)</li>
+			<p style = "text-align:center;"><img src = "./img/Ch4_3.png" width=60% /></p>
+		</div>
+		<div class = "block">
 			<pre class = "prettyprint linenums">
 public class Ch4_10
 {
 	public static void main(String [] args)
 	{
-		String message = "Welcome to Java";
+		String message = "Welcome to Java"; // String, the first letter is upper case
 
 		//length
-		System.out.println(message.length()); //instance method
+		System.out.println(message.length()); // 15
 
-		//charAt
+		//charAt, access a specific character by index
 		System.out.println(message.charAt(6)); // character e
 
 		//concat
-		System.out.println("hello ".concat("world!"));
-		System.out.println("hello "+"world!");
+		System.out.println("hello ".concat("world!")); // hello world!
+
+		System.out.println("hello "+"world!"); // hello world!
+
 		String message_2 = "!";
-		System.out.println(message+message_2);
+		System.out.println(message+message_2); // Welcome to Java!
 
 		//toUpperCase
-		System.out.println(message.toUpperCase());
+		System.out.println(message.toUpperCase()); // WELCOME TO JAVA
 
 		//toLowerCase
-		System.out.println(message.toLowerCase());
+		System.out.println(message.toLowerCase()); // welcome to java
 
-		//trim
+		//trim, remove leading and trailing whitespaces
 		String message_3 = "  Hello World  ";
 		System.out.println(message_3);
 		System.out.println(message_3.trim());
@@ -378,7 +381,70 @@ public class Ch4_10
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Comparing String</div>
+		<div class = "subtitle"><span>Exercise 4.5B</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		//Read a character from the keyboard
+		System.out.print("Please enter a string:");
+		String str = input.nextLine(); //read the entire line as a string
+
+		//print out the length of the entered string
+		//add your code here
+
+		//print out the second character of the string
+		//add your code here
+
+		//print out the capitalized string
+		//add your code here
+
+		//if the entered string has spaces before and after it
+		//remove the leading and trailing whitespaces
+		//print out the trimmed string
+		//add your code here
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li><span>instance method</span>, is called from a specific instance, such as, "Hello".toUpperCase()</li>
+			<li><span>static method</span>, can be invoked without using an object, such as, Math.random()</li>
+			<li>The string <span>index</span> start from 0, the index of the last character is s.length()-1</li>
+			<li>length(), charAt(), concat(), toUpperCase(), toLowerCase(), trim()</li>
+		</div>
+		<div class = "subtitle">Comparing Strings</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Ch4_16
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter the first string: ");
+		String s = input.nextLine(); //hello
+
+		System.out.println("Enter the second string: ");
+		String s_2 = input.nextLine(); //hello
+
+		String s_3 = s;
+
+		System.out.println(s == s_2); // what is the output
+		System.out.println(s == s_3); // what is the output
+	}
+}
+			</pre>
+		</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
 import java.util.Scanner;
@@ -403,6 +469,7 @@ public class Ch4_11
 
 		//compareTo
 		System.out.println(s.compareTo(s_2)); // 0, equals; otherwise, not equal
+		System.out.println("abc".compareTo("abg")); // what is the output value
 
 		//startsWith
 		System.out.println(s.startsWith("he")); //true
@@ -415,6 +482,17 @@ public class Ch4_11
 	}
 }
 			</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>==, checks only whether two strings refer to the same object</li>
+			<li><span>equals(), equalsIgnoreCase()</span></li>
+			<li><span>compareTo(), compareToIgnoreCase()</span></li>
+			<li><span>startWith(), endsWith(), contains()</span></li>
+		</div>
+		<div class = "subtitle"><span>Exercise 4.6C</span></div>
+		<div class = "block">
+			<li>Read a file name from the keyboard, check if the file is a ".java" file, if yes, check if the file name is "Hello.java"</li>
 		</div>
 		<div class = "subtitle">Substring</div>
 		<div class = "block">
