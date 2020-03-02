@@ -25,6 +25,7 @@
 <pre class = "prettyprint linenums">
 #__init__.py is empty
 
+#test.py, same folder as the myPackage
 import myPackage
 myPackage.m1.f_1() # Error, myPackage has no module m1
 
@@ -50,6 +51,7 @@ f_1()
 #from m1 import f_1 # not allowed in Python 3
 from myPackage.m1 import f_1, f_2 # #access module from the root of the package
 
+#test.py, same folder as myPackage
 import myPackage # import myPackage.m1 and myPackage.f_1
 myPackage.f_1()
 myPackage.m1.f_1()
@@ -70,6 +72,7 @@ __all__ = ['m1', 'f_1']
 from myPackage.m1 import f_1, f_2
 from myPackage.m2 import f_3
 
+#test.py
 from myPackage import * # import m1 and f_1, not f_2 and f_3
 </pre>
 		</div>
@@ -83,6 +86,7 @@ from myPackage import * # import m1 and f_1, not f_2 and f_3
 
 #__init__.py #2, empty
 
+#test.py
 import myPackage.sub_1.m3 # import myPackage.sub_1.m3
 myPackage.sub_1.m3.f_5()
 
@@ -103,6 +107,7 @@ f_5()
 #__init__.py #2
 from myPackage.sub_1.m3 import f_5, f_6
 
+#test.py
 import myPackage.sub_1 as sub # import sub.f_5, sub.f_6, and sub.m3
 sub.f_5()
 
@@ -124,6 +129,7 @@ from myPackage.sub_1 import f_5
 #__init__.py #2
 from myPackage.sub_1.m3 import f_5, f_6
 
+#test.py
 import myPackage # import myPackage.f_1, myPackage.f_2, myPackage.f_3, myPackage.f_5, myPackage.m1, myPackage.m2, myPackage.sub_1
 
 from myPackage import * # import f_1, f_2, f_3, f_5, m1, m2, sub_1
@@ -175,6 +181,7 @@ if __name__ == "__main__":
 #__init__.py #3, empty
 </pre>
 <pre class = "prettyprint linenums">
+#m4.py
 #!/usr/bin/python
 
 from myPackage.sub_1 import m3
@@ -187,6 +194,7 @@ if __name__ == "__main__":
 </pre>
 			<li>relative reference</li>
 <pre class = "prettyprint linenums">
+#m4.py
 #!/usr/bin/python
 
 from ..sub_1 import m3
