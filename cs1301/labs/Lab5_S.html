@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Soluiton of Lab 6
+		</div>
+
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Lab6
+{
+	public static void main(String [] args)
+	{
+		String phrase = "Change is inevitable";
+		System.out.println("Length of string: "+phrase.length());
+
+		String mutation1 = phrase + ", except from vending machines";
+		System.out.println("Mutation #1: "+mutation1);
+
+		String mutation2 = mutation1.toUpperCase();
+		System.out.println("Mutation #2: "+mutation2);
+
+		String mutation3 = mutation2.replace("E", "X");
+		System.out.println("Mutation #3: "+mutation3);
+
+		String mutation4 = mutation3.substring(3, 30);
+		System.out.println("Mutation #4: "+mutation4);
+		System.out.println("Muated length: "+mutation4.length());
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>
