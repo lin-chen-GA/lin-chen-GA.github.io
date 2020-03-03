@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IP 2</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">IP 2: Simple Project</div>
+		<div class = "subtitle">Project Architecture</div>
+
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "IP_2.png" width = "30%"></p>
+		</div>
+		<div class = "subtitle">1. Complete Code</div>
+		<div class = "block">
+			<li>Complete the code in the package "primepackage" to make generate.py be able to run correctly</li>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+# generate.py
+#!/usr/bin/python
+
+"""A Python program generating a list of prime numbers and output them into a csv file
+
+"""
+
+from primepackage import *
+
+def main():
+    """Generate 100 prime numbers and output it into output.csv file
+
+    """
+    primes = getNPrime(100)
+
+    write_primes(primes, 'output.csv')
+
+    l = read_primes('output.csv')
+
+    print(l)
+
+if __name__ == '__main__':
+    main()
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+#__init__.py
+# add necessary code here
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+#primeio.py
+def write_primes(l, file_name):
+	# add your code to make the function read a list of prime numbers and a csv file name as parameters, write the number in the list to the csv file
+
+def read_primes(file_name):
+	# add your code here to make the function read a csv file name as the parameter, read the primes numbers saved in the csv file, save them into a list, return the list
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+#primemodule.py
+def isPrime(n):
+	# add your code here, read a natural number, return True if it is a prime number, return False otherwise
+
+def getNPrime(num):
+	# add your code here, read an integer number parameter, return a list containing prime numbers, the number of prime numbers in the list is specified by the function parameter
+			</pre>
+		</div>
+		<div class = "subtitle">2. Add doc string for each module and each function</div>
+		<div class = "subtitle">3. Check the coding style with pylint</div>
+		<div class = "subtitle"><span>Grading Criteria</span></div>
+		<div class = "block">
+			<li>1. Architecture, 10 points</li>
+			<li>2. Code, 40 points</li>
+			<li>3. Doc string, 40 points</li>
+			<li>4. Coding style, 10 points</li>
+			<li>Make sure your code is able to run correctly, if not, you are going to receive a 0</li>
+			<li>The project is an individual project, if the two projects have the similarity above 90%, both projects will receive 0</li>
+		</div>
+	</body>
+</html>

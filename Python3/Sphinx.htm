@@ -19,11 +19,11 @@
 		<div class = "block">
 			Sphinx is widely used to generate python document. Here is a brief tutorial to generate your own doc
 		</div>
-		<div class = "subtitle">Quick Start</div>
+		<div class = "subtitle">1. Quick Start</div>
 		<div class = "block">
 			<p style = "text-align:center;"><img src = "img/Sphinx_1.png" width = "40%"></p>
 
-			1. <span>sphinx-quickstart</span>, inside "S4" folder, <span>sphinx-quickstart doc</span>, if on Linux system
+			<span>sphinx-quickstart</span>, inside "S4" folder, <span>sphinx-quickstart doc</span>, if on Linux system
 	<ul>
 		<li>Root paht for the documentation [.]: doc</li>
 		<li>Separate source and build directories (y/n) [n], press "Enter"</li>
@@ -55,41 +55,43 @@
 </ul>
 </li>
 		</div>
+		<div class = "subtitle">2. Generate rst files</div>
 		<div class = "block">
-			2. <span>sphinx-apidoc -o doc .</span> inside "S4" folder, generate a rst file for each py file or each package under "S4" folder, and save them to "doc" folder
+			<span>sphinx-apidoc -o doc .</span> inside "S4" folder, generate a rst file for each py file or each package under "S4" folder, and save them to "doc" folder
 			<p style = "text-align:center;"><img src = "img/Sphinx_3.png" width = "40%"></p>
 		</div>
+		<div class = "subtitle">3. Configuration</div>
 		<div class = "block">
-3. edit conf.py in "doc" folder, define where to search the source code
+1. edit conf.py in "doc" folder, define where to search the source code
 <pre>
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))
 </pre>
+2. edit theme
+<pre>
+html_theme = 'classic'
+</pre>
+3. edit extensions
+<pre>
+extensions = ['sphinx.ext.autodoc']
+</pre>
 		</div>
+		<div class = "subtitle">4. Add display content</div>
 		<div class = "block">
-4. edit index.rst in "doc" folder, add rst files for the modules and packages that will be shown in index.html, use reStructuredText to edit the file, rst files are initial documentation files
+edit index.rst in "doc" folder, add rst files for the modules and packages that will be shown in index.html, use reStructuredText to edit the file, rst files are initial documentation files
 <pre>
 .. toctree:: 
      :maxdepth: 2
      <strike>:caption: Contents:</strike>
      :glob: 
 ---Blank Line--- 
-     convert.rst
-     format.rst
      modules.rst
 </pre>
 		</div>
+		<div class = "subtitle">5. Generate documentaion</div>
 		<div class = "block">
-			5. <span>make html</span> in "doc" folder, save the generated html doc to _build
-		</div>
-		<div class = "subtitle">Change theme</div>
-		<div class = "block">
-			1. edit conf.py in "doc" folder
-			<pre>
-html_theme = 'classic'
-			</pre>
-			2. <span>make html</span>, in "doc" folder
+			<span>make html</span> in "doc" folder, save the generated html doc to _build
 		</div>
 		<div class = "subtitle">Add logo</div>
 		<div class = "block">
