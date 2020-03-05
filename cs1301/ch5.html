@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Chapter 5
+		</div>
+
+		<div class = "subtitle">While Loop</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/Chapter5_1.png" width=30% /></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_1
+{
+	public static void main(String [] args)
+	{
+		int count = 10;
+
+		while (count &gt; 0)
+		{
+			System.out.println("Hello World!");
+			count--;
+		}
+	}
+}
+			</pre>
+		</div>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_2
+{
+	public static void main(String [] args)
+	{
+		int count = 100;
+		int sum = 0;
+
+		while (count &gt; 0)
+		{
+			sum += count;
+			count--;
+		}
+
+		System.out.println("Sum: "+sum);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 5.1C</span></div>
+		<div class = "block">
+			Read an integer from the keyboard, print out numbers from 1 to the entered number
+			<pre class = "prettyprint linenums">
+Enter: 10
+Output: 1 2 3 4 5 6 7 8 9 10
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 5.2C</span></div>
+		<div class = "block">
+			Read an integer from the keyboard, print out the summation from 1 to the entered number
+			<pre class = "prettyprint linenums">
+Enter: 10
+Output: 55
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Ch5_3
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		boolean cont = true;
+
+		int sum = 0;
+		int count = 0;
+
+		while(cont)
+		{
+			System.out.println("Enter your grade: ");
+			int grade = input.nextInt();
+
+			sum += grade;
+			count++;
+
+			System.out.println("Are you going to enter more grades (true/false)?");
+			cont = input.nextBoolean();
+		}
+
+		System.out.println("Average Grade: "+(float)sum/count);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 5.3C</span></div>
+		<div class = "block">
+			<li>Input the grades of the students in CS1301, calculate the average grade. (Hint: stop the loop by entering a negative number)</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 5.4C</span></div>
+		<div class = "block">
+			<li>Generate a random integer between 1 and 6 by computer, enter your guess number. If the guess number matches the random integer, stop; otherwise, ask the user to enter the new guess number</li>
+		</div>
+		<div class = "subtitle">Do While</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/Chapter5_2.png" width=25% /></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_4
+{
+	public static void main(String [] args)
+	{
+		int count = 0;
+
+		do
+		{
+			System.out.println("Hello World!");
+			count++;
+		}while (count &lt;= 10);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Difference Between While and Do ... While</div>
+		<div class = "block">
+			<li>While, the logical expression is evaluated first</li>
+			<li>Do ... While, the logical expression is evaluated after the loop body is executed, the loop body is execuated <span>at least once</span></li>
+		</div>
+		<div class = "subtitle">Scope</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_5
+{
+	public static void main(String [] args)
+	{
+		int i = 0; //accessbile in the main function
+
+		while(i &lt; 10)
+		{
+			System.out.println(i);
+			i++;
+
+			int j = 10; //accessible in the block of the current while loop
+			System.out.println(j);
+		}
+
+		//System.out.println(j); //error
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Break and Continue</div>
+		<div class = "block">
+			<li>break, terminate the current loop</li>
+			<li>continue, breaks the current iteration, and continues with the next iteration in the loop</li>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_6
+{
+	public static void main(String [] args)
+	{
+		int i = 0; //accessbile in the main function
+
+		while(i &lt; 10)
+		{
+			if(i == 6) break;
+
+			System.out.println(i);
+			i++;
+		}
+
+		System.out.println("End of the program ...");
+	}
+}
+
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_7
+{
+	public static void main(String [] args)
+	{
+		int i = 0; //accessbile in the main function
+
+		while(i &lt; 10)
+		{
+			if(i == 6) 
+			{
+				i++;
+				continue;
+			}
+
+			System.out.println(i);
+			i++;
+		}
+
+		System.out.println("End of the program ...");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Nested While Loop</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_8
+{
+	public static void main(String [] args)
+	{
+		int i = 1;
+
+		while(i &lt;= 9)
+		{
+			int j = 1;
+
+			while(j &lt;= 9)
+			{
+				System.out.printf("%d*%d = %2d  ", i, j, i*j);
+				j++;
+			}
+
+			System.out.println();
+			i++;
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Suppose the tuition for a university is $10,000 this year and increases 5% every year. In one year, the tuition will be $10,500. Write a program that displays the tutition in 10 years</li>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Write a program to print the following output with while loop</li>
+			<pre>
+*
+**
+***
+****
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Write a program to print the following output with while loop</li>
+			<pre>
+1
+12
+123
+1234
+			</pre>
+		</div>
+		<div class = "subtitle">For Loop</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_9
+{
+	public static void main(String [] args)
+	{
+		for(int i = 0; i &lt; 10; i++)
+		{
+			System.out.println("Hello World!");
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/for.png" width = 60%></p>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_10
+{
+	public static void main(String [] args)
+	{
+		int sum = 0;
+
+		for(int i = 1; i &lt;= 100; i++)
+			sum += i;
+
+		System.out.println(sum);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Scope</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_11
+{
+	public static void main(String [] args)
+	{
+		//define loop index outside for loop
+		int i; //scope is main function
+
+		for(i = 0; i &lt; 10; i++)
+		{
+			System.out.println("Hello World!");
+		}
+
+		System.out.println(i); // 10
+
+		//define loop index inside for loop
+		for(int j = 0; j &lt; 10; j++) // scope of j is the for loop block
+		{
+			System.out.println("Hello World!");
+		}
+
+		//System.out.println(j); //error
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Break</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_12
+{
+	public static void main(String args[])
+	{
+		for(int i = 0; i &lt; 10; i++)
+		{
+			if (i == 6)
+				break;
+ 
+			System.out.println(i);
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Continue</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_13
+{
+	public static void main(String args[])
+	{
+		for(int i = 0; i &lt; 10; i++)
+		{
+			if (i == 6)
+				continue;
+ 
+			System.out.println(i);
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Nested For Loop</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch5_12
+{
+	public static void main(String [] args)
+	{
+		for(int i = 1; i &lt;= 9; i++)
+		{
+			for(int j = 1; j &lt;= 9; j++)
+				System.out.printf("%d*%d = %2d ", i, j, i*j);
+			System.out.println();
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Write a Java Program, read an integer from the keyboard, calculate the summation from 1 to the entered integer with for loop</li>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+*
+**
+***
+****
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Write a Java program, read a string from the keyboard and check whether it is a palindrome</li>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Display the first 50 prime numbers</li>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Calculate the gcd of 32 24</li>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Write a program that reads an integer and displays all its smalles factors in an increasing order. For example, if the input integer is 120, the output should be as follows: 2, 2, ,2, 3, 5</li>
+		</div>
+		<div class = "subtitle">Exercise</div>
+		<div class = "block">
+			<li>Convert Decimal number to Binary number</li>
+		</div>
+	</body>
+</html>
