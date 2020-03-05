@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>CS 1301</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Exercise Soluitons
+		</div>
+		<div class = "subtitle">E4.1</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E4_1
+{
+	public static void main(String [] args)
+	{
+		System.out.println(Math.sin(Math.toRadians(90))); // sin(90)
+		System.out.println(Math.cos(Math.toRadians(90))); // cos(90)
+		System.out.println(Math.sin(Math.toRadians(30))); // sin(30)
+
+		System.out.println(Math.sin(Math.PI/2)); // sin(pi/2)
+		System.out.println(Math.cos(Math.PI/4)); // cos(pi/4)
+
+		System.out.println(Math.asin(0.5));
+		System.out.println(Math.toDegrees(Math.asin(0.5)));
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">E4.2</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+ 
+public class E4_2
+{
+	public static void main(String [] args)
+	{
+		//input the coordinates of the three points of the right triangle
+		Scanner input = new Scanner(System.in);
+ 
+		double x1, y1, x2, y2, x3, y3;
+
+		System.out.println("Enter the coordiante (x1, y1):");
+		x1 = input.nextDouble();
+		y1 = input.nextDouble();
+
+		System.out.println("Enter the coordiante (x2, y2):");
+		x2 = input.nextDouble();
+		y2 = input.nextDouble();
+
+		System.out.println("Enter the coordiante (x3, y3):");
+		x3 = input.nextDouble();
+		y3 = input.nextDouble();
+ 
+		//calcualte a, b, c
+		a = Math.sqrt((x3-x1)*(x3-x1) + (y3-y1)*(y3-y1));
+		b = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+		c = Math.sqrt((x3-x2)*(x3-x2) + (y3-y2)*(y3-y2));
+ 
+		//calculate the area of the triangle
+		double area = a*b/2;
+ 
+		//print out the area
+		System.out.println("Area: "+area);
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>
