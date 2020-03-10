@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Exercises in Chapter 5
+		</div>
+
+		<div class = "subtitle">Exercise 5.1</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_1
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int num = input.nextInt();
+
+		int count = 0;
+
+		while(count &lt; num)
+		{
+			count++;
+			System.out.print(count+" ");
+		}
+		System.out.println();
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.2</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_2
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int num = input.nextInt();
+
+		int sum = 0;
+
+		while(num &gt; 0)
+		{
+			sum += num;
+			num--;
+		}
+
+		System.out.println(sum);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.3</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_3
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int sum = 0;
+		int count = 0;
+
+		System.out.println("Enter your grade: ");
+		int grade = input.nextInt();
+
+		while(grade &gt;= 0)
+		{
+			sum += grade;
+			count++;
+
+			System.out.println("Enter your grade: ");
+			grade = input.nextInt();
+		}
+
+		System.out.println("Average Grade: "+(float)sum/count);
+	}
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_3
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int sum = 0;
+		int count = -1;
+
+		int grade = 0;
+
+		while(grade &gt;= 0)
+		{
+			sum += grade;
+			count++;
+
+			System.out.println("Enter your grade: ");
+			grade = input.nextInt();
+		}
+
+		System.out.println("Average Grade: "+(float)sum/count);
+	}
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_3
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		int sum = 0;
+		int count = 0;
+
+		int grade = 0;
+
+		while(grade &gt;= 0)
+		{
+			System.out.println("Enter your grade: ");
+			grade = input.nextInt();
+
+			if(grade &lt; 0) break;
+
+			sum += grade;
+			count++;
+		}
+
+		System.out.println("Average Grade: "+(float)sum/count);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.4</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_4
+{
+	public static void main(String [] args)
+	{
+		//generate a random integer between 1 and 6
+		int r = (int)(Math.random()*6)+1;
+
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter your guess number: ");
+		int g = input.nextInt();
+
+		while(g != r)
+		{
+			System.out.println("Please guess again ...");
+			System.out.println("Enter your guess number: ");
+			g = input.nextInt();
+		}
+
+		System.out.println("Great Job!");
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>
