@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Soluiton of Lab 6
+		</div>
+
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Lab7
+{
+	public static void main(String [] args)
+	{
+		int num, limit, current;
+
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Enter an positive integer:");
+		num = input.nextInt();
+
+		System.out.println("Enter the upper limit value:");
+		limit = input.nextInt();
+
+		current = num;
+		int count = 0;
+		while(current &lt; limit)
+		{
+			System.out.printf("%5d ", current);
+			count++;
+			if (count%5 == 0) System.out.println();
+			current += num;
+		}
+		if(count%5 != 0) System.out.println();
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>
