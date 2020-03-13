@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IP 2</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">IP 3: Generating Documents</div>
+		<div class = "subtitle">Project Architecture</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "IP_3.png" width = "30%"></p>
+		</div>
+		<div class = "subtitle">1. Add Exception</div>
+		<div class = "block">
+			<li>Modify your code for IP-2</li>
+			<li>In primeio.py, <span>raise</span> the necessary Exceptions from <span>write_primes</span> and <span>read_primes</span></li>
+			<li>In primemodule.py, <span>raise</span> appropriate Exceptions when n is not greater than 0 in <span>isPrime</span></li>
+			<li>Use <span>try ... except ...</span> to call the functions and handle exceptions in generate.py</li>
+		</div>
+		<div class = "subtitle">2. Docstring</div>
+		<div class = "block">
+			<li>Update docstring in each module
+				<ul>
+					<li>Each module has the module docstring</li>
+					<li>The docstring for each function should contains function description, args (if have parameters), returns (if have returns), exceptions (if have exceptions), examples</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "subtitle">3. Generate Documents</div>
+		<div class = "block">
+			<li>Generate documents with sphinx, and save the document to /doc folder</li>
+		</div>
+		<div class = "subtitle"><span>Grading Criteria</span></div>
+		<div class = "block">
+			<li>1. Exception, 30 points</li>
+			<li>2. Doc string, 30 points</li>
+			<li>3. Documents, 40 points</li>
+			<li>Make sure your code is able to run correctly, if not, you are going to receive a 0</li>
+			<li>The project is an individual project, if the two projects have the similarity above 90%, both projects will receive 0</li>
+		</div>
+		<div class = "subtitle"><span>Submission</span></div>
+		<div class = "block">
+			<li>Upload the source code to a repository created for IP-2 at Github</li>
+			<li>Submit the URL of your source code to the BlazeView</li>
+		</div>
+	</body>
+</html>
