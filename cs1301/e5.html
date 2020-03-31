@@ -187,5 +187,264 @@ public class E5_4
 }
 			</pre>
 		</div>
+		<div class = "subtitle">Exercise 5.5</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E5_5
+{
+	public static void main(String [] args)
+	{
+		double tuition = 10000;
+		double rate = 0.05;
+
+		int loop = 1;
+
+		while(loop &lt;= 10)
+		{
+			System.out.printf("The tuition for the year %2d is %5.2f\n", loop, tuition);
+			tuition = tuition * (1+rate);
+
+			loop++;
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.6</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E5_6
+{
+	public static void main(String [] args)
+	{
+		int row = 1;
+
+		while(row &lt;= 4)
+		{
+			int column = 1;
+			while(column &lt;= row)
+			{
+				System.out.print("*");
+				column++;
+			}
+			System.out.println();
+			row++;
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.7</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E5_7
+{
+	public static void main(String [] args)
+	{
+		int row = 1;
+
+		while(row &lt;= 4)
+		{
+			int column = 1;
+			while(column &lt;= row)
+			{
+				System.out.print(column);
+				column++;
+			}
+			System.out.println();
+			row++;
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.8</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_8
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter an integer number: ");
+		int num = input.nextInt();
+
+		int sum = 0;
+
+		for(int i = 1; i &lt;= num; i++)
+		       sum += i;	
+
+		System.out.println(sum);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.9</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_9
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter a string: ");
+		String s = input.nextLine();
+
+		System.out.println(s);
+
+		int length = s.length();
+
+		boolean palindrome = true;
+
+		for(int i = 0; i &lt;= length/2; i++)
+			if(s.charAt(i) != s.charAt(length-1-i))
+			{
+				palindrome = false;
+				break;
+			}
+
+		if(palindrome)
+			System.out.println("\""+s+"\""+" is a palindrome");
+		else
+
+			System.out.println("\""+s+"\""+" is not a palindrome");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.10</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E5_10
+{
+	public static void main(String [] args)
+	{
+		int count = 0;
+		int num = 2;
+
+		while(count &lt; 50)
+		{
+			boolean isPrime = true;
+
+			for(int i = 2; i &lt; num; i++)
+				if(num % i == 0)
+				{
+					isPrime = false;
+					break;
+				}
+
+			if(isPrime)
+			{
+				System.out.println(num);
+				count++;
+			}
+
+			num++;
+		}
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.11</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E5_11
+{
+	public static void main(String [] args)
+	{
+		int a = 32, b = 24;
+
+		int c;
+
+		c = (a &gt; b) ? b : a; // choose the smaller number between a and b
+
+		System.out.println(c);
+
+		int gcd = 1;
+
+		for(int i = 1; i &lt;= c; i++)
+		{
+			if(a % i == 0 &amp;&amp; b % i == 0)
+				gcd = i;
+		}
+
+		System.out.println("GCD: "+gcd);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.12</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_12
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter an integer number: ");
+		int num = input.nextInt();
+
+		int divisor = 2;
+
+		while(num != divisor)
+		{
+			if(num % divisor == 0)
+			{
+				System.out.println(divisor);
+				num = num/divisor;
+				divisor = 2;
+			}
+			else
+				divisor++;
+		}
+
+		System.out.println(divisor);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5.13</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E5_13
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.print("Enter an integer: ");
+
+		int num = input.nextInt();
+		String result = "";
+
+		while(num &gt; 1)
+		{
+			int reminder = num % 2;
+			result += reminder;
+
+			num = num / 2;
+		}
+
+		result += num;
+
+		for(int i = result.length()-1; i &gt;= 0; i--)
+			System.out.print(result.charAt(i));
+
+		System.out.println();
+	}
+}
+			</pre>
+		</div>
 	</body>
 </html>
