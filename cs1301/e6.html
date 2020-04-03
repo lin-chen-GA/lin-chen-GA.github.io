@@ -16,43 +16,51 @@
 			Exercises in Chapter 6
 		</div>
 
-		<div class = "subtitle">Exercise 1</div>
+		<div class = "subtitle">Exercise 6.1</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
 public class Ch6_6
 {
+	/** Complete the function to return an integer between 1 to 10
+	* @return integer between 1 and 10
+	*/
 	public static int getRandom()
 	{
-		return 1+(int)(Math.random()*10);
+		int n = (int)(Math.random()*10) + 1;
+      return n;
 	}
-
+ 
+	/** Complete the function to calculate the summation from 1 to num
+	* @param num positive integer number
+	* @return integer
+	*/
 	public static int getSum(int num)
 	{
-		int s = 0;
-
-		for(int i = 1; i &lt;= num; i++)
-			s += i;
-
-		return s;
+		int sum = 0;
+      
+      for(int i = 1; i &lt;= num; i++)
+         sum += i;
+         
+      return sum;
 	}
-
+ 
 	public static void printInfo(int s, int n)
 	{
 		System.out.printf("The sum of 1 to %d is: %d\n", n, s); 
 	}
-
+ 
 	public static void main(String [] args)
 	{
 		int num = getRandom();
-
+ 
 		int sum = getSum(num);
-
+ 
 		printInfo(sum, num);
 	}
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Exercise 2</div>
+		<div class = "subtitle">Exercise 6.2</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
 public class Ch6_7
@@ -63,15 +71,16 @@ public class Ch6_7
 	 */
 	public static boolean isPrime(int num)
 	{
-		boolean prime = true;
-
-		for(int i = 1; i &lt;= num; i++)
-			if(num%i == 0 &amp;&amp; i != 1 &amp;&amp; i != num)
-				return false;
-
-		return true;
+		//add your code here
+      for(int i = 1; i &lt;= num; i++)
+      {
+         if(num%i == 0 &amp;&amp; i != 1 &amp;&amp; i != num)
+            return false;
+      }
+      
+      return true;
 	}
-
+ 
 	/** Display the first n prime numbers
 	 * @param n positive integer number
 	 */
@@ -79,7 +88,7 @@ public class Ch6_7
 	{
 		int candidate = 2;
 		int count = 0;
-
+ 
 		while(count &lt; n)
 		{
 			if(isPrime(candidate))
@@ -89,112 +98,50 @@ public class Ch6_7
 				if(count%5 == 0)
 					System.out.println();
 			}
-
+ 
 			candidate++;
 		}
-
+ 
 		System.out.println();
 	}
-
+ 
 	public static void main(String [] args)
 	{
-		displayPrimes(10);
+		displayPrimes(50);
 	}
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Exercise 3</div>
+		<div class = "subtitle">Exercise 6.3</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
 public class E3
 {
-	/* Convert Celsius Temperature to Fahrenheit Temperature
+	/** Convert Celsius Temperature to Fahrenheit Temperature
 	 * @param c Celsius Temperature
 	 * @return Fahrenheit Temperature
 	 */
 	public static double c2f(double c)
 	{
-		return c*9/5+32;
+		//add your code here
+      return c*9/5+32;
 	}
-
-	/* Display a converting table from Celsius temperature to Fahrenheit temperature
+ 
+	/** Display a converting table from Celsius temperature to Fahrenheit temperature
 	 */
 	public static void c2fTable()
 	{
-		System.out.printf("%20s%20s\n", "Celsius", "Fahrenheit");
-		System.out.printf("----------------------------------------\n");
-		for(int i = 0; i &lt; 100; i = i+10)
-			System.out.printf("%20.1f%20.1f\n", (float)i, c2f(i));
+		//add your code here
+      System.out.printf("%20s%20s\n", "Celsius", "Fahrenheit");
+      System.out.println("--------------------------------------------");
+      
+      for(int i = 0; i &lt; 10; i++)
+         System.out.printf("%20.1f%20.1f\n", i*10.0, c2f(i*10));
 	}
-
+ 
 	public static void main(String [] args)
 	{
 		c2fTable();
-	}
-}
-			</pre>
-		</div>
-		<div class = "subtitle">Exercise 4</div>
-		<div class = "block">
-			<pre class = "prettyprint linenums">
-public class E4
-{
-	public static double inch2feet(double i)
-	{
-		return i/12;
-	}
-
-	public static void inch2feetTable()
-	{
-		System.out.printf("%20s%20s\n", "Inch", "Feet");
-		System.out.printf("----------------------------------------\n");
-		for(int i = 0; i &lt; 100; i = i+10)
-		{
-			System.out.printf("%20.1f%20.1f\n", (float)i, inch2feet(i));
-		}
-	}
-
-	public static void main(String [] args)
-	{
-		inch2feetTable();
-	}
-}
-			</pre>
-		</div>
-		<div class = "subtitle">Exercise 6</div>
-		<div class = "block">
-			<pre class = "prettyprint linenums">
-public class E6
-{
-	/* Calculate the Greatest Common Divisor
-	 * @param a integer number
-	 * @param b integer number
-	 * @return gcd
-	 */
-	public static int gcd(int a, int b)
-	{
-		int gcd = 1;
-		int k = 1;
-
-		while(k &lt;= a &amp;&amp; k &lt;= b)
-		{
-			if (a%k == 0 &amp;&amp; b%k == 0)
-				gcd = k;
-			k++;
-		}
-
-		return gcd;
-	}
-
-	public static void main(String [] args)
-	{
-		Scanner input = new Scanner(System.in);
-
-		System.out.println("Enter two integer numbers:");
-		int a = input.nextInt();
-		int b = input.nextInt();
-
-		System.out.println("GCD of %d and %d is: %d\n", a, b, gcd(a, b));
 	}
 }
 			</pre>
