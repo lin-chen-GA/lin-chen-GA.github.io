@@ -369,9 +369,18 @@ public class Ch6_8
 		<div class = "block">
 			<p style = "text-align:center;"><img src = "./img/Ch6_3_c.png" width=40% /></p>
 		</div>
-		<div class = "subtitle">Exercise</div>
+		<div class = "subtitle">Knowledge Points</div>
 		<div class = "block">
-			<li>Show the result of the following program</li>
+			<li><span>Mutable objects</span>, when you have a reference to an instance of an object, the contents of that instance can be altered</li>
+			<li><span>Immutable objects</span>, When you have a reference to an instance of an object, the contents of that instance cannot be altered
+				<ul>
+					<li>Primitive data types and all of the java.lang package wrapper: Boolean, Byte, Character, Double, Float, Integer, Long, Short, String</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 6.5A</span></div>
+		<div class = "block">
+			<li>Show the result of the following program without running it in jGrasp</li>
 			<pre class = "prettyprint linenums">
 public class E5
 {
@@ -400,7 +409,7 @@ public class E5
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Exercise</div>
+		<div class = "subtitle"><span>Exercise 6.6B</span></div>
 		<div class = "block">
 			<li>Complete the following program</li>
 			<pre class = "prettyprint linenums">
@@ -426,12 +435,12 @@ public class E6
 		int a = input.nextInt();
 		int b = input.nextInt();
 
-		System.out.println("GCD of %d and %d is: %d\n", a, b, gcd(a, b));
+		System.out.printf("GCD of %d and %d is: %d\n", a, b, gcd(a, b));
 	}
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Exercise</div>
+		<div class = "subtitle"><span>Exercise 6.7A</span></div>
 		<div class = "block">
 			<li>Show the outputs of the following program</li>
 			<pre class = "prettyprint linenums">
