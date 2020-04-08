@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Project</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">Project (2): Create Virtual Environment</div>
+
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Project_2.png" width = "50%"></p>
+		</div>
+		<div class = "subtitle">Why create a virtual environment for each project</div>
+		<div class = "block">
+			<ol>
+			<li>Do not bother the default base environment
+				<ul>
+					<li>Some program may depend on some modules of your default base environment. By mistake, you install a different version of these modules, the program may not work any more</li>
+				</ul>
+			</li>
+			<li>Your project may use different version of Python, instead of the Python version in the base environment</li>
+			<li>The module version your project needs is different with the version in the base environment</li>
+			<li>Publish code
+				<ul>
+					<li>When you publish your code, a list of <span>dependency modules</span> will be attached. The user download your code and install your code by "python setup.py". It will download and install all the dependencies. We would like the dependency list only contains the modules your code need, instead of all modules in the base environment.</li>
+				</ul>
+			</li>
+			</ol>
+
+		</div>
+		<div class = "subtitle">Create a virtual environment</div>
+		<div class = "block">
+			<li>The standard distribution of Python use <span>pip + virtalenv</span></li>
+			<li>Anaconda use <span>conda</span></li>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+conda env list # check the created virtual environment
+conda create --name projectName # create a virtual environment for your project
+			</pre>
+		</div>
+		<div class = "subtitle">Start a project</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+git init # add git system to the project
+			</pre>
+		</div>
+		<div class = "subtitle">Install the needed modules</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+conda install scipy # install the recent version of the module scipy
+conda install scipy=0.15.0 # install the specific version of the module scipy
+
+conda list # check installed modules
+conda remove scipy # remove scipy from the current virtual environment
+			</pre>
+		</div>
+		<div class = "subtitle">Reference</div>
+		<div class = "block">
+			<li><a href = "../Python/conda.htm">Conda</a></li>
+		</div>
+	</body>
+</html>
