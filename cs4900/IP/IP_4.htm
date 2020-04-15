@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>IP 4</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">IP 4: Release Project</div>
+		<div class = "subtitle">Project Architecture</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "IP_4.png" width = "25%"></p>
+		</div>
+		<div class = "subtitle">1. Create a PyPI account</div>
+		<div class = "subtitle">2. Test Code</div>
+		<div class = "block">
+			<li>Write test code to test each function in primepackage with differnt input parameters</li>
+			<li>Write test code to test raises of each function in primepackage</li>
+		</div>
+		<div class = "subtitle">3. Add Publish Files</div>
+		<div class = "block">
+			<li>README file
+				<ul>
+					<li>write read file with <a href = "https://guides.github.com/features/mastering-markdown/">Markdown</a> language</li>
+					<li>Brief introduction of the project</li>
+					<li>Brief installation instruction</li>
+					<li>Brief user instruction</li>
+				</ul>
+			</li>
+			<li>setup.py</li>
+			<li>setup.cfg</li>
+			<li>MANIFEST.in</li>
+			<li>LICENSE, choose an appropriate license</li>
+			<li>requirements.txt (optional)</li>
+		</div>
+		<div class = "subtitle">4. Release Code</div>
+		<div class = "block">
+			<li>Deposite the project to a Github repository
+				<ul>
+					<li>Users can download your code with "git clone URL"</li>
+					<li>Users can test your code with "python setup.py test"</li>
+					<li>Users can install the program and package with "python setup.py install"</li>
+				</ul>
+			</li>
+			<li>Deposite the project to a PyPI respository
+				<ul>
+					<li>Users can install the program and package with "pip install projectName"</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "subtitle"><span>Grading Criteria</span></div>
+		<div class = "block">
+			<li>1. test code, 30 points</li>
+			<li>2. publish files, 30 points</li>
+			<li>3. code release, 40 points</li>
+			<li>Make sure your code is able to be installed and run correctly, if not, you are going to receive a 0</li>
+			<li>The project is an individual project, if the two projects have the similarity above 90%, both projects will receive 0</li>
+		</div>
+		<div class = "subtitle"><span>Submission</span></div>
+		<div class = "block">
+			<li>Submit the <span>URL</span> of your source code at Github and PyPI <span>project name</span> to the BlazeView</li>
+		</div>
+	</body>
+</html>
