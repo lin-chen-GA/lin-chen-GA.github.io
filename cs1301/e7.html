@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Exercises in Chapter 7
+		</div>
+
+		<div class = "subtitle">Exercise 7.1</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E1
+{
+	/** Create an integer array with specific size, each element is an integer from 1 to 100
+	 * @param size array size
+	 * @return integer array
+	 */
+	public static int [] getArray(int size)
+	{
+		int [] array = new int[size];
+
+		for(int i = 0; i &lt; array.length; i++)
+			array[i] = (int)(Math.random()*100)+1;
+
+		return array;
+	}
+
+	/** Display the frequence table
+	 * First column is an integer from 1 to 100
+	 * Second column represents the frequence of the integer value in the first column
+	 * @param array frequency array
+	 */
+	public static void displayFreq(int [] array)
+	{
+		for(int i = 0; i &lt; array.length; i++)
+			System.out.printf("%10d%10d\n", i+1, array[i]);
+		System.out.println();
+	}
+
+	/** Count frequency of each value
+	 * @param array integer array
+	 * @return integer array represeting the frequency for the value from 1 to 100
+	 */
+	public static int [] countFreq(int [] array)
+	{
+		int [] freq = new int[100];
+
+		for(int i = 0; i &lt; array.length; i++)
+			freq[array[i]-1]++;
+
+		return freq;
+	}
+
+	public static void main(String [] args)
+	{
+		int [] array = getArray(1000); // generate an integer array containing 1000 integers from 1 to 100
+
+		int [] frequency = countFreq(array); // count the requency of each integer value
+
+		displayFreq(frequency); // display the values and their corresponding frequency
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 7.2</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch7_8
+{
+	/** Calcualte the summation of an array
+	 * @param array integer array
+	 * @return summation
+	 */
+	public static int getSum(int [] array)
+	{
+		int sum = 0;
+ 
+		for(int i = 0; i &lt; array.length; i++)
+			sum += array[i];
+ 
+		return sum;
+	}
+ 
+	/** Generate an integer array with random integers from 1 to 10
+	 * @param size integer array size
+	 * @return integer array
+	 */
+	public static int [] getArray(int size)
+	{
+		int [] array = new int[size];
+ 
+		for(int i = 0; i &lt; array.length; i++)
+			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
+ 
+		return array;
+	}
+ 
+	public static void main(String [] args)
+	{
+		int [] array = getArray(100);
+ 
+		System.out.println("Sum: "+getSum(array));
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 7.3</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch7_9
+{
+	/** Get the maximum of the integer array
+	 * @param array integer array
+	 * @return max of array
+	 */
+	public static int getMax(int [] array)
+	{
+		int max = array[0];
+ 
+		for(int i = 1; i &lt; array.length; i++)
+			if(max &lt; array[i]) max = array[i];
+ 
+		return max;
+	}
+ 
+	public static int [] getArray(int size)
+	{
+		int [] array = new int[size];
+ 
+		for(int i = 0; i &lt; array.length; i++)
+			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
+ 
+		return array;
+	}
+ 
+	public static void main(String [] args)
+	{
+		System.out.println("Max: "+getMax(getArray(100)));
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 7.4</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch7_10
+{
+	/** Get the index of the maximum of the integer array
+	 * @param array integer array
+	 * @return index of the max of array
+	 */
+	public static int getMaxIndex(int [] array)
+	{
+		int max = array[0];
+		int index = 0;
+ 
+		for(int i = 1; i &lt; array.length; i++)
+			if(max &lt; array[i]){
+				max = array[i];
+				index = i;
+			}
+ 
+		return index;
+	}
+ 
+	public static int [] getArray(int size)
+	{
+		int [] array = new int[size];
+ 
+		for(int i = 0; i &lt; array.length; i++)
+			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
+ 
+		return array;
+	}
+ 
+	public static void main(String [] args)
+	{
+		System.out.println("Index of Max: "+getMaxIndex(getArray(100)));
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 7.5</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Ch7_11
+{
+	/** Shuffle the elements in an array
+	 * @param array integer array
+	 */
+	public static void shuffleArray(int [] array)
+	{
+		//Random Shuffling
+		for(int i = 0; i &lt; array.length; i++)
+		{
+			int j = (int)(Math.random()*array.length);
+ 
+			//swap element i and element j
+			int temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+	}
+ 
+	/** Print the elements in an array
+	 * @param array integer array
+	 */
+	public static void displayArray(int [] array)
+	{
+		for(int i = 0; i &lt; array.length; i++)
+			System.out.printf("%6d", array[i]);
+		System.out.println();
+	}
+ 
+	/** Create a random array with a specific size, each element is an integer between 1 and 10
+	 * @param size array size
+	 * @return integer array
+	 */
+	public static int [] getArray(int size)
+	{
+		int [] array = new int[size];
+ 
+		for(int i = 0; i &lt; array.length; i++)
+			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
+ 
+		return array;
+	}
+ 
+	public static void main(String [] args)
+	{
+		int [] array;
+ 
+		array = getArray(10);
+ 
+		displayArray(array);
+ 
+		shuffleArray(array);
+ 
+		displayArray(array);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 3</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Arrays;
+
+public class E2
+{
+	/**Get an array without duplicate values
+	 * @param array, an integer array
+	 * @return an integer array without duplicates
+	 */
+	public static int [] eliminateDuplicates(int [] array)
+	{
+		//return a copy if array is empty or only has one element
+		if(array.length &lt;= 1)
+			return (new int[array.length]);
+
+		//create an array with the same size to save the elements without duplicates
+		int size = 1;
+		int [] temp = new int[array.length];
+		temp[0] = array[0];
+
+		//check if each element exist in the temp array, if not, copy it to temp array, if yes, ignore it
+		for(int i = 0; i &lt; array.length; i++)
+		{
+			boolean duplicate = false;
+			for(int j = 0; j &lt; size; j++)
+				if(array[i] == temp[j]) duplicate = true;
+			if(!duplicate)
+			{
+				temp[size] = array[i];
+				size++;
+			}
+		}
+
+		//return a copy containing the elements copied from array only
+		return Arrays.copyOfRange(temp, 0, size);
+	}
+
+	public static void main(String [] args)
+	{
+		int [] array = {1, 2, 3, 2, 1, 6, 3, 4, 5, 2};
+
+		int [] array_2 = eliminateDuplicates(array);
+		System.out.println(Arrays.toString(array_2));
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 4</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class E3
+{
+	public static void main(String [] args)
+	{
+		int sum = 0;
+
+		for(int i = 0; i &lt; args.length; i++)
+			sum += Double.parseDouble(args[i]);
+
+		System.out.println("Sum: "+sum);
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Exercise 5</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Arrays;
+
+public class E4
+{
+	public static int [] read(String [] array)
+	{
+		int [] grades = new int[array.length];
+
+		for(int i = 0; i &lt; array.length; i++)
+			grades[i] = Integer.parseInt(array[i]);
+
+		return grades;
+	}
+
+	public static int [] summary(int [] grades)
+	{
+		int [] nums = new int[11];
+
+		for(int i = 0; i &lt; grades.length; i++)
+			nums[grades[i]/10]++;
+
+		return nums;
+	}
+
+	public static void display(int [] array)
+	{
+		for(int i = 0; i &lt; array.length; i++)
+		{
+			if(i &lt; 10)
+				System.out.printf("%5s: ", i*10+"-"+(i*10+9));
+			else
+				System.out.printf("%5d: ", i*10);
+			for(int j = 0; j &lt; array[i]; j++)
+				System.out.print("*");
+			System.out.println();
+		}
+	}
+
+	public static void main(String [] args)
+	{
+		int [] grades = read(args);
+
+		System.out.println(Arrays.toString(grades));
+
+		int [] nums = summary(grades);
+
+		display(nums);
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>

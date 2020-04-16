@@ -266,9 +266,10 @@ public class Ch7_7
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Exercise</div>
+		<div class = "subtitle"><span>Exercise 7.1B</span></div>
 		<div class = "block">
 			<li>Complete the following program and generate Java documents</li>
+			<li><a href = "../Java/Javadoc.htm">Javadoc</a></li>
 			<pre class = "prettyprint linenums">
 public class E1
 {
@@ -311,7 +312,7 @@ public class E1
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Summation</div>
+		<div class = "subtitle"><span>Exercise 7.2B</span></div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
 public class Ch7_8
@@ -322,12 +323,7 @@ public class Ch7_8
 	 */
 	public static int getSum(int [] array)
 	{
-		int sum = 0;
-
-		for(int i = 0; i &lt; array.length; i++)
-			sum += array[i];
-
-		return sum;
+		// add your code here
 	}
 
 	/** Generate an integer array with random integers from 1 to 10
@@ -336,12 +332,7 @@ public class Ch7_8
 	 */
 	public static int [] getArray(int size)
 	{
-		int [] array = new int[size];
-
-		for(int i = 0; i &lt; array.length; i++)
-			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
-
-		return array;
+		// add your code here
 	}
 
 	public static void main(String [] args)
@@ -353,7 +344,7 @@ public class Ch7_8
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Max</div>
+		<div class = "subtitle"><span>Exercise 7.3B</span></div>
 		<div class = "block">
 			<li>Get the maximum of a random array</li>
 			<pre class = "prettyprint linenums">
@@ -365,22 +356,16 @@ public class Ch7_9
 	 */
 	public static int getMax(int [] array)
 	{
-		int max = array[0];
-
-		for(int i = 1; i &lt; array.length; i++)
-			if(max &lt; array[i]) max = array[i];
-
-		return max;
+		// add your code here
 	}
 
+	/** Generate an integer array with random integers from 1 to 10
+	 * @param size integer array size
+	 * @return integer array
+	 */
 	public static int [] getArray(int size)
 	{
-		int [] array = new int[size];
-
-		for(int i = 0; i &lt; array.length; i++)
-			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
-
-		return array;
+		// add your code here
 	}
 
 	public static void main(String [] args)
@@ -390,7 +375,7 @@ public class Ch7_9
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Index of Max</div>
+		<div class = "subtitle"><span>Exercise 7.4B</span></div>
 		<div class = "block">
 			<li>Get the index of the maxmium of a random array</li>
 			<pre class = "prettyprint linenums">
@@ -402,26 +387,16 @@ public class Ch7_10
 	 */
 	public static int getMaxIndex(int [] array)
 	{
-		int max = array[0];
-		int index = 0;
-
-		for(int i = 1; i &lt; array.length; i++)
-			if(max &lt; array[i]){
-				max = array[i];
-				index = i;
-			}
-
-		return index;
+		// add your code here
 	}
 
+	/** Generate an integer array with random integers from 1 to 10
+	 * @param size integer array size
+	 * @return integer array
+	 */
 	public static int [] getArray(int size)
 	{
-		int [] array = new int[size];
-
-		for(int i = 0; i &lt; array.length; i++)
-			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
-
-		return array;
+		// add your code here
 	}
 
 	public static void main(String [] args)
@@ -431,7 +406,7 @@ public class Ch7_10
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Shuffle Array</div>
+		<div class = "subtitle"><span>Exercise 7.5B</span></div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
 public class Ch7_11
@@ -441,16 +416,7 @@ public class Ch7_11
 	 */
 	public static void shuffleArray(int [] array)
 	{
-		//Random Shuffling
-		for(int i = 0; i &lt; array.length; i++)
-		{
-			int j = (int)(Math.random()*array.length);
-
-			//swap element i and element j
-			int temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
-		}
+		// add your code here
 	}
 
 	/** Print the elements in an array
@@ -458,9 +424,7 @@ public class Ch7_11
 	 */
 	public static void displayArray(int [] array)
 	{
-		for(int i = 0; i &lt; array.length; i++)
-			System.out.printf("%6d", array[i]);
-		System.out.println();
+		// add your code here
 	}
 
 	/** Create a random array with a specific size, each element is an integer between 1 and 10
@@ -469,12 +433,7 @@ public class Ch7_11
 	 */
 	public static int [] getArray(int size)
 	{
-		int [] array = new int[size];
-
-		for(int i = 0; i &lt; array.length; i++)
-			array[i] = (int)(Math.random()*10)+1; // assign random numbers to array
-
-		return array;
+		// add your code here
 	}
 
 	public static void main(String [] args)
