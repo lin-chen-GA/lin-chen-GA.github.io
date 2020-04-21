@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Soluiton of Assignment 4
+		</div>
+
+		<div class = "subtitle">Array-1 – commonEnd</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public boolean commonEnd(int[] a, int[] b) {
+  if(a[0] == b[0]) return true;
+  if(a[a.length-1] == b[b.length-1]) return true;
+  
+  return false;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – reverse3</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public int[] reverse3(int[] nums) {
+  int [] array = new int[nums.length];
+  array[0] = nums[2];
+  array[1] = nums[1];
+  array[2] = nums[0];
+  
+  return array;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – middleWay</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public int[] middleWay(int[] a, int[] b) {
+  int [] array = new int[2];
+  array[0] = a[1];
+  array[1] = b[1];
+  
+  return array;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – sum3</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public int sum3(int[] nums) {
+  int sum = 0;
+  
+  for(int i = 0; i &lt; nums.length; i++)
+    sum += nums[i];
+    
+  return sum;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – maxEnd3</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public int[] maxEnd3(int[] nums) {
+  int larger = nums[0];
+  if(larger &lt; nums[2]) larger = nums[2];
+  
+  int [] array = new int[nums.length];
+    
+  Arrays.fill(array, larger);
+  
+  return array;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – makeEnds</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public int[] makeEnds(int[] nums) {
+  int [] array = new int[2];
+  array[0] = nums[0];
+  array[1] = nums[nums.length-1];
+  
+  return array;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – rotateLeft3</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public int[] rotateLeft3(int[] nums) {
+  int [] array = new int[nums.length];
+  
+  int left = nums[0];
+  for(int i = 1; i &lt; nums.length; i++)
+    array[i-1] = nums[i];
+    
+  array[array.length-1] = left;
+  
+  return array;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – sum2</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public int sum2(int[] nums) {
+  if(nums.length == 0) return 0;
+  
+  if(nums.length == 1) return nums[0];
+  
+  return nums[0]+nums[1];
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – has23</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public boolean has23(int[] nums) {
+  for(int i = 0; i &lt; nums.length; i++)
+    if(nums[i] == 2 || nums[i] == 3)
+      return true;
+      
+  return false;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Array-1 – double23</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public boolean double23(int[] nums) {
+  int two = 0;
+  int three = 0;
+  
+  for(int i = 0; i &lt; nums.length; i++)
+  {
+    if(nums[i] == 2) two++;
+    if(nums[i] == 3) three++;
+  }
+  
+  if(two == 2 || three == 2)
+    return true;
+    
+  return false;
+}
+			</pre>
+		</div>
+	</body>
+</html>
