@@ -235,13 +235,13 @@ public class Ch8_5
 }
 			</pre>
 		</div>
-		<div class = "subtitle">Exercise</div>
+		<div class = "subtitle"><span>Exercise 8.1C</span></div>
 		<div class = "block">
 			<li>Write a function to generate two-dimensional matrix with random values</li>
 			<li>Write a function taking a two-dimensional matrix as the parameters, calculate the summation of each column, save the summations to a one-dimensional array and return it</li>
 			<li>Print out the summations of columns in main function</li>
 		</div>
-		<div class = "subtitle">Exercise</div>
+		<div class = "subtitle"><span>Exercise 8.2C</span></div>
 		<div class = "block">
 			<p style = "text-align:center;"><img src = "./img/Ch8_3.png" width=30% /></p>
 		</div>
@@ -308,9 +308,9 @@ public class Ch8_6
 
 	public static void init(int [][][] matrix)
 	{
-		for(int i = 0; i &lt; matrix.length; i++)
-			for(int j = 0; j &lt; matrix[i].length; j++)
-				for(int k = 0; k &lt; matrix[i][j].length; k++)
+		for(int i = 0; i &lt; matrix.length; i++) // # of pages
+			for(int j = 0; j &lt; matrix[i].length; j++) // # of rows
+				for(int k = 0; k &lt; matrix[i][j].length; k++) // # of columns
 					matrix[i][j][k] = (int)(Math.random()*10);
 	}
 
