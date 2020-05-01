@@ -8,11 +8,12 @@
 			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
 			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
 			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
 		</style>
 	</head>
 	<body>
 		<div class = "title">
-			python-twitter
+			Twitter
 		</div>
 
 		<div class = "subtitle">Basics</div>
@@ -20,7 +21,7 @@
 			<li>Standard API, free, recent Tweets published in the past <span>7</span> days</li>
 			<li>Premium API, pay as you go, advanced filtering functionality and scalable access to the the Search Tweets API, free and paid, access to either the last <span>30</span> days of Tweets or access to Tweets from as early as <span>2006</span></li>
 			<li>Enterprise-level, paid subscription, access to Twitter data, including real-time Tweets and public account information, historical Tweets, and Tweet insights, access to either the last <span>30</span> days of Tweets or access to Tweets from as early as <span>2006</span></li>
-			<li>Authentication
+			<li><a href = "https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0/application-only">Authentication</a>
 				<ul>
 					<li>OAuth2, is for developers that just need read-only to access public information</li>
 					<li>OAuth 1.0a, allows an authorized app to act on behalf of a user.</li>
@@ -30,79 +31,99 @@
 		<div class = "subtitle">Twitter Account</div>
 		<div class = "block">
 			<ol>
-				<li><a href = "https://developer.twitter.com/en/apps">Create Twitter App</a></li>
-				<li>Developer Agreement</li>
-				<li>Create App</li>
-				<li>Genearte Access Token</li>
+				<li>Create App
+					<ul>
+						<li><a href = "https://developer.twitter.com/en/apps">Create Twitter App</a></li>
+						<li>Developer Agreement</li>
+						<li>Create App</li>
+						<li>Genearte Access Token</li>
+					</ul>
+				</li>
+				<li>Setup one or more <a href = "https://developer.twitter.com/en/account/environments">development environment</a>
+					<ul>
+						<li>Search Tweets: 30-DaysSandbox</li>
+						<li>Search Tweets: Full ArchiveSandbox</li>
+						<li>Account Activity APISandbox</li>
+					</ul>
+				</li>
+				<li>Start using the endpoints
+					<ul>
+						<li><a href = "https://developer.twitter.com/en/docs/tweets/search/api-reference/get-search-tweets">Standard</a></li>
+						<li><a href = "https://developer.twitter.com/en/docs/tweets/search/api-reference/premium-search">Premium</a></li>
+						<li><a href = "https://developer.twitter.com/en/docs/tweets/search/api-reference/enterprise-search">Enterprise</a></li>
+					</ul>
+				</li>
 			</ol>
                 </div>
-		<div class = "subtitle">Create API</div>
+		<div class = "subtitle">Standard Search</div>
 		<div class = "block">
-		<pre class = "prettyprint linenums">
-import twitter
-from t import ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET
-
-api = twitter.Api(CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN_KEY, ACCESS_TOKEN_SECRET)
-		</pre>
-		</div>
-		<div class = "subtitle">GetUser()</div>
-		<div class = "block">
-			<li>Returns a single user</li>
-		<pre class = "prettyprint linenums">
-user = api.GetUser(screen_name="@valdostastate")
-		</pre>
-		</div>
-		<div class = "subtitle">GetSearch()</div>
-		<div class = "block">
-			<li>Return twitter search results for a given term
+			<li>Create App, get customer API keys, generate access token</li>
+			<li>Search
 				<ul>
-					<li>term</li>
-					<li>count, default 15, maximum 100</li>
-					<li>raw_query, a raw query as a string</li>
-					<li>since_id, returns results with an ID greater than the specified ID</li>
-					<li>max_id, returns only statuses with an ID less than or equal to the specified ID</li>
-					<li>until, returns tweets generated since the given date</li>
-					<li>geocode, geolocation within which to search for tweets</li>
+					<li>curl with API keys and access tokens</li>
+					<li>twurl</li>
+					<li><a href = "TwitterAPI.html">TwitterAPI</a></li>
 				</ul>
 			</li>
-		<pre class = "prettyprint linenums">
-searches = api.GetSearch(term='valdosta state', count= 100)
-
-searches = api.GetSearch(raw_query="q=valdosta%20state&amp;result_type=recent&amp;since=2014-07-19&amp;count=100")
-
-searches = api.GetSearch(term='valdosta', since_id = 1193364932055711745)
-
-searches = api.GetSearch(term='valdosta', max_id = 1193364932055711745)
-
-searches = api.GetSearch(term='valdosta state', until='2019-11-09') #YYYY-MM-DD
-
-searches = api.GetSearch(term='FSU', geocode = [30.4433237, -84.2777568, "1mi"], result_type="recent", count=100)
-		</pre>
+			<li><a href = "https://github.com/lin-chen-VA/Twitter/tree/master/SSearch">Sample Code with TwitterAPI</a>
+				<ul>
+					<li>Download 100 tweets each request</li>
+					<li>More requests may return the random different 100 random tweets</li>
+					<li>Too many requests with a 15-min window will return Excetpion</li>
+					<li>Pause 901 seconds, then send the requests in the next 15-min window</li>
+				</ul>
+			</li>
 		</div>
-		<div class = "subtitle">GetUserTimeline</div>
+		<div class = "subtitle">Premium Search</div>
 		<div class = "block">
-			<li>Fetch the sequence of public Status messages for a single user</li>
+			<li>Create App, get customer API keys, generate access token</li>
+			<li>Generate <a href = "https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0/bearer-tokens">Bearer Token</a></li>
+			<li>Search
+				<ul>
+					<li>https://api.twitter.com/1.1/tweets/search/:product/:label.json, retrieve Tweets matching the specified query 
+						<ul>
+							<li>:product, <span>30day</span> or <span>fullarchive</span></li>
+							<li>:label, developer environment name</li>
+						</ul>
+					</li>
+					<li>https://api.twitter.com/1.1/tweets/search/:product/:label/counts.json, retrieve the number of Tweets matching the specified query</li>
+					<li>curl</li>
 		<pre class = "prettyprint linenums">
-searches = api.GetUserTimeline(screen_name="@valdostastate", count = 100)
+curl -X POST "https://api.twitter.com/1.1/tweets/search/30day/SearchThirtyDays.json" -d '{"query":"Valdosta State","maxResults":"100","fromDate":"201910200000","toDate":"201910310000"}' -H "Authorization: Bearer AAAAAAAAAAAAAAAAAAAAAIRWAwEAAAAALRrtvjL3wDGnv%2FuA0EO463TjzLc%3DzuLJ3ypKMwrp59WQ4fY6TuAKXN1jqq4VEj4TDx9AFAzWj9qeg4" &gt; junk
 		</pre>
+					<li>TwitterAPI</li>
+					<li><a href = "https://github.com/lin-chen-VA/Twitter/tree/master/PreSearch">Sample Code with Python request</a></li>
+				</ul>
+			</li>
 		</div>
-		<div class = "subtitle">GetFriends()</div>
+		<div class = "subtitle">Enterprise Search</div>
 		<div class = "block">
+			<li>Create App, get customer API keys, generate access token</li>
+			<li>Generate <a href = "https://developer.twitter.com/en/docs/basics/authentication/oauth-2-0/bearer-tokens">Bearer Token</a></li>
+			<li>Search
+				<ul>
+					<li>https://gnip-api.twitter.com/search/:product/accounts/:account/:label.json, retrieve Tweets matching the specified query
+						<ul>
+							<li>:product, 30day or fullarchive</li>
+							<li>:account, account (case sensitive)</li>
+							<li>:label, developer environment name</li>
+						</ul>
+					</li>
+					<li>https://gnip-api.twitter.com/search/:product/accounts/:account/:label/counts.json, retrieve the number of Tweets matching the specified query</li>
+					<li>curl</li>
 		<pre class = "prettyprint linenums">
-#user_id, twitter id
-#screen_name, twitter name
-users = api.GetFriends() #fetch the follower
-
-user = users[0]
-print(user)
+curl -X POST -u<username> "https://gnip-api.twitter.com/search/:product/accounts/:account_name/:label.json" -d '{"query":"TwitterDev "search api"","maxResults":"500","fromDate":"<yyyymmddhhmm>","toDate":"<yyyymmddhhmm>"}'
 		</pre>
+				</ul>
+			</li>
 		</div>
 		<div class = "subtitle">Reference</div>
 		<div class = "block">
+			<li><a href = "http://www.tweepy.org/">tweepy</a></li>
+			<li><a href = "https://github.com/geduldig/TwitterAPI">TwitterAPI</a></li>
+			<li><a href = "https://github.com/twitterdev/search-tweets-python">Search Tweets Python</a></li>
 			<li><a href = "https://developer.twitter.com/en/docs/api-reference-index">API Reference Index</a></li>
-			<li><a href = "https://python-twitter.readthedocs.io/en/latest/twitter.html#module-twitter.api">API</a></li>
-			<li><a href = "https://developer.twitter.com/en/docs/tweets/post-and-engage/api-reference/get-statuses-lookup">Twitter Tutorials</a></li>
-			<li><a href = "https://github.com/bear/python-twitter/tree/master/examples">python-twitter examples</a></li>
+			<li><a href = "https://developer.twitter.com/en/docs/tweets/search/overview">Twitter Search</a></li>
 		</div>
 	</body>
 </html>
