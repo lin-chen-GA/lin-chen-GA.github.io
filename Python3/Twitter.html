@@ -55,6 +55,10 @@
 				</li>
 			</ol>
                 </div>
+		<div class = "subtitle">Flow Chart</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/Twitter.png" width = "40%"></p>
+		</div>
 		<div class = "subtitle">Standard Search</div>
 		<div class = "block">
 			<li>Create App, get customer API keys, generate access token</li>
@@ -84,6 +88,33 @@
 						<ul>
 							<li>:product, <span>30day</span> or <span>fullarchive</span></li>
 							<li>:label, developer environment name</li>
+						</ul>
+					</li>
+					<li><a href = "https://developer.twitter.com/en/docs/tweets/rules-and-filtering/overview/operators-by-product">Operators</a>
+						<ul>
+							<li><a href = "https://developer.twitter.com/en/docs/tweets/rules-and-filtering/guides/using-premium-operators">Matching on Tweet Contents</a>
+								<ul>
+									<li>AND, "Valdosta State"</li>
+									<li>OR, "(Valdosta OR State)"</li>
+									<li>NOT, "(Valdosta -State)"</li>
+									<li>GROUP, "()"</li>
+									<li><a href = "https://developer.twitter.com/en/docs/tweets/search/guides/integrating-premium">Sample</a></li>
+								</ul>
+							</li>
+							<li>Tweet Attributes</li>
+							<li>Geospatial operators
+								<ul>
+									<li><a href = "https://www.geonames.org/">GeoNames</a></li>
+									<li>bounding_box:[west_long south_lat east_long north_lat]</li>
+									<li>point_radius:[lon lat radius]
+										<ul>
+											<li>radius should be less than 25 miles</li>
+										</ul>
+									</li>
+									<li>place:</li>
+									<li>place_country:</li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 					<li>https://api.twitter.com/1.1/tweets/search/:product/:label/counts.json, retrieve the number of Tweets matching the specified query</li>
