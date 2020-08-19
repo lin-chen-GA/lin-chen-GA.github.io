@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Print Out
+		</div>
+
+		<div class = "subtitle">First C Code</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int main () {
+
+  	printf("Hello World!\n");
+
+   	return 0;
+}
+			</pre>
+		</div>
+
+		<div class = "subtitle">Create Project</div>
+		<div class = "block">
+			<ol>
+				<li>Create a folder for the program, such as "Program_1"</li>
+				<li>Enter the created folder</li>
+				<li>Create a C file, such as "hello.c"</li>
+				<li>Write the code and save</li>
+				<li>Compile the code with "gcc hello.c"</li>
+				<li>Run the executable program, "./a.out"</li>
+			</ol>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<ol>
+				<li>C language has the concept of class which we learned in Java</li>
+				<li>Comments
+				<ul>
+				<li>/* ... */, block comment</li>
+				<li>//, line comment</li>
+				</ul>
+				</li>
+			<li>{}, delimit the body of a function</li>
+			<li>main() function is the starting point of a C program</li>
+			<li>;, end of a line</li>
+			<li>C is case sensitive</li>
+			<li>main() function need a returned integer, by default, 0 means the program has been executed successfully, <a href = "https://shapeshed.com/unix-exit-codes/#:~:text=An%20exit%20code%2C%20or%20sometimes,to%20255%20for%20anything%20else.&text=If%20exit%20codes%20are%20not,of%20the%20last%20run%20command.">non-zero numbers</a> represent the non-successful execution</li>
+			<li>Reserved words, or keywords, have a specific meaning to the compiler and cannot be used as the variable names</li>
+			<li>a.out is the default output file by gcc complier. To have a specific output file name, use <span>"gcc -o output_file_name source_code.c"</span></li>
+			</ol>
+		</div>
+		<div class = "subtitle"><span>Exercise 1</span></div>
+		<div class = "block">
+			<li>Add line comments and block comments for your code</li>
+			<li>Compile the program to genearte an executable file "Hello.exe"</li>
+		</div>
+		<div class = "subtitle">Print with specific format</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+#include <stdio.h>
+
+/* line 1
+ * line 2
+ */
+int main () {
+
+	float pi = 3.1415926;
+
+  	printf("%10s: %10.2f\n", "PI", pi);
+  	printf("%-10s: %10.2f\n", "PI", pi);
+  	printf("%10s: %010.2f\n", "PI", pi);
+
+   	return 0;
+}
+			</pre>
+		</div>
+
+		<div class = "subtitle"><span>Exercise 2</span></div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+    Name:     Lin Chen
+   Title:     Assistant Professor
+     GPA:     3.85
+ Address:     ****
+			</pre>
+		</div>
+	</body>
+</html>
