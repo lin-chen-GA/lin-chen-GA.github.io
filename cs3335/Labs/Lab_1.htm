@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cloud</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span.red {color: red; font-weight: bold;}
+			span.blue {color: blue; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">Lab 1: Linux and Vim</div>
+		<div class = "block">
+			<ol>
+				<li>Under your home directory (/home/your_user_name), create "Lab_1" folder, do not use special characters and space in the folder name</li>
+				<li>Enter "Lab_1" folder</li>
+				<li>Use Vim to create and edit "Hello.java"</li>
+			<pre class = "prettyprint linenums">
+public class Hello
+{
+	public static void main(String args[])
+	{
+		System.out.println("Hello World!");
+	}
+}
+			</pre>
+			<li>Save the file and Quit Vim</li>
+			<li>Use "javac Hello.java" to compile the code</li>
+			<li>Use "java Hello" to run the code</li>
+			<li>Go back to the home directory (/home/your_user_name)</li>
+			<li>Compress the "Lab_1" folder by "tar -cvf Lab_1.tar Lab_1"</li>
+			</ol>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>Submit the Lab_1.tar to the BlazeView</li>
+		</div>
+	</body>
+</html>
