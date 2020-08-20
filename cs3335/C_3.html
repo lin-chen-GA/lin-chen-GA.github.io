@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Arithmetics
+		</div>
+
+		<div class = "subtitle">Variable</div>
+		<div class = "block">
+			<li>Made up of letters and digits</li>
+			<li>The first character must be a letter</li>
+			<li>The underscore ‘‘_’’ counts as a letter</li>
+			<li>Don’t begin variable names with underscore, however, since library routines often use such names</li>
+			<li>Upper and lower case letters are distinct, so x and X are two different names</li>
+			<li>Traditional C practice is to use lower case for variable names, and all upper case for symbolic constants</li>
+		</div>
+		<div class = "subtitle">Constant</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+#define PI = 3.14
+
+int main()
+{
+	const int j = 30;
+	//j = 100;
+}
+			</pre>
+		</div>
+
+		<div class = "subtitle">Reference</div>
+		<div class = "block">
+			<li><a href = "https://www.tutorialspoint.com/cprogramming/c_variables.htm">Variable</a></li>
+			<li><a href = "https://www.tutorialspoint.com/cprogramming/c_constants.htm#:~:text=Constants%20refer%20to%20fixed%20values,are%20enumeration%20constants%20as%20well.">Constant</a></li>
+			<li><a href = "https://hikage.freeshell.org/books/theCprogrammingLanguage.pdf">C Programming Language</a></li>
+		</div>
+	</body>
+</html>
