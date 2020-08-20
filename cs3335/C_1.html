@@ -68,11 +68,8 @@ int main () {
 		<div class = "subtitle">Print with specific format</div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
-#include <stdio.h>
+#include &lt;stdio.h&gt;
 
-/* line 1
- * line 2
- */
 int main () {
 
 	float pi = 3.1415926;
@@ -86,6 +83,22 @@ int main () {
 			</pre>
 		</div>
 
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>%a.bf
+				<ul>
+					<li><span>a</span> specifies width</li>
+					<li><span>b</span> specifies the minimum number of digits to be written for integers, specifies the number of digits to be printed after the decimal point for float numbers</li>
+				</ul>
+			</li>
+			<li>%c, character</li>
+			<li>%d, integer</li>
+			<li>%f, float</li>
+			<li>%e, scientific notation</li>
+			<li>%s, string</li>
+			<li>-, left alignment</li>
+		</div>
+
 		<div class = "subtitle"><span>Exercise 2</span></div>
 		<div class = "block">
 			<pre class = "prettyprint linenums">
@@ -94,6 +107,38 @@ int main () {
      GPA:     3.85
  Address:     ****
 			</pre>
+		</div>
+
+		<div class = "subtitle">Output a CSV file</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+//csv.c
+#include <stdio.h>
+
+int main () {
+
+  	printf("Name, %s\n", "Lin Chen");
+  	printf("Title, %s\n", "Assistant Professor");
+  	printf("GPA, %f\n", 3.85);
+
+   	return 0;
+}
+			</pre>
+			<pre class = "prettyprint linenums">
+gcc csv.c // compile the code
+./a.out // print the output to the console
+./a.out &gt; output.csv // save the outputs to a csv file
+			</pre>
+		</div>
+
+		<div class = "subtitle"><span>Exercise 3</span></div>
+		<div class = "block">
+			<li>Generate a csv file in a C program, each row contains a city name, its population, and the year it was built</li>
+		</div>
+
+		<div class = "subtitle">Reference</div>
+		<div class = "block">
+			<li><a href = "https://www.tutorialspoint.com/c_standard_library/c_function_printf.htm">printf</a></li>
 		</div>
 	</body>
 </html>
