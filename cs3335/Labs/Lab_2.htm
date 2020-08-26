@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cloud</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span.red {color: red; font-weight: bold;}
+			span.blue {color: blue; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">Lab 2: Linux Command</div>
+		<div class = "subtitle">1. Learn Commands</div>
+		<div class = "block">
+			<li>ls -al, display all files under a directory</li>
+			<li>"sudo apt-get install tree", install tree command</li>
+			<li>tree, display files with a tree structure under a directory</li>
+			<li>tree -a, display all files with a tree sturcture under a directory</li>
+		</div>
+		<div class = "subtitle">2. Write a C Program</div>
+		<div class = "block">
+			<li>Write a C program, print out your information on the console</li>
+			<li>Compile your program to generate an executable file "info"</li>
+			<pre class = "prettyprint linenums">
+		   Name:         Lin Chen
+		Address: Nevins Hall 2205
+		  Major:               CS
+		    UIN:        870******
+			</pre>
+		</div>
+		<div class = "subtitle">3. Make your program a Linux command</div>
+		<div class = "block">
+			<li>Create local system folder
+				<ol>
+					<li>Under your home directory (/home/username), create a folder ".local"</li>
+					<li>Under the ".local" folder you created, create a folder "bin"</li>
+					<li>Copy "info" to your "./local/bin" folder</li>
+				</ol>
+			</li>
+			<li>Add the local system folder to search path
+				<ol>
+					<li>Under your home directory, "vim .bashrc"</li>
+					<li>Add "<span>export PATH="$HOME/.loal/bin:$PATH"</span>" at the end of the .bashrc file</li>
+					<li>Save and Quit .bashrc file</li>
+					<li>Under your home directory, "source .bashrc"</li>
+				</ol>
+			</li>
+			<li>Type in "info" in your terminal</li>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>On Google Cloud Shell, type in "info"</li>
+			<li>Save a screenshot</li>
+			<li>Submit the screenshot to the BlazeView</li>
+		</div>
+	</body>
+</html>
