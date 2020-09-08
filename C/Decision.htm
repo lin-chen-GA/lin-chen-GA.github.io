@@ -16,6 +16,50 @@
 			Decision
 		</div>
 
+		<div class = "subtitle">Boolean</div>
+		<div class = "block">
+			<li>By default, C takes <span>0</span> as False, <span>none 0</span> as True</li>
+			<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	if (1)
+		printf("True\n"); // print out
+	else
+		printf("Flase\n");
+
+	return 0;
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<li>C99 introduces the bool type to C, define true/false in stdbool.h</li>
+			<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+int main()
+{
+	bool b = true;
+
+	if (b)
+		printf("True\n");
+	else
+		printf("False\n");
+
+	b = (10%2 == 0);
+
+	if (b)
+		printf("Even\n");
+	else
+		printf("Odd\n");
+
+	return 0;
+}
+			</pre>
+		</div>
+
 		<div class = "subtitle">If</div>
 		<div class = "block">
 			<li>Braces { and } are used to group declarations and statements together into a compound statement, or block, so that they are syntactically equivalent to a single statement</li>

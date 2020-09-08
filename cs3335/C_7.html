@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Function
+		</div>
+
+		<div class = "subtitle">Pass by value</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_10.png" width=40% /></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void doubleNum(int n)
+{
+	printf("In fuction: %d, %p\n", n, &amp;n);
+	n *= 2;
+	printf("In fuction: %d, %p\n", n, &amp;n);
+}
+
+int main()
+{
+	int a = 10;
+
+	printf("Value: %d, Address: %p\n", a, &amp;a);
+
+	doubleNum(a);
+
+	printf("After calling function: %d, %p\n", a, &amp;a);
+}
+		</pre>
+		</div>
+
+		<div class = "subtitle">Pass by reference</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_11.png" width=40% /></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void doubleNum(int *n)
+{
+	printf("In fuction: %d, %p\n", *n, n);
+	*n *= 2;
+	printf("In fuction: %d, %p\n", *n, n);
+}
+
+int main()
+{
+	int a = 10;
+
+	printf("Value: %d, Address: %p\n", a, &amp;a);
+
+	doubleNum(&amp;a);
+
+	printf("After calling function: %d, %p\n", a, &amp;a);
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Compare with Java</div>
+		<div class = "block">
+			<li>In Java, all variables in Java are pointers, the addresses (pseudo address) are passed, no copies are created, which is similar to passing by refernce in C</li>
+			<li>In java, there two variable types, immuatable (int, double, ...), mutable (self-defined class)</li>
+			<li>Pass immutable variable, the performance is similar to pass by value in C</li>
+			<li>Pass mutable variable, the performance is similar to pass by reference in C</li>
+		</div>
+	</body>
+</html>

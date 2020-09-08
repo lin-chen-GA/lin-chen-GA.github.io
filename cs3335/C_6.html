@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Function
+		</div>
+
+		<div class = "block">
+			<li>A <span>function</span> is a group of statements that together perform a task</li>
+			<li>A C program run from main() function</li>
+			<li>A function C program can have 0 or several input parameters, 0 or 1 returned output</li>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_7.png" width=50% /></p>
+		</div>
+		<div class = "block">
+			<li><span>Caller,</span> a function that calls another function</li>
+			<li><span>Callee,</span> a function that was called</li>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_8.png" width=30% /></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+// read an integer from keyboard
+int read_int()
+{
+	int num;
+
+	printf("Enter an integer number: ");
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+// check if an integer is even
+bool is_even(int n)
+{
+	if (n % 2 == 0)
+		return true;
+	else
+		return false;
+}
+
+int main()
+{
+	int number = read_int();
+
+	if(is_even(number))
+		printf("Even\n");
+	else
+		printf("Odd\n");
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 1</span></div>
+		<div class = "block">
+			<li>Create a folder "Exercise_1", write a C program under the created folder, print out the first n prime numbers</li>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+// check if an integer is a prime
+bool is_prime(int num)
+{
+}
+
+// print out first n prime numbers
+void print_prime(int n)
+{
+}
+
+int main()
+{
+	int number;
+
+	printf("Enter an integer number: ");
+	scanf("%d", &amp;number);
+	printf("Print out the first %d prime numbers\n", number);
+
+	print_prime(number);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<li><span>In C program, a callee must be defined before its caller</span></li>
+			<li>The following code cannot be compiled, though it is legal in Java</li>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+int main()
+{
+	int number = read_int();
+
+	if(is_even(number))
+		printf("Even\n");
+	else
+		printf("Odd\n");
+
+	return 0;
+}
+
+// read an integer from keyboard
+int read_int()
+{
+	int num;
+
+	printf("Enter an integer number: ");
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+// check if an integer is even
+bool is_even(int n)
+{
+	if (n % 2 == 0)
+		return true;
+	else
+		return false;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<li>The order of defining functions is important in C program. It is hard to manage functions' order when there are thousands of functions. It is impossible to memorize which functions call which functions</li>
+			<li>The solution is defining <span>function prototype</span> at the top of code</li>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+// function prototypes
+int read_int();
+bool is_even(int n);
+
+int main()
+{
+	int number = read_int();
+
+	if(is_even(number))
+		printf("Even\n");
+	else
+		printf("Odd\n");
+
+	return 0;
+}
+
+// read an integer from keyboard
+int read_int()
+{
+	int num;
+
+	printf("Enter an integer number: ");
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+// check if an integer is even
+bool is_even(int n)
+{
+	if (n % 2 == 0)
+		return true;
+	else
+		return false;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Layout in multiple files</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_9.png" width=20% /></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+#include "util.h"
+
+int main()
+{
+	int number = read_int();
+
+	if(is_even(number))
+		printf("Even\n");
+	else
+		printf("Odd\n");
+
+	return 0;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+#include "util.h"
+
+// read an integer from keyboard
+int read_int()
+{
+	int num;
+
+	printf("Enter an integer number: ");
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+// check if an integer is even
+bool is_even(int n)
+{
+	if (n % 2 == 0)
+		return true;
+	else
+		return false;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.h
+// function prototypes
+int read_int();
+bool is_even(int n);
+		</pre>
+		<pre class = "prettyprint linenums">
+gcc -o even main.c util.c
+or
+gcc -o even *.c
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2</span></div>
+		<div class = "block">
+			<li>Re-organize the code in Exercise 1</li>
+			<li>Create util.h containing the prototypes of is_prime() and print_prime()</li>
+			<li>Create util.c containing the bodys of is_prime() and print_prime()</li>
+			<li>Create main.c containing the body of main()</li>
+		</div>
+	</body>
+</html>
