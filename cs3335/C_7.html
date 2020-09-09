@@ -71,6 +71,54 @@ int main()
 }
 		</pre>
 		</div>
+		<div class = "subtitle">Pass by value and pass by reference</div>
+		<div class = "block">
+			<li>Pass by value, make copies in callee for variables, hide local variables in callee</li>
+			<li>Pass by reference, do not need to allocate memory to variable copy, save memory, can return multiple values, more than one function can access the same memory, it is hard to debug</li> 
+		</div>
+		<div class = "subtitle">Switch between passing by value and passing by reference</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int get_sum(int start, int end)
+{
+	int sum = 0;
+
+	for(int i = start; i &lt;= end; i++)
+		sum += i;
+
+	return sum;
+}
+
+int main()
+{
+	printf("%d\n", get_sum(1, 100));
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void get_sum(int start, int end, int *sum)
+{
+	for(int i = start; i &lt;= end; i++)
+		*sum += i;
+}
+
+int main()
+{
+	int sum = 0;
+
+	get_sum(1, 100, &amp;sum);
+
+	printf("%d\n", sum);
+
+	return 0;
+}
+		</pre>
+		</div>
 		<div class = "subtitle">Compare with Java</div>
 		<div class = "block">
 			<li>In Java, all variables in Java are pointers, the addresses (pseudo address) are passed, no copies are created, which is similar to passing by refernce in C</li>

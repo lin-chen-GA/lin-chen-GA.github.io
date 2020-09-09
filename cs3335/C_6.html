@@ -235,9 +235,14 @@ bool is_even(int n)
 		</pre>
 		<pre class = "prettyprint linenums">
 // util.h
+#ifndef UTIL_H
+#define UTIL_H
+
 // function prototypes
 int read_int();
 bool is_even(int n);
+
+#endif
 		</pre>
 		<pre class = "prettyprint linenums">
 gcc -o even main.c util.c
@@ -245,12 +250,33 @@ or
 gcc -o even *.c
 		</pre>
 		</div>
+		<div class = "subtitle">Knowlege Points</div>
+		<div class = "block">
+			<li>Define function prototypes in header files (*.h)</li>
+			<li>Define function bodies in .c files</li>
+			<li>In a .c file (such as util.c), include its corresponding .h file (util.h), since the functions defined in .c file can call each other without considering function order</li>
+			<li>In a .h file, define a name to avoid repeatedly including the same .h file</li>
+			<li>#include "name.h", search the current directory</li>
+			<li>#include &lt;name.h&gt;, search the system library path and path defined in LD_LIBRARY_PATH</li>
+		</div>
 		<div class = "subtitle"><span>Exercise 2</span></div>
 		<div class = "block">
 			<li>Re-organize the code in Exercise 1</li>
 			<li>Create util.h containing the prototypes of is_prime() and print_prime()</li>
 			<li>Create util.c containing the bodys of is_prime() and print_prime()</li>
 			<li>Create main.c containing the body of main()</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 3</span></div>
+		<div class = "block">
+			<li>Generate a table, which has two columns. The first column contains the celsius temperatures, the right column contains the corresponding farenheit temperature. The celsius temperatures are from 10 to 100 degrees</li>
+			<li>main.c, conains main()</li>
+			<li>util.c, contains c2f(), print_table()
+				<ul>
+					<li>double c2f(double c), convert a celsius temperature to its farenheit temperature</li>
+					<li>void print_table(), print table</li>
+				</ul>
+			</li>
+			<li>util.h, contains prototypes of the functions in util.c</li>
 		</div>
 	</body>
 </html>
