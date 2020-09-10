@@ -23,8 +23,8 @@
 		</div>
 		<div class = "subtitle">Commands</div>
 		<div class = "block">
-			<li>docker pull imageName, fetch an Docker image from Docker Registry</li>
-			<li>docker run imageName, the Docker client finds the image, loads up the container, runs a command in that container</li>
+			<li>docker pull imageName // fetch an Docker image from Docker Registry</li>
+			<li>docker run imageName // the Docker client finds the image, loads up the container, runs a command in that container</li>
 		<pre class = "prettyprint linenums">
 docker run busybox echo "hello from busybox" // runs a command in container busybox
 		</pre>
