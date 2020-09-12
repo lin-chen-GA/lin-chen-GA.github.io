@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Solution 1
+		</div>
+
+		<div class = "subtitle">Question 1</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* main.c
+ * Write a C program, read a radius from the keyboard, calculate the area and diameter of the circle
+ */
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+int main()
+{
+	float radius;
+
+	radius = read_radius();
+
+	printf("Area: %10.2f\n", get_area(radius));
+	printf("Diameter: %10.2f\n", get_diameter(radius));
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* util.h
+ */
+#ifndef UTIL_H
+#define UTIL_H
+
+// read circle radius
+float read_radius();
+
+// calculate area of the circle
+float get_area(float r);
+
+// calculate diameter of the circle
+float get_diameter(float r);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* util.c
+ */
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+float read_radius()
+{
+	float r;
+
+	printf("Enter the radius of the circle: "); // need include stdio.h
+	scanf("%f", &amp;r);
+
+	return r;
+}
+
+float get_area(float r)
+{
+	return 3.1415926*r*r; // PI*r^2
+}
+
+float get_diameter(float r)
+{
+	return 2*r; // 2r
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Question 2</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* main.c
+ * An integer number is said to be a perfect number if its factors
+ * including 1 (but not the number itself), sum to the numbeer. 
+ * For example, 6 is a perfect number, because 6 = 1 + 2 + 3
+ * displays all perfect numbers between 1 and n
+ */
+#include "util.h"
+
+int main()
+{
+	int num = readNum();
+
+	printPerfect(num);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* util.h
+ */
+#ifndef UTIL_H
+#define UTIL_H
+
+#include &lt;stdbool.h&gt;
+
+// read a positive integer
+int readNum();
+
+// check if an integer is a perfect number
+bool isPerfect(int num);
+
+// print perfect numbers between 1 and n
+void printPerfect(int n);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* util.c
+ */
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+
+int readNum()
+{
+	int num;
+
+	printf("Please enter a positive integer: "); // need to include stdio.h
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+bool isPerfect(int num)
+{
+	int sum = 0; // save summation
+
+	for(int i = 1; i &lt; num-1; i++)
+	{
+		if(num%i == 0) // add to sum if can divide num
+			sum += i;
+	}
+
+	if (sum == num) 
+		return true; // perfect if sum equals to num
+	else
+		return false;
+}
+
+void printPerfect(int n)
+{
+	for(int i = 1; i &lt;= n; i++)
+	{
+		if (isPerfect(i))
+			printf("%d\n", i);
+	}
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Question 3</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* main.c
+ * Write a C program, takes an integer value and return the number with its digits reversed. 
+ * For example, given the number 7631, the function should return 1367
+ */
+#include &lt;stdio.h&gt;
+#include "reverse.h"
+
+int main()
+{
+	printf("%d\n", reverse_num(read_num()));
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* reverse.h
+ */
+#ifndef REVERSE_H
+#define REVERSE_H
+
+int read_num();
+
+int reverse_num(int num);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* reverse.c
+ */
+#include &lt;stdio.h&gt;
+#include "reverse.h"
+
+int read_num()
+{
+	int num;
+
+	printf("Enter a positive integer number: ");
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+int reverse_num(int num)
+{
+	int num_r = 0; // store the reversed number
+
+	while(num  &gt; 0)
+	{
+		int digit = num%10;
+
+		num_r *= 10;
+		num_r += digit;
+
+		num /= 10;
+	}
+
+	return num_r;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Question 4</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* main.c
+ * Write a C program, simulate coin tossing. Let the program toss a coin each. 
+ * Count the number of times each side of the coin appears. 
+ * The number of tossing should be read from the keyboard
+ */
+#include "util.h"
+
+int main()
+{
+	init_tossing();
+
+	int num = read_num();
+
+	tossing(num);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#ifndef UTIL_H
+#define UTIL_H
+
+// read the number of tossing times
+int read_num();
+
+// initialize tossing with system time
+void init_tossing();
+
+// tossing num times
+void tossing(int num);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include "util.h"
+
+int read_num()
+{
+	int num;
+
+	printf("Please enter the number of tossing time: "); // need to include stdio.h
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+void init_tossing()
+{
+	srand(time(NULL)); // make each run generate different result
+}
+
+void tossing(int num)
+{
+	int positive = 0, negative = 0;
+
+	// toss num times
+	for(int i = 0; i &lt; num; i++)
+	{
+		if(rand()%2 == 0)
+			positive++;
+		else
+			negative++;
+	}
+
+	printf("Positive: %d\n", positive);
+	printf("Negative: %d\n", negative);
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Question 5</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* main.c
+ * Write a C program, calculates the hypotenuse of a right triangle 
+ * when the lengths of the other two sides are read from the keyboard
+ */
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+int main()
+{
+	double side_1 = read_side(); // read the length of the first side
+	double side_2 = read_side(); // read the length of the second side
+
+	printf("Hypotenuse: %10.2lf\n", get_hypotenuse(side_1, side_2));
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#ifndef UTIL_H
+#define UTIL_H
+
+// read the length of a side
+double read_side();
+
+// calculate the length of the hypotenuse of a right triangle
+double get_hypotenuse(double s1, float s2);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;math.h&gt;
+#include "util.h"
+
+double read_side()
+{
+	double side;
+
+	printf("Enter the length of the side of a right triangle: "); // need to include stdio.h
+	scanf("%lf", &amp;side);
+
+	return side;
+}
+
+double get_hypotenuse(double s1, float s2)
+{
+	return sqrt(s1*s1 + s2*s2); // need to include math.h
+}
+		</pre>
+		</div>
+	</body>
+</html>
