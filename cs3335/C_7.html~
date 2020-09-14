@@ -16,37 +16,105 @@
 			Scope
 		</div>
 
-		<div class = "subtitle">Global Variable and Local Variable</div>
+		<div class = "subtitle">Local Variable in Function</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 #include &lt;stdio.h&gt;
 
-int a = 10; // global variable
-
-int doubleNum(int a) // n is a local variable of the function
+void doubleNum(int a) // a is a local variable of the function
 {
-	return 2*a;
-}
+	a = 2*a;
 
+	printf("a in doubleNum function: %d, %p\n", a, &amp;a);
+}
+ 
 int main()
 {
-	int b = 100; // local variable
-	printf("a: %d, b: %d\n", a, b); // 10, 100
+	int a = 10;
 
-	int a = 1000; // local variable screen global variable
-	printf("a: %d, b: %d\n", a, b); // 1000, 100
+	printf("a in main function: %d, %p\n", a, &amp;a);
 
-	printf("a in function: %d\n", doubleNum(1)); // 2
+	doubleNum(a);
 
-	{
-		int c = 5;
-		printf("a: %d\n", a); // 1000
-		printf("c: %d\n", c); // 5
-	}
-
-	//printf("c: %d\n", c); // error
+	printf("a in main function: %d, %p\n", a, &amp;a);
 }
 		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_10.png" width=40% /></p>
+		</div>
+		<div class = "subtitle">Local Variable in Block</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int main()
+{
+	int a = 10;
+
+	printf("a in function: %d, %p\n", a, &amp;a);
+ 
+	{
+		int a = 100; //screen the a in main function
+		printf("a in block: %d, %p\n", a, &amp;a);
+	}
+
+	printf("a in function: %d, %p\n", a, &amp;a);
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int main()
+{
+	int a = 10;
+
+	printf("a in function: %d, %p\n", a, &amp;a);
+ 
+	for(int a = 0; a &lt; 5; a++) // screen the a in  main function
+	{
+		printf("a in block: %d, %p\n", a, &amp;a);
+	}
+
+	printf("a in function: %d, %p\n", a, &amp;a);
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Global Variable and Local Variable</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int a = 10; // global variable
+ 
+void display()
+{
+	printf("Global a in main: %d, %p\n", a, &amp;a);
+
+	int a = 1000; // screen global a
+
+	printf("Local a in main: %d, %p\n", a, &amp;a);
+}
+ 
+int main()
+{
+	printf("Global a in main: %d, %p\n", a, &amp;a);
+
+	int a = 100; // screen global a
+
+	printf("Local a in main: %d, %p\n", a, &amp;a);
+
+	display();
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 1</span></div>
+		<div class = "block">
+			<li>Re-organize the above code into main.c, util.c, and util.h</li>
 		</div>
 		<div class = "subtitle">Storage classes</div>
 		<div class = "block">
@@ -54,8 +122,13 @@ int main()
 			<li><span>register,</span> this storage class declares register variables which have the same functionality as that of the auto variables, but store these variables in the register of the microprocessor if a free register is available</li>
 			<li><span>static,</span> keep a local variable in existence during the life-time of the program instead of creating and destroying it each time it comes into and goes out of scope</li>
 			<li><span>extern,</span> simply tells us that the variable is defined elsewhere and not within the same block where it is used</li>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_12.png" width=40% /></p>
+		</div>
+		<div class = "block">
 		<pre class = "prettyprint linenums">
-#include &lt;stdio.h&gr;
+#include &lt;stdio.h&gt;
 
 void f()
 {
@@ -86,7 +159,7 @@ int main()
 		</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
-// s3.c
+// main.c
 #include &lt;stdio.h&gt;
 
 extern int a;
