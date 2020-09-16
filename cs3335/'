@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			gcc
+		</div>
+
+		<div class = "subtitle">Options</div>
+		<div class = "block">
+		<li><span>gcc -o hello.e hello.c</span>, compile hello.c, output the executable file hello.e</li>
+		<li><span>gcc -g hello.c</span>, compile hello.c and generate debug information for gdb</li>
+		<li><span>gcc -O hello.c</span>, compile hello.c and generate optimized executable program
+			<ul>
+				<li>-O0, no optimization</li>
+				<li>-O1, -O, late cycle test, default value</li>
+				<li>-O2, production use</li>
+				<li>-O3, generate optimized executable file</li>
+			</ul>
+		</li>
+		<li><span>gcc -v hello.c</span>, output the detailed information of compiling</li>
+		<li><span>gcc -Wall hello.c</span>, generate more warning details</li>
+		</div>
+		<div class = "subtitle">Simple File</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	printf("Hello World!\n");
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/CS3335_11.png" width = "60%"></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// compile C program
+gcc -E main.c &gt; main.i
+gcc -S main.i
+gcc -c main.s
+gcc main.o
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// simplified compiling
+gcc main.c // generate a.out
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// simplified compiling
+gcc -o hello -O2 main.c // generate optimized executable file with a specified name
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// conventional style
+gcc -c main.c
+gcc -o hello -O2 main.o // generate optimized executable file with a specified name
+		</pre>
+		</div>
+		<div class = "subtitle">Multiple Files</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+#include "util.h"
+
+int main()
+{
+	int number = read_int();
+
+	if(is_even(number))
+		printf("Even\n");
+	else
+		printf("Odd\n");
+
+	return 0;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+// function prototypes
+int read_int();
+bool is_even(int n);
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include &lt;stdbool.h&gt;
+#include "util.h"
+
+// read an integer from keyboard
+int read_int()
+{
+	int num;
+
+	printf("Enter an integer number: ");
+	scanf("%d", &amp;num);
+
+	return num;
+}
+
+// check if an integer is even
+bool is_even(int n)
+{
+	if (n % 2 == 0)
+		return true;
+	else
+		return false;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// conventional style
+gcc -c main.c
+gcc -c util.c
+gcc -o even -O2 main.o util.o // generate optimized executable file with a specified name
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 1</span></div>
+		<div class = "block">
+			<li>Create a folder, copy the code of prime number to the folder</li>
+			<li>The code should contain main.c, util.c, and util.h</li>
+			<li>Practice compiling code with conventional style</li>
+		</div>
+		<div class = "subtitle">Compilers</div>
+		<div class = "block">
+			<li>gcc</li>
+			<li>cc</li>
+			<li>icc</li>
+		</div>
+	</body>
+</html>
