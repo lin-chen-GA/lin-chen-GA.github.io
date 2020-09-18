@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cloud</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span.red {color: red; font-weight: bold;}
+			span.blue {color: blue; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">Lab 3 Solution</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+ 
+int main()
+{
+		srand(time(NULL));
+		 
+		int dice_1, dice_2;
+		int sum = 0;
+		float average;
+
+		for(int i = 0; i &lt; 1000000; i++)
+		{
+			dice_1 = rand()%6 + 1;
+			dice_2 = rand()%6 + 1;
+
+			sum += dice_1 + dice_2;
+
+			printf("%10dth:%10d%10d\n", i+1, dice_1, dice_2);
+		}
+
+		average = sum / 1000000.0;
+
+		printf("Average Number: %10.2f\n", average);
+			 
+		return 0;
+}
+			</pre>
+		</div>
+	</body>
+</html>
