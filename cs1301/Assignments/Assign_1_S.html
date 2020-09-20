@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Basic Syntax</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Soluiton of Assignment 1
+		</div>
+
+		<div class = "subtitle">Q1</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+public class Initial
+{
+	public static void main(String [] args)
+	{
+		System.out.println("      L                CCCCCCCCCCC");
+		System.out.println("      L               CC");
+		System.out.println("     L               CC");
+		System.out.println("     L              CC");
+		System.out.println("    L                CC");
+		System.out.println("   L                  CC");
+		System.out.println("  L                    CC");
+		System.out.println("LLLLLLLLLLL              CCCCCCCCCC");
+	}
+}
+			</pre>
+		</div>
+		<div class = "subtitle">Q2</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class Change
+{
+	public static void main(String [] args)
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.printf("%-20s", "Original Amount:");
+		double dollars = input.nextDouble();
+
+		int cents = (int)(dollars*100);
+
+		int twenties = cents / 2000;
+		cents = cents % 2000;
+
+		int tens = cents / 1000;
+		cents = cents % 1000;
+
+		int fives = cents / 500;
+		cents = cents % 500;
+
+		int ones = cents / 100;
+		cents = cents % 100;
+
+		int quarters = cents / 25;
+		cents = cents % 25;
+
+		int dimes = cents / 10;
+		cents = cents % 10;
+
+		int nickels = cents / 5;
+		
+		int pennies = cents % 5;
+
+		System.out.println("****************************************");
+		System.out.printf("%-20s%-10d\n", "Twenties:", twenties);
+		System.out.printf("%-20s%-10d\n", "Tens:", tens);
+		System.out.printf("%-20s%-10d\n", "Fives:", fives);
+		System.out.printf("%-20s%-10d\n", "Ones:", ones);
+		System.out.printf("%-20s%-10d\n", "Quarters::", quarters);
+		System.out.printf("%-20s%-10d\n", "Dimes:", dimes);
+		System.out.printf("%-20s%-10d\n", "Nickels:", nickels);
+		System.out.printf("%-20s%-10d\n", "Pennies:", pennies);
+		System.out.println("*************Have a good day************");
+	}
+}
+			</pre>
+		</div>
+	</body>
+</html>
