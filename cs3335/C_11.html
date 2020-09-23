@@ -124,12 +124,12 @@ cc = gcc
 prog = hello.e
 
 # make rules
-hello.e: main.o util.o
+hello.e: $(obj)
 	$(cc) -o $(prog) $(obj)
 main.o: main.c util.h
-	gcc -c main.c
+	$(cc) -c main.c
 util.o: util.c util.h
-	gcc -c util.c
+	$(cc) -c util.c
 
 clean:
 	rm *.o *.e
@@ -193,7 +193,7 @@ install: $(prog)
 	-mkdir $(dest)
 	cp $(prog) $(dest)
 
-.PHONY: unstall
+.PHONY: uninstall
 uninstall:
 	-rm $(dest)/$(prog)
 		</pre>
