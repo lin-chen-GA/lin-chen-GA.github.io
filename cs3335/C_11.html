@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Makefile
+		</div>
+
+		<div class = "subtitle">Syntax</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# define variables
+...
+
+# make rules
+target_1: prerequisites
+	commands
+target_2: prerequisites
+	commands
+...
+		</pre>
+		<li>target is object file, executable file, or a label</li>
+		<li>prerequisites are the files or targets to generate target</li>
+		<li>command is the commands will be implemented by make</li>
+		</div>
+		<div class = "block">
+			<span>Define variables</span>
+		<pre class = "prettyprint linenums">
+obj = main.o util.o
+Compiler = gcc
+hello: $(obj)
+	$(Compiler) $(obj)
+		</pre>
+		</div>
+		<div class = "block">
+			<li>The name of a makefile can be <span>makefile</span> or <span>Makefile</span></li>
+			<li>Indentation use <span>Tab</span> instead of spaces</li>
+			<li>#, comment</li>
+			<li>\, continue a line</li>
+			<li>Use <span>include</span> to include other makefiles</li>
+			<li>Support *, ? and [...] of regular expression</li>
+		</div>
+		<div class = "subtitle">Example 1</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#ifndef UTIL_H
+#define UTIL_H
+
+void disp();
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+void disp()
+{
+	printf("Hello World!\n");
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+#include "util.h"
+
+int main()
+{
+	disp();
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# version 1
+hello.e: main.o util.o # hello.e depends on main.o, util.o
+	gcc -o hello.e main.o util.o
+main.o: main.c util.h # main.o depends on main.c, util.h
+	gcc -c main.c
+util.o: util.c util.h # util.o depends on util.c, util.h
+	gcc -c util.c
+
+clean: # no dependencies, not implemented automatically
+	rm *.o *.e
+		</pre>
+		</div>
+		<div class = "block">
+			<li>make target
+				<ol>
+					<li>Recursively check if the prerequisites</li>
+					<li>Run the commands of the target</li>
+				</ol>
+			</li>
+			<li><span>make</span>
+				<ul>
+					<li>equals to make hello in the Example 1</li>
+					<li>recurively check the prerequisites and generate executable hello</li>
+				</ul>
+			</li>
+			<li><span>make clean</span>
+				<ul>
+					<li>Has no prerequisites, does not implemented automatically when run make command</li>
+					<li>remove main.o, util.o and hello files</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# version 2
+
+# define variables
+obj = main.o util.o
+cc = gcc
+prog = hello.e
+
+# make rules
+hello.e: main.o util.o
+	$(cc) -o $(prog) $(obj)
+main.o: main.c util.h
+	gcc -c main.c
+util.o: util.c util.h
+	gcc -c util.c
+
+clean:
+	rm *.o *.e
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# version 3
+
+# define variables
+obj = main.o util.o
+cc = gcc
+prog = hello.e
+
+# make rules
+hello.e: main.o util.o
+	$(cc) -o $(prog) $(obj)
+
+main.o: util.h # "main.c" and command will be derived automatically
+util.o: util.h # "util.c" and "gcc -c util.c" will be derived automatically
+
+.PHONY: clean # avoid the file named "clean"
+clean:
+	-rm -f *.o hello.e # "-" before rm, continue to do further task not matter what happen
+		</pre>
+		</div>
+		<div class = "block">
+			<li>clean is a phony target, this rule will not be implemented when type in <span>make</span></li>
+			<li>This rule will be implemented when type in <span>make clean</span></li>
+			<li>Specify <span>clean</span> is a phony target by <span>.PHONY: clean</span>. If not doing so, <span>make clean</span> will not work if there is a file called "clean"</li>
+		</div>
+		<div class = "subtitle"><span>Exercise 1</span></div>
+		<div class = "block">
+			<li>Use the source code in lab 4, which contains main.c, util.c, io.c, util.h, io.h</li>
+			<li>Write a makefile with the style of the version 3, which can generate a program called "myLeap"</li>
+		</div>
+		<div class = "subtitle">Install/Uninstall</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# define variables
+obj = main.o util.o
+cc = gcc
+prog = hello.e
+dest = ~/.local/bin
+ 
+# make rules
+hello.e: main.o util.o
+	$(cc) -o $(prog) $(obj)
+ 
+main.o: main.c util.h
+	$(cc) -c main.c
+util.o: util.c util.h
+	$(cc) -c util.c
+ 
+.PHONY: clean
+clean:
+	-rm -f *.o hello.e
+
+.PHONY: install
+install: $(prog)
+	-mkdir $(dest)
+	cp $(prog) $(dest)
+
+.PHONY: unstall
+uninstall:
+	-rm $(dest)/$(prog)
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2</span></div>
+		<div class = "block">
+			<li>Add install/uninstall into the makefile of Exerice 1</li>
+		<pre class = "prettyprint linenums">
+make # compile program
+make install # install program
+myLeap # test
+make uninstall # uninstall program
+		</pre>
+		</div>
+	</body>
+</html>
