@@ -124,19 +124,20 @@ clean: # no dependencies, not implemented automatically
 		</div>
 		<div class = "subtitle">Example 2</div>
 		<div class = "block">
-			<p style = "text-align:center;"><img src = "img/gcc_3.png" width = "40%"></p>
+			<p style = "text-align:center;"><img src = "img/make_1.png" width = "30%"></p>
 		</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
-VPATH = src:include # search prerequisites in these directory
+VPATH = src:include # tell make to search prerequisites in these directories
+
 SRC = src
 CFLAGS = -I include
 objects = main.o util.o
 cc = gcc
 hello.e: $(objects)
 	$(cc) -o hello.e $(objects)
-main.o: main.c util.h
-	$(cc) -c $(CFLAGS) $(SRC)/main.c
+main.o: main.c util.h # monitor prerequisites in the directories defined in VPATH
+	$(cc) -c $(CFLAGS) $(SRC)/main.c # "-I include" tells gcc where *.h files are
 util.o: util.c util.h
 	$(cc) -c $(CFLAGS) $(SRC)/util.c
 #vpath %.h include # user vpath to define the prerequisite search path

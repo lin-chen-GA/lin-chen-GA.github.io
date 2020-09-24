@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Lab 5: Code Layout
+		</div>
+
+		<div class = "subtitle">Organize Code</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "../img/CS3335_14.png" width = "30%"></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+void disp();
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+void disp()
+{
+	printf("Hello World!\n");
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// main.c
+#include "util.h"
+
+int main()
+{
+	disp();
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# version 1
+# Let make monitor .h files in include foler and .c files in src folder
+vpath %.h include
+vpath %.c src
+
+# make rules
+Hello: main.o util.o
+	gcc -o Hello main.o util.o
+
+main.o: main.c util.h
+	gcc -c src/main.c -I include # "-I include" let gcc know where .h files are
+util.o: util.c util.h
+	gcc -c src/util.c -I include
+
+clean:
+	rm *.o Hello
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# version 2
+vpath %.h include
+vpath %.c src
+
+SRC = src
+OBJECTIVES = main.o util.o
+CFLAGS = -I include
+CC = gcc
+PROG = Hello
+DEST = ~/.local/bin
+
+# make rules
+$(PROG): $(OBJECTIVES)
+	$(CC) -o Hello $(OBJECTIVES)
+
+main.o: main.c util.h
+	$(CC) -c $(SRC)/main.c $(CFLAGS)
+util.o: util.c util.h
+	$(CC) -c $(SRC)/util.c $(CFLAGS)
+
+.PHONY: clean
+clean:
+	-rm -f *.o $(PROG)
+ 
+.PHONY: install
+install: $(PROG)
+	-mkdir $(DEST)
+	cp $(PROG) $(DEST)
+ 
+.PHONY: uninstall
+uninstall:
+	-rm $(DEST)/$(PROG)
+		</pre>
+		</div>
+		<div class = "subtitle">Write a C program and Makefile</div>
+		<div class = "block">
+			<li><a href = "https://www.mathsisfun.com/leap-years.html">Leap Year</a></li>
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include "io.h"
+#include "util.h"
+
+int main()
+{
+	int year = read_year();
+
+	if(is_leap_year(year))
+		printf("Leap year ...\n");
+	else
+		printf("Not a leap year ...\n");
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// io.h
+#ifndef IO_H
+#define IO_H
+
+int read_year();
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+#include &lt;stdbool.h&gt;
+
+bool is_leap_year(int year);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// io.c
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.c
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# Makefile
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "../img/CS3335_15.png" width = "30%"></p>
+		</div>
+		<div class = "subtitle">Grading Criteria</div>
+		<div class = "block">
+			<li>The program that is not able to be compiled with makefile will be receive a <span>zero</span></li>
+			<li><span>Do not</span> change the given code (10%)</li>
+			<li>Code organization (10%)</li>
+			<li>Add necessary for the functions defined (10%)</li>
+			<li>The program can be compiled with make(10%)</li>
+			<li>No warning information from compiling (10%)</li>
+			<li>The program can generate the expected results (10%)</li>
+			<li>"make" is able to monitor changes (10%)</li>
+			<li>The *.o and generated executable files can be removed by "make clean" (10%)</li>
+			<li>"make install" is able to install the program to ~/.local/bin (10%)</li>
+			<li>"make uninstall" is able to uninstall the program (10%)</li>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>Compress the folder containing the code to "Lab_5.tar"</li>
+			<li>Submit the compressed tar file to the BlazeView</li>
+		</div>
+	</body>
+</html>
