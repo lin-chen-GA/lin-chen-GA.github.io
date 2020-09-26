@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Exam 1
+		</div>
+		<div class = "block">
+			<li>Time: 0:01 A.M. - 11:59 P.M., 09.25.2020</li>
+			<li>Open-book, independent exam, allow to search textbook and internet, not allowed to ask helps from anybody else</li>
+			<li>Write your own code, not allow to copy the code from internet or someone else</li>
+			<li>Each program has been given partial code, do not touch these code, Please complete the rest of the code to make the program generate the expected results</li>
+		</div>
+
+		<div class = "subtitle">Grading Criteria</div>
+		<div class = "block">
+			<li>A program can not be compiled will received <span>zero</span></li>
+			<li>A submission containing any program that has high similarity (&gt; 90) with the program from someone else will receive <span>zero</span></li>
+			<li>Not change the given code <span>(20%)</span></li>
+			<li>The program can be compiled <span>(10%)</span></li>
+			<li>The program can run <span>(20%)</span></li>
+			<li>The program can generate the expected results <span>(40%)</span></li>
+			<li>Necessary comments <span>(10%)</span></li>
+		</pre>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>Create an "Exam_1" folder, which contain "Q1" folder and "Q2" folder</li>
+			<li>Deposit the code for the Q1 into "Q1" folder; deposit the code for the Q2 into "Q2" folder</li>
+			<li>Compress "Exam_1" folder to "Exam_1.tar" file</li>
+			<!-- <li>Submit "Exam_1.tar" to BlazeView</li> -->
+		</div>
+		<div class = "subtitle">Question 1</div>
+		<div class = "block">
+			<li>An Armstrong number of three digits is an integer such that the sum of the cubes of its digits is equal to the number itself. For example, 371 is an Armstrong number since 3^3 + 7^3 + 1^3 = 371</li>
+			<li>Write a program that reads a three-digit integer and finds out whether it is an Armstrong number or not. Run the program and enter different positive integer numbers, you should have the following outputs</li>
+		<pre class = "prettyprint linenums">
+Enter a positive integer number: 23
+23 is not a three-digit number
+
+Enter a positive integer number: 371
+371 is a Armstrong number
+
+Enter a positive integer number: 235
+235 is not a Armstrong number
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* main.c
+ */
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+int main()
+{
+	int num = read_num();
+
+	if(isLegal(num))
+	{
+		if(isArmstrong(num))
+		{
+			printf("%d is a Armstrong number ...\n", num);
+		}
+		else
+		{
+			printf("%d is not a Armstrong number ...\n", num);
+		}
+	}
+	else
+		printf("%d is not a three-digit number ...\n", num);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* util.h
+ */
+#ifndef UTIL_H
+#define UTIL_H
+
+#include &lt;stdbool.h&gt;
+
+int read_num(); // read a positive integer number
+bool isLegal(int num); // check if a positive integer is three-digit
+bool isArmstrong(int num); // check if a positive integer is an Armstrong number
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* util.c
+ */
+		</pre>
+		</div>
+		<div class = "subtitle">Q2</div>
+		<div class = "block">
+			<li>Write a program that takes a positive integer and an upper limit value as inputs from the user. It then prints out the multiples of the positive integer, five numbers per row, not exceeding the upper limit</li>
+			<li>The program should have the following outputs</li>
+			<pre class = "prettyprint linenums">
+Enter a positive value: 7
+Enter an upper limit: 400
+
+The multiples of 7 between 7 and 400 (inclusive) are:
+7       14      21      28      35      
+42      49      56      63      70      
+77      84      91      98      105     
+112     119     126     133     140     
+147     154     161     168     175     
+182     189     196     203     210     
+217     224     231     238     245     
+252     259     266     273     280     
+287     294     301     308     315     
+322     329     336     343     350     
+357     364     371     378     385     
+392     399     
+			</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+/* main.c
+ */
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+int main()
+{
+	printf("Enter a positive integer: ");
+
+	int num = read_num();
+
+	printf("Enter an upper limit number: ");
+
+	int upper = read_num();
+
+	disp(num, upper);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+int read_num();
+
+void disp(int n, int upper_limit);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.c
+		</pre>
+		</div>
+	</body>
+</html>
