@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Array
+		</div>
+
+		<div class = "subtitle">Define an Array</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+void display(int array [], int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		printf("%10d", array[i]);
+	printf("\n");
+}
+
+int main()
+{
+	// create array
+	int array[10];
+	printf("%p\n", array); // address of the first element
+
+	display(array, 10);
+ 
+	// initialize array
+	for(int i = 0; i &lt; 10; i++)
+		array[i] = i;
+	display(array, 10);
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/CS3335_16.png" width = "60%"></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int main()
+{
+	// create array
+	int array[10];
+ 
+	// initialize array
+	for(int i = 0; i &lt; 10; i++)
+		array[i] = i;
+
+	printf("%d\n", array[10]);
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>When an array is created, the default values may <span>not</span> be zero</li>
+			<li>Be able to access a specific element by index</li>
+			<li>index starts from 0</li>
+			<li>array name points to the address of the first element in the array</li>
+			<li>C allows out of boundary access</li>
+			<li>Array can be passed to a function as a regular variable, and the array size is needed</li>
+		</div>
+		<div class = "subtitle">Pass Array to Function</div>
+		<div class = "block">
+			<li>Array is passed by reference, regular variable is passed by value</li>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void display(int arr [], int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		printf("%10d", arr[i]);
+	printf("\n");
+}
+
+void change_variable(num)
+{
+	num *= 2;
+	printf("In change_variable function: %d\n", num);
+}
+
+void change_array(int arr [], int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		arr[i] *= 2;
+	printf("In change_array function: \n");
+	display(arr, size);
+}
+
+int main()
+{
+	// pass by value
+	int num = 10;
+
+	change_variable(num);
+
+	printf("In main function: %d\n", num);
+
+	// pass by reference
+	int array[4];
+
+	for(int i = 0; i &lt; ; i++)
+		array[i] = i;
+
+	change_array(array, 4);
+
+	display(array, 4);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/CS3335_17.png" width = "60%"></p>
+		</div>
+		<div class = "subtitle">Two-Dimensional Array</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void disp(int array[][4], int rows)
+{
+	int i, j;
+	for(i = 0; i &lt; rows; i++)
+	{
+		for(j = 0; j &lt; 4; j++)
+			printf("%10d", array[i][j]);
+		printf("\n");
+	}
+}
+
+int main()
+{
+	int array[3][4];
+
+	int i, j;
+	for(i = 0; i &lt; 3; i++)
+		for(j = 0; j &lt; 4; j++)
+			array[i][j] = i*10 + j;
+
+	disp(array, 3);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Array to Pointer</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	int array[10];
+
+	int i;
+	for(i = 0; i &lt; 10; i++)
+		array[i] = i;
+
+	int *p;
+	p = array;
+
+	for(i = 0; i &lt; 10; i++)
+		printf("%d, %d\n", i, *(p+i));
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">String</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+int main()
+{
+	char array[] = "Hello World!";
+
+	printf("%s occupies %lu spaces for %lu characters\n", array, sizeof(array)/sizeof(char), strlen(array)); // 10 11
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>
