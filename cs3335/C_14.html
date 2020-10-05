@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Pointer
+		</div>
+
+		<div class = "subtitle">Define a pointer</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int main()
+{
+	int *ptr = NULL; // NULL is constant zero
+	printf("ptr: %p\n", ptr); // 0
+ 
+	int a = 10;
+	ptr = &a; // assign the address of variable a to ptr
+ 
+	// address
+	printf("a: %p\n", &amp;a); // 5e83
+	printf("ptr: %p\n", ptr); // 5e83
+
+	// value
+	printf("a: %d\n", a); // 10
+	printf("*ptr: %d\n", *ptr); // 10
+
+	*ptr += 1;
+
+	// value
+	printf("a: %d\n", a); // 11
+	printf("*ptr: %d\n", *ptr); // 11
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/CS3335_22.png" width = "60%"></p>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>A pointer is a variable pointing to an address</li>
+			<li>Assign a NULL value to a pointer variable in case you do not have an exact address to be assigned</li>
+			<li><span>ptr</span> points to a memory address, <span>*ptr</span> represent the value saved in the pointed memory address, * is called dereference</li>
+			<li>*ptr can be used as a regular primitive type of variable</li>
+		</div>
+		<div class = "subtitle">Pass Pointers to Function by Reference</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+void change(int *p)
+{
+	*p += 1;
+}
+
+int main()
+{
+	int *ptr = NULL; // NULL is constant zero
+	int a = 10;
+
+	ptr = &a;
+
+	change(ptr);
+
+	// value
+	printf("a: %d\n", a); // 11
+	printf("*ptr: %d\n", *ptr); // 11
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Return a Pointer from a Function</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+ 
+int * getInt()
+{
+	int a = rand()%10;
+	int *p = &a;
+
+	return p;
+}
+
+int main()
+{
+	srand(time(NULL));
+
+	int *ptr = NULL; // NULL is constant zero
+
+	ptr = getInt();
+
+	printf("*ptr: %d\n", *ptr);
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 1</span></div>
+		<div class = "block">
+			<li>Write a program in C to find the maximum number between two numbers using a pointer</li>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int * getMax(int *n_1, int *n_2)
+{
+	// add the code here
+}
+
+int main()
+{
+	printf("Enter two integer numbers: ");
+	int num_1, num_2;
+	scanf("%d", &amp;num_1);
+	scanf("%d", &amp;num_2);
+
+	int *ptr;
+	ptr = getMax(&amp;num_1, &amp;num_2);
+
+	printf("Max: %d\n", *ptr);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Represent a Array with a Pointer</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+	int *ptr = NULL;
+
+	// allocate the memory for 10 integers, let the pointer point to 
+	// the address of the first element
+	ptr = malloc(sizeof(int)*10); 
+
+	for(int i = 0; i &lt; 10; i++)
+		ptr[i] = i; // use pointer as an array
+
+	for(int i = 0; i &lt; 10; i++)
+		printf("%d\n", ptr[i]);
+
+	free(ptr); // release memory
+	ptr = NULL;
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/CS3335_23.png" width = "60%"></p>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li>malloc(), allocate memory, defined in stdlib.h</li>
+			<li>free(), free memory, defined in stdlib.h</li>
+			<li>pointer can be used as an array, each element can be accessed by index</li>
+			<li>ptr[1] is a regular variable, ptr+1 is a memory address, ptr[1], and *(ptr+1) is same element</li>
+			<li>ptr+1 means adding 4 bytes (int) to ptr (5090), is 5094</li>
+		</div>
+		<div class = "subtitle">Use Pointers in Function</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+ 
+// create an array with pointer
+int * getArray(int size)
+{
+	int *ptr;
+	ptr = (int*) malloc(size*sizeof(int));
+ 
+	for(int i = 0; i &lt; size; i++)
+		ptr[i] = rand()%10;
+ 
+	return ptr;
+}
+ 
+// display array
+void disp(int *ptr, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		printf("%d: %d\n", i, ptr[i]);
+}
+
+// release memory
+void removeArray(int *ptr)
+{
+	free(ptr);
+}
+ 
+int main()
+{
+	srand(time(NULL));
+
+	int *array;
+	array = getArray(10); // get array
+ 
+	disp(array, 10); // display array
+ 
+	removeArray(array); // release memory
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 2</span></div>
+		<div class = "block">
+			<li>Use Pointers in a C program, find gcd for five integers. The integers are random integer numbers between 1 to 100</li>
+		</div>
+		<div class = "subtitle">Memory Leak</div>
+		<div class = "block">
+			<li><span>Do not run the sample code</span></li>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+ 
+int getSum(int n)
+{
+	// allocate memory
+	int ptr* = (int*)malloc(n*sizeof(int));
+
+	for(int i = 0; i &lt; n; i++)
+		ptr[i] = rand()%10;
+
+	int sum = 0;
+
+	for(int i = 0; i &lt; n; i++)
+		sum += ptr[i];
+
+	// not release memory
+
+	return sum;
+}
+ 
+int main()
+{
+	while(true)
+	{
+		printf("%d\n", getSum(100));
+	}
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Knowledge Points</div>
+		<div class = "block">
+			<li><span>memory leak</span> is a type of resource leak that occurs when a computer program incorrectly manages memory allocations in a way that memory which is no longer needed is not released [wiki]</li>
+			<li>System may crash due to less and less memory for the operating system</li>
+			<li>When the program is terminated, the allocated memory may or may not be released
+				<ul>
+					<li>For one process program, OS monitors the memory allocated by the process, termnating the process will release the memory allocated</li>
+					<li>For multiple process program, OS may not release the memory</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "subtitle">Use Array as Pointer</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int main()
+{
+	int a[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	int *ptr;
+ 
+	ptr = a;
+ 
+	int i;
+	for(i = 0; i &lt; 10; i++)
+		printf("%d\n", *(ptr+i));
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Pointers to Constants</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void disp(const int *array, int size)
+{
+	int i;
+
+	for(i = 0; i &lt; size; i++)
+		printf("%d\n", array[i]);
+
+	//array[0] = 10; // error
+}
+
+int main()
+{
+	const int array[] = {0, 1, 2, 3};
+
+	disp(array, 4);
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>

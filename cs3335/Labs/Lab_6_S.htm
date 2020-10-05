@@ -76,10 +76,6 @@ void assign2DArray(int row, int column, int array[][column]);
 
 void copy2DArray(int row, int column, int array[][column], int copy[][column]);
 
-void copyRow(int row, int column, int array[][column], int targetRow, int copy[]);
-
-void copyRowBack(int row, int column, int array[][column], int targetRow, int copy[]);
-
 void sortByRow(int row, int column, int array[][column], int sorted[][column]);
 
 #endif
@@ -143,29 +139,13 @@ void copy2DArray(int row, int column, int array[][column], int copy[][column])
 			copy[i][j] = array[i][j];
 }
 
-void copyRow(int row, int column, int array[][column], int targetRow, int copy[])
-{
-	for(int i = 0; i &lt; column; i++)
-		copy[i] = array[targetRow][i];
-}
-
-void copyRowBack(int row, int column, int array[][column], int targetRow, int copy[])
-{
-	for(int i = 0; i &lt; column; i++)
-		array[targetRow][i] = copy[i];
-}
-
 void sortByRow(int row, int column, int array[][column], int sorted[][column])
 {
 	copy2DArray(row, column, array, sorted);
 
 	for(int i = 0; i &lt; row; i++)
 	{
-		int rowCopy[column];
-		copyRow(row, column, sorted, i, rowCopy);
-		sort1DArray(column, rowCopy);
-		//display1DArray(column, rowCopy);
-		copyRowBack(row, column, sorted, i, rowCopy);
+		sort1DArray(column, sorted[i]);
 	}
 }
 		</pre>

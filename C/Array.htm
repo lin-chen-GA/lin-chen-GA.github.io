@@ -36,7 +36,7 @@ int main()
 }
 		</pre>
 		</div>
-		<div class = "subtitle">Pass Array to Function</div>
+		<div class = "subtitle">Pass Array to Function By Reference</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 #include &lt;stdio.h&gt;
@@ -70,36 +70,90 @@ int main()
 }
 		</pre>
 		</div>
+		<div class = "subtitle">Memory Address</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int main()
+{
+	int array[10];
+ 
+	printf("Address of array: %p\n", array); //9d820
+	printf("Address of array[0]: %p\n", &amp;array[0]); // 9d820
+	printf("Address of array[1]: %p\n", &amp;array[1]); // 9d824
+	printf("Address of array[2]: %p\n", &amp;array[2]); // 9d828
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/array_1.png" width = "40%"></p>
+		</div>
 		<div class = "subtitle">Two-Dimensional Array</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 #include &lt;stdio.h&gt;
-
-void disp(int array[][4], int rows)
+ 
+void display(int row, int column, int arr[][column])
 {
-	int i, j;
-	for(i = 0; i &lt; rows; i++)
+	for(int i = 0; i &lt; row; i++)
 	{
-		for(j = 0; j &lt; 4; j++)
-			printf("%10d", array[i][j]);
+		for(int j = 0; j &lt; column; j++)
+			printf("%5d", arr[i][j]);
 		printf("\n");
 	}
 }
-
+ 
 int main()
 {
-	int array[3][4];
-
-	int i, j;
-	for(i = 0; i &lt; 3; i++)
-		for(j = 0; j &lt; 4; j++)
-			array[i][j] = i*10 + j;
-
-	disp(array, 3);
-
+	int array[2][4]; // 2 rows, 4 columns
+ 
+	for(int i = 0; i &lt; 2; i++)
+		for(int j = 0; j &lt; 4; j++)
+			array[i][j] = i*10+j;
+ 
+	display(2, 4, array);
+ 
 	return 0;
 }
 		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/array_2.png" width = "40%"></p>
+		</div>
+		<div class = "subtitle">Three-Dimensional Array</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+void display(int page, int row, int column, int array[][row][column])
+{
+	for(int i = 0; i &lt; page; i++)
+	{
+		for(int j = 0; j &lt; row; j++)
+		{
+			for(int k = 0; k &lt; column; k++)
+				printf("%5d", array[i][j][k]);
+			printf("\n");
+		}
+		printf("\n");
+	}
+}
+ 
+int main()
+{
+	int array[2][3][2]; 
+ 
+	display(2, 3, 2, array);
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/array_3.png" width = "60%"></p>
 		</div>
 		<div class = "subtitle">Array to Pointer</div>
 		<div class = "block">

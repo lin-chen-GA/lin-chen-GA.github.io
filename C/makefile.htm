@@ -114,7 +114,7 @@ clean: # no dependencies, not implemented automatically
 objects = main.o util.o
 cc = gcc
 hello.e: $(objects)
-	gcc -o hello.e $(objects)
+	$(cc) -o hello.e $(objects)
 $(objects):%.o:%.c
 	$(cc) -c $&lt; -o $@
 .PHONY: clean
@@ -129,6 +129,8 @@ clean: # no dependencies, not implemented automatically
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 VPATH = src:include # tell make to search prerequisites in these directories
+#vpath %.h include # user vpath to define the prerequisite search path
+#vpath %.c src
 
 SRC = src
 CFLAGS = -I include
@@ -140,8 +142,7 @@ main.o: main.c util.h # monitor prerequisites in the directories defined in VPAT
 	$(cc) -c $(CFLAGS) $(SRC)/main.c # "-I include" tells gcc where *.h files are
 util.o: util.c util.h
 	$(cc) -c $(CFLAGS) $(SRC)/util.c
-#vpath %.h include # user vpath to define the prerequisite search path
-#vpath %.c src
+
 .PHONY: clean
 clean: # no dependencies, not implemented automatically
 	rm -f *.o *.e *~
