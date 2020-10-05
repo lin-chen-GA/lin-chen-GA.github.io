@@ -87,14 +87,16 @@ int main()
 		<div class = "subtitle">Return a Pointer from a Function</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
  
 int * getInt()
 {
-	int a = rand()%10;
-	int *p = &a;
+	int *p = NULL;
+	p = (int *) malloc(sizeof(int));
+
+	*p = rand()%10;
 
 	return p;
 }
