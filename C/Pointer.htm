@@ -16,23 +16,129 @@
 			Pointer
 		</div>
 
-		<div class = "subtitle">Define an Array</div>
+		<div class = "subtitle">Define a Pointer</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 #include &lt;stdio.h&gt;
-
+ 
 int main()
 {
-	int a = 10;
 	int *ptr = NULL; // NULL is constant zero
-
-	ptr = &a;
-
-	printf("a: %d\n", *ptr);
-
+	printf("ptr: %p\n", ptr); // 0
+ 
+	int a = 10;
+	ptr = &a; // assign the address of variable a to ptr
+ 
+	// address
+	printf("a: %p\n", &amp;a); // 5e83
+	printf("ptr: %p\n", ptr); // 5e83
+ 
+	// value
+	printf("a: %d\n", a); // 10
+	printf("*ptr: %d\n", *ptr); // 10
+ 
+	*ptr += 1;
+ 
+	// value
+	printf("a: %d\n", a); // 11
+	printf("*ptr: %d\n", *ptr); // 11
+ 
 	return 0;
 }
 		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/pointer_1.png" width = "60%"></p>
+		</div>
+		<div class = "subtitle">Pass Pointers to Function by Reference</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+void change(int *p)
+{
+	*p += 1;
+}
+ 
+int main()
+{
+	int *ptr = NULL; // NULL is constant zero
+	int a = 10;
+ 
+	ptr = &a;
+ 
+	change(ptr);
+ 
+	// value
+	printf("a: %d\n", a); // 11
+	printf("*ptr: %d\n", *ptr); // 11
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Return a Pointer from a Function</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+ 
+int * getInt()
+{
+	int *p = NULL;
+	p = (int *) malloc(sizeof(int));
+ 
+	*p = rand()%10;
+ 
+	return p;
+}
+ 
+int main()
+{
+	srand(time(NULL));
+ 
+	int *ptr = NULL; // NULL is constant zero
+ 
+	ptr = getInt();
+ 
+	printf("*ptr: %d\n", *ptr);
+
+	free(ptr);
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Represent a Array with a Pointer</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+ 
+int main()
+{
+	int *ptr = NULL;
+ 
+	// allocate the memory for 10 integers, let the pointer point to 
+	// the address of the first element
+	ptr = malloc(sizeof(int)*10); 
+ 
+	for(int i = 0; i &lt; 10; i++)
+		ptr[i] = i; // use pointer as an array
+ 
+	for(int i = 0; i &lt; 10; i++)
+		printf("%d\n", ptr[i]);
+ 
+	free(ptr); // release memory
+	ptr = NULL;
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/pointer_2.png" width = "60%"></p>
 		</div>
 		<div class = "subtitle">Pointer Arithmetic</div>
 		<div class = "block">
@@ -54,41 +160,85 @@ int main()
 }
 		</pre>
 		</div>
-		<div class = "subtitle">Pass Pointer to Function and Return Pointer from Function</div>
+		<div class = "subtitle">Use Pointers in Function</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
-
+#include &lt;time.h&gt;
+ 
+// create an array with pointer
 int * getArray(int size)
 {
-	int *array;
-	array = (int*) malloc(size*sizeof(int)); // allocate memory
-
-	int i;
-	for(i = 0; i &lt; size; i++)
-		array[i] = i;
-
-	return array;
+	int *ptr;
+	ptr = (int*) malloc(size*sizeof(int));
+ 
+	for(int i = 0; i &lt; size; i++)
+		ptr[i] = rand()%10;
+ 
+	return ptr;
 }
-
-void disp(int *array, int size)
+ 
+// display array
+void disp(int *ptr, int size)
 {
-	int i;
-	for(i = 0; i &lt; size; i++)
-		printf("%d, %d\n", i, array[i]);
+	for(int i = 0; i &lt; size; i++)
+		printf("%d: %d\n", i, ptr[i]);
 }
-
+ 
+// release memory
+void removeArray(int *ptr)
+{
+	free(ptr);
+}
+ 
 int main()
 {
+	srand(time(NULL));
+ 
 	int *array;
-
 	array = getArray(10); // get array
-
-	disp(array, 10);
-
-	free(array); // release memory
-
+ 
+	disp(array, 10); // display array
+ 
+	removeArray(array); // release memory
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Memory Leak</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+ 
+int getSum(int n)
+{
+	// allocate memory
+	int ptr* = (int*)malloc(n*sizeof(int));
+ 
+	for(int i = 0; i &lt; n; i++)
+		ptr[i] = rand()%10;
+ 
+	int sum = 0;
+ 
+	for(int i = 0; i &lt; n; i++)
+		sum += ptr[i];
+ 
+	// not release memory
+ 
+	return sum;
+}
+ 
+int main()
+{
+	while(true)
+	{
+		printf("%d\n", getSum(100));
+	}
+ 
 	return 0;
 }
 		</pre>
@@ -118,48 +268,103 @@ int main()
 }
 		</pre>
 		</div>
-		<div class = "subtitle">Two-Dimensional Array</div>
+		<div class = "subtitle">2D Array with 1D Pointer</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
-// single pointer
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
-
-void setArray(int *array, int r, int c)
+ 
+void display(int *array, int row, int column)
 {
-	int i, j;
-	for(i = 0; i &lt; r; i++)
-		for(j = 0; j &lt; c; j++)
-			*(array+i*c+j) = i*10 + j;
-}
-
-void dispArray(int *array, int r, int c)
-{
-	int i, j;
-	for(i = 0; i &lt; r; i++)
+	for(int i = 0; i &lt; row; i++)
 	{
-		for(j = 0; j &lt; c; j++)
-			printf("%10d", *(array+i*c+j));
+		for(int j = 0; j &lt; column; j++)
+			printf("%5d", array[i*column+j]);
 		printf("\n");
 	}
 }
-
+ 
+int * getArray(int row, int column)
+{
+	int *p;
+	p = (int *)malloc(row*column*sizeof(int));
+ 
+	for(int i = 0; i &lt; row; i++)
+		for(int j = 0; j &lt; column; j++)
+			p[i*column+j] = i*10+j;
+	return p;
+}
+ 
 int main()
 {
-	int r = 3, c = 4;
-	int *array;
-	array = (int*)malloc(r*c*sizeof(int)); // allocate memory
-
-	setArray(array, r, c);
-	dispArray(array, r, c);
-
-	free(array); // free memory
+	int *ptr;
+	ptr = getArray(2, 3);
+ 
+	display(ptr, 2, 3);
+ 
+	free(ptr);
+	
+	return 0;
 }
 		</pre>
 		</div>
 		<div class = "block">
+			<p style = "text-align:center;"><img src = "img/pointer_3.png" width = "40%"></p>
+		</div>
+		<div class = "subtitle">Memory Operations</div>
+		<div class = "block">
 		<pre class = "prettyprint linenums">
-// array of pointer
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+ 
+void display(int *array, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("%5d", array[i]);
+	}
+ 
+	printf("\n");
+}
+ 
+int * getArray(int size)
+{
+	int *p;
+	p = (int *)malloc(size*sizeof(int));
+ 
+	return p;
+}
+ 
+int main()
+{
+	// create an array and assign values
+	int *ptr;
+	ptr = getArray(10);
+	for(int i = 0; i &lt; 10; i++)
+		ptr[i] = i;
+ 
+	// create another array and copy values from ptr to copy
+	int *copy;
+	copy = getArray(10);
+	copy = (int *)realloc(copy, 20*sizeof(int)); // resize array
+	memcpy(copy, ptr, sizeof(int)*10);
+ 
+	// display array
+	display(ptr, 10);
+	display(copy, 20);
+ 
+	// free memory
+	free(ptr);
+	free(copy);
+	
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Array of Pointer</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
@@ -201,9 +406,9 @@ int main()
 }
 		</pre>
 		</div>
+		<div class = "subtitle">2D Array with 2D Pointer</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
-// pointer to pointer
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
@@ -250,6 +455,11 @@ int main()
 	return 0;
 }
 		</pre>
+		</div>
+		<div class = "block">
+			<li>Copy a 2D array represented by a 2D pointer, need to copy row by row</li>
+			<li>Copy the consecutive memory from the memory address of the first element may generate errors, since the rows may not allocated consecutive</li>
+			<p style = "text-align:center;"><img src = "img/pointer_4.png" width = "30%"></p>
 		</div>
 		<div class = "subtitle">String</div>
 		<div class = "block">
