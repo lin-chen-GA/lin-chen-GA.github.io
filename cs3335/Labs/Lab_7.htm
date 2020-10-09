@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Lab 7: Array by Pointer
+		</div>
+
+		<div class = "block">
+			<li>Write a C program, read the array size from the keyboard, create a random array with the entered size. Each element in the array is a random number between 1 to 10</li>
+			<li>Create a copy of the array</li>
+			<li>Reverse the first half of the copy</li>
+			<li>Sort the second half the copy</li>
+			<li>Print out the original copy and the operated copy</li>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+Enter the size of the array: 10
+   4   3   6   4   5   4   2   1   8   4
+   5   4   6   3   4   1   2   4   4   8
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include "array.h"
+#include "io.h"
+
+int main()
+{
+	srand(time(NULL));
+
+	int size = getSize(); // read array size
+
+	int *array = getArray(size); // create a random array
+
+	int *c = copy(array, size); // make a copy
+
+	reverse(c, 0, size/2-1); // reverse the first half
+	sort(c, size/2, size-1); // sort the second half
+
+	display(array, 0, size-1); // display the original copy
+	display(c, 0, size-1); // display the operated copy
+
+	// free memory
+	free(array);
+	free(c);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// io.h
+#ifndef IO_H
+#define IO_H
+
+void display(int *ptr, int start, int end);
+
+int getSize();
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// io.c
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// array.h
+#ifndef ARRAY_H
+#define ARRAY_H
+
+int *getArray(int size);
+
+void sort(int *array, int start, int end);
+
+int *copy(int *array, int size);
+
+void reverse(int *array, int start, int end);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// array.c
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "../img/CS3335_26.png" width = "30%"></p>
+		</div>
+		<div class = "subtitle">Grading Criteria</div>
+		<div class = "block">
+			<li>The program that is not able to be compiled with makefile will receive a <span>zero</span></li>
+			<li>The program that has no the required code layout will receive a <span>zero</span></li>
+			<li><span>Do not</span> change the given code (10%)</li>
+			<li>The program can be compiled with make(10%)</li>
+			<li>No warning information from compiling (10%)</li>
+			<li>The program can generate the expected results (60%)</li>
+			<li>The *.o and generated executable files can be removed by "make clean". The program can be installed by "make install" and uninstalled by "make uninstall" (10%)</li>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>Compress the folder containing the code to "Lab_7.tar"</li>
+			<li>Submit the compressed tar file to the BlazeView</li>
+		</div>
+	</body>
+</html>
