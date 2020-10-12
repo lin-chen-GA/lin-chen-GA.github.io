@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Exception
+		</div>
+
+		<div class = "subtitle">Try ... Catch in Java</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+public class D
+{
+	public static int divide(int a, int b)
+	{
+		if(b == 0)
+			throw new ArithmeticException();
+		return a/b;
+	}
+
+	public static void  main(String [] args)
+	{
+		int a = 10;
+
+		for(int b = -5; b &lt;= 5; b++)
+		{
+			try
+			{
+				System.out.println(divide(a, b));
+			}
+			catch (Exception e)
+			{
+				System.out.println(e);
+			}
+		}
+	}
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Try ... Catch in C</div>
+		<div class = "block">
+			<li>setjmp(buf), initial the buf, return 0</li>
+			<li>longjmp(buf, value), return an integer value, and jump to the location of setjmp(buf) and re-run setjmp(buf)</li>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;setjmp.h&gt;
+
+jmp_buf buf;
+
+int divide(int a, int b)
+{
+	if(b == 0)
+		longjmp(buf, 1); // throw
+	return a/b;
+}
+
+int main()
+{
+	int a = 10;
+
+	for(int b = -5; b &lt;= 5; b++)
+	{
+		if(!setjmp(buf)) // try
+			printf("%d\n", divide(a, b));
+		else // catch
+			printf("Divided by zero ...\n");
+	}
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle"><span>Exercise 1</span></div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;setjmp.h&gt;
+#include "util.h"
+
+jmp_buf buf;
+
+int main()
+{
+	int *array = getArray(10);
+
+	// use try ... catch ...
+	// print out the element specified by index
+	// print out error message "Out of Boundary ..." if index is out of boundary of the array
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+int *getArray(int size);
+
+int getElement(int *array, int size, int index);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;setjmp.h&gt;
+#include "util.h"
+
+extern jmp_buf buf;
+
+int *getArray(int size)
+{
+	int *ptr = (int *) malloc(size*sizeof(int));
+
+	for(int i = 0; i &lt; size; i++)
+		ptr[i] = i;
+
+	return ptr;
+}
+
+// array, pointer
+// size, array size
+// index, element index
+int getElement(int *array, int size, int index)
+{
+	// write the code here
+	// return the element specified by index
+}
+		</pre>
+		</div>
+	</body>
+</html>

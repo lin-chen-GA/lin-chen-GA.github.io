@@ -151,5 +151,202 @@ int doubleNum(int);
 #endif
 		</pre>
 		</div>
+		<div class = "subtitle">Recursion</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int factorial(int n)
+{
+	if(n &lt;= 1) // basis step
+		return 1;
+	else // recursive step
+		return n*factorial(n-1);
+}
+
+int main()
+{
+	printf("%d\n", factorial(10));
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void factorial(int *p, int n)
+{
+	if(n &lt;= 1) // basis step
+	{
+		*p *= 1;
+	}
+	else // recursive step
+	{
+		*p *= n;
+		factorial(p, n-1);
+	}
+}
+
+int main()
+{
+	int *ptr;
+	ptr = (int *) malloc(sizeof(int));
+
+	*ptr = 1;
+
+	factorial(ptr, 10);
+
+	printf("%d\n", *ptr);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Static Variable</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+void count()
+{
+	static int num = 0;
+	num++;
+	printf("%d\n", num);
+}
+
+int main()
+{
+	count(); // 1
+	count(); // 2
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Global Variable</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+extern int count;
+
+int main()
+{
+	increase();
+	increase();
+
+	printf("%d\n", count);
+
+	return 0;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+void increase();
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.c
+#include "util.h"
+
+int count = 0; // global variable
+
+void increase()
+{
+	count++;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Static Global Variable</div>
+		<div class = "block">
+			<li>A static global variable is a global variable that can only be accessed by functions in the same C program file as the variable</li>
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+int main()
+{
+	increase();
+
+	printf("%d\n", increase()); // 2
+
+	return 0;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+int increase();
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.c
+#include "util.h"
+
+static int count = 0; // global static variable
+
+int increase()
+{
+	count++;
+
+	return count;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Static Function</div>
+		<div class = "block">
+			<li>A static function is a function that can only be accessed by functions in the same C program file</li>
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include "util.h"
+
+int main()
+{
+	display();
+
+	return 0;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+static int getNum();
+void display();
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "util.h"
+
+static int getNum()
+{
+	return rand()%10;
+}
+
+void display()
+{
+	printf("%d\n", getNum());
+}
+		</pre>
+		</div>
 	</body>
 </html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Solution 2
+		</div>
+
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include "io.h"
+#include "matrix.h"
+
+int main()
+{
+	srand(time(NULL));
+
+	// get matrix size
+	int size = getSize();
+
+	// create two random matrices
+	int *m = getMatrix(size);
+	int *m2 = getMatrix(size);
+	printf("---------Matrix 1--------\n");
+	displayMatrix(m, size);
+	printf("\n");
+	printf("---------Matrix 2--------\n");
+	displayMatrix(m2, size);
+	printf("\n");
+
+	// create transpose
+	int *t = transpose(m, size);
+	printf("----------Transpose of Matrix 1----------\n");
+	displayMatrix(t, size);
+	printf("\n");
+	free(t);
+
+	// scalar multiplication
+	int *sm = scalarMultiply(m, 10, size);
+	printf("----------Scalar Multiplication of Matrix 1----------\n");
+	displayMatrix(sm, size);
+	printf("\n");
+	free(sm);
+
+	// calculate the summation matrix
+	int *ms = matrixSum(m, m2, size);
+	printf("----------Matrix Summation----------\n");
+	displayMatrix(ms, size);
+	printf("\n");
+	free(ms);
+
+	// calculate the multiplicaiton matrix
+	int * mm = matrixMultiply(m, m2, size);
+	printf("----------Matrix Multiplication----------\n");
+	displayMatrix(mm, size);
+	printf("\n");
+	free(mm);
+ 
+	// free memory
+	free(m);
+	free(m2);
+	
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// io.h
+#ifndef IO_H
+#define IO_H
+
+int getSize();
+
+void displayMatrix(int *ptr, int size);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// io.c
+#include &lt;stdio.h&gt;
+#include "io.h"
+#include "matrix.h"
+
+int getSize()
+{
+	int n;
+
+	printf("Enter the size of a square matrix: ");
+	scanf("%d", &amp;n);
+
+	return n;
+}
+
+void displayMatrix(int *ptr, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("|");
+		for(int j = 0; j &lt; size; j++)
+			printf("%4d", getElement(ptr, i, j, size));
+		printf("   |\n");
+	}
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// matrix.h
+#ifndef MATRIX_H
+#define MATRIX_H
+
+int * getMatrix(int size);
+
+int getElement(int *matrix, int i, int j, int size);
+
+void setElement(int *matrix, int i, int j, int value, int size);
+
+int * zeros(int size);
+
+int * transpose(int * matrix, int size);
+
+int * scalarMultiply(int * matrix, int scalar, int size);
+
+int * matrixSum(int * m1, int * m2, int size);
+
+int rowColumnMul(int *m1, int row, int *m2, int column, int size);
+
+int * matrixMultiply(int *m1, int *m2, int size);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// matrix.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "matrix.h"
+
+int * getMatrix(int size)
+{
+	int *p;
+	p = (int *)malloc(size*size*sizeof(int));
+
+	for(int i = 0; i &lt; size; i++)
+		for(int j = 0; j &lt; size; j++)
+			setElement(p, i, j, rand()%10, size);
+	return p;
+}
+
+int getElement(int *matrix, int i, int j, int size)
+{
+	return matrix[i*size + j];
+}
+
+void setElement(int *matrix, int i, int j, int value, int size)
+{
+	matrix[i*size+j] = value;
+}
+
+int * zeros(int size)
+{
+	int *p;
+	p = (int *)malloc(size*size*sizeof(int));
+
+	for(int i = 0; i &lt; size; i++)
+		for(int j = 0; j &lt; size; j++)
+			setElement(p, i, j, 0, size);
+	return p;
+}
+
+int * transpose(int *matrix, int size)
+{
+	int *p = zeros(size);
+
+	for(int i = 0; i &lt; size; i++)
+		for(int j = 0; j &lt; size; j++)
+			setElement(p, j, i, getElement(matrix, i, j, size), size);
+
+	return p;
+}
+
+int * scalarMultiply(int *matrix, int scalar, int size)
+{
+	int *p = zeros(size);
+
+	for(int i = 0; i &lt; size; i++)
+		for(int j = 0; j &lt; size; j++)
+			setElement(p, i, j, getElement(matrix, i, j, size)*scalar, size);
+
+	return p;
+}
+
+int * matrixSum(int *m1, int *m2, int size)
+{
+	int *p = zeros(size);
+
+	for(int i = 0; i &lt; size; i++)
+		for(int j = 0; j &lt; size; j++)
+			setElement(p, i, j, getElement(m1, i, j, size)+getElement(m2, i, j, size), size);
+
+	return p;
+}
+
+int rowColumnMul(int *m1, int row, int *m2, int column, int size)
+{
+	int sum = 0;
+
+	for(int i = 0; i &lt; size; i++)
+		sum += getElement(m1, row, i, size) * getElement(m2, i, column, size);
+
+	return sum;
+}
+
+int * matrixMultiply(int *m1, int *m2, int size)
+{
+	int *p = zeros(size);
+
+	for(int i = 0; i &lt; size; i++)
+		for(int j = 0; j &lt; size; j++)
+			setElement(p, i, j, rowColumnMul(m1, i, m2, j, size), size);
+
+	return p;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# Makefile
+vpath %.h include
+vpath %.c src
+ 
+SRC = src
+OBJECTIVES = main.o matrix.o io.o
+CFLAGS = -I include
+CC = gcc
+PROG = Matrix
+DEST = ~/.local/bin
+ 
+$(PROG): $(OBJECTIVES)
+	$(CC) -o $(PROG) $(OBJECTIVES)
+ 
+main.o: main.c matrix.h io.h
+	$(CC) -c $(SRC)/main.c $(CFLAGS)
+matrix.o: matrix.c matrix.h
+	$(CC) -c $(SRC)/matrix.c $(CFLAGS)
+io.o: io.c io.h matrix.h
+	$(CC) -c $(SRC)/io.c $(CFLAGS)
+ 
+.PHONY: clean
+clean:
+	-rm -f *.o $(PROG)
+ 
+.PHONY: install
+install: $(PROG)
+	-mkdir $(DEST)
+	cp $(PROG) $(DEST)
+ 
+.PHONY: uninstall
+uninstall:
+	-rm $(DEST)/$(PROG)
+		</pre>
+		</div>
+	</body>
+</html>

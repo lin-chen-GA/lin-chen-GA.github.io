@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Lab 8: Recursive Function
+		</div>
+
+		<div class = "subtitle">Factorial</div>
+		<div class = "block">
+			<li>Basis Step: f(1) = 1</li>
+			<li>Recursive Step: f(n) = n*f(n-1)</li>
+		</div>
+		<div class = "subtitle">Pass by Value</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+ 
+int factorial(int n)
+{
+	if(n &lt;= 1) // basis step
+		return 1;
+	else // recursive step
+		return n*factorial(n-1);
+}
+ 
+int main()
+{
+	printf("%d\n", factorial(10));
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Pass by Reference</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+ 
+void factorial(int *p, int n)
+{
+	if(n &lt;= 1) // basis step
+	{
+		*p *= 1;
+	}
+	else // recursive step
+	{
+		*p *= n;
+		factorial(p, n-1);
+	}
+}
+ 
+int main()
+{
+	int *ptr;
+	ptr = (int *) malloc(sizeof(int));
+ 
+	*ptr = 1;
+ 
+	factorial(ptr, 10);
+ 
+	printf("%d\n", *ptr);
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Lab Question</div>
+		<div class = "block">
+			<li>Enter an integer number from the keyboard, calculate Fibonacci Number for n</li>
+			<li>Write recursive code
+				<ul>
+			<li>Basis Step: f(0) = 0, f(1) = 1</li>
+			<li>Recursive Step: f(n) = f(n-1) + f(n-2)</li>
+				</ul>
+			</li>
+			<li>Write sequential code</li>
+		</div>
+		<div class = "subtitle">Grading Criteria</div>
+		<div class = "block">
+			<li>Makefile (10%)</li>
+			<li>Comments (10%)</li>
+			<li>Recursive Code (40%)</li>
+			<li>Sequential Code (40%)</li>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>Compress the folder containing the code to "Lab_8.tar"</li>
+			<li>Submit the compressed tar file to the BlazeView</li>
+		</div>
+	</body>
+</html>
