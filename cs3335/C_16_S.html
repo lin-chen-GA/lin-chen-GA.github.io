@@ -13,73 +13,9 @@
 	</head>
 	<body>
 		<div class = "title">
-			Exception
+			Solution
 		</div>
 
-		<div class = "subtitle">Try ... Catch in Java</div>
-		<div class = "block">
-		<pre class = "prettyprint linenums">
-public class D
-{
-	public static int divide(int a, int b)
-	{
-		if(b == 0)
-			throw new ArithmeticException();
-		return a/b;
-	}
-
-	public static void  main(String [] args)
-	{
-		int a = 10;
-
-		for(int b = -5; b &lt;= 5; b++)
-		{
-			try
-			{
-				System.out.println(divide(a, b));
-			}
-			catch (Exception e)
-			{
-				System.out.println(e);
-			}
-		}
-	}
-}
-		</pre>
-		</div>
-		<div class = "subtitle">Try ... Catch in C</div>
-		<div class = "block">
-			<li>setjmp(buf), initial the buf, return 0</li>
-			<li>longjmp(buf, value), return an integer value, and jump to the location of setjmp(buf) and re-run setjmp(buf)</li>
-		<pre class = "prettyprint linenums">
-#include &lt;stdio.h&gt;
-#include &lt;setjmp.h&gt;
-
-jmp_buf buf;
-
-int divide(int a, int b)
-{
-	if(b == 0)
-		longjmp(buf, 1); // throw
-	return a/b;
-}
-
-int main()
-{
-	int a = 10;
-
-	for(int b = -5; b &lt;= 5; b++)
-	{
-		if(!setjmp(buf)) // try
-			printf("%d\n", divide(a, b));
-		else // catch
-			printf("Divided by zero ...\n");
-	}
-
-	return 0;
-}
-		</pre>
-		</div>
 		<div class = "subtitle"><span>Exercise 1</span></div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
@@ -95,9 +31,10 @@ int main()
 {
 	int *array = getArray(10);
 
-	// use try ... catch ...
-	// print out the element specified by index
-	// print out error message "Out of Boundary ..." if index is out of boundary of the array
+	if(!setjmp(buf))
+		printf("%d\n", getElement(array, 10, 10));
+	else
+		printf("Out of boundary ...\n");
 
 	return 0;
 }
@@ -142,10 +79,12 @@ int *getArray(int size)
 int getElement(int *array, int size, int index)
 {
 	// write the code here
-	// return the element specified by index
+	if(index &gt;= size || index &lt; 0)
+		longjmp(buf, 1);
+
+	return array[index];
 }
 		</pre>
 		</div>
-		<div class = "subtitle"><a href = "C_16_S.html">Solution</a></div>
 	</body>
 </html>

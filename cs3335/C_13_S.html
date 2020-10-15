@@ -18,7 +18,7 @@
 
 		<div class = "subtitle"><span>Exercise 1</span></div>
 		<div class = "block">
-			<pre class = "prettyprint linenums">
+		<pre class = "prettyprint linenums">
 // main.c
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -35,40 +35,41 @@ int main()
 	printf("Read column number: ");
 	int column = readNum();
 
-	int *array = get2DArray(row, column);
-	display2DArray(array, row, column);
+	int array[row][column];
+	assign2DArray(row, column, array);
+	display2DArray(row, column, array);
 
-	printf("--------------------\n");
+	int array2[row][column];
+	assign2DArray(row, column, array2);
+	display2DArray(row, column, array2);
 
-	int *sorted2DArray = sortByRow(array, row, column);
+	int sum[row][column];
+	sum2DArrays(row, column, array, array2, sum);
 
-	display2DArray(array, row, column);
-	printf("\n");
-	display2DArray(sorted2DArray, row, column);
+	display2DArray(row, column, sum);
 
 	return 0;
 }
-			</pre>
+		</pre>
 		</div>
 		<div class = "block">
-			<pre class = "prettyprint linenums">
+		<pre class = "prettyprint linenums">
 // io.h
 #ifndef IO_H
 #define IO_H
 
 int readNum();
 
-void display2DArray(int * array, int row, int column);
+void display2DArray(int row, int column, int array[][column]);
 
 #endif
-			</pre>
+		</pre>
 		</div>
 		<div class = "block">
-			<pre class = "prettyprint linenums">
-// io.c
+		<pre class = "prettyprint linenums">
+# io.c
 #include &lt;stdio.h&gt;
 #include "io.h"
-#include "util.h"
 
 int readNum()
 {
@@ -78,136 +79,89 @@ int readNum()
 	return num;
 }
 
-void display2DArray(int *array, int row, int column)
+void display2DArray(int row, int column, int array[][column])
 {
 	for(int i = 0; i &lt; row; i++)
 	{
 		for(int j = 0; j &lt; column; j++)
-			printf("%5d", getElement(array, row, column, i, j));
+			printf("%5d", array[i][j]);
 		printf("\n");
 	}
+	printf("\n");
 }
-			</pre>
+		</pre>
 		</div>
 		<div class = "block">
-			<pre class = "prettyprint linenums">
+		<pre class = "prettyprint linenums">
 // util.h
 #ifndef UTIL_H
 #define UTIL_H
 
-void sort1DArray(int *array, int size);
+void assign2DArray(int row, int column, int array[][column]);
 
-int * get2DArray(int row, int column);
-
-int * copy2DArray(int *array, int row, int column);
-
-int * sortByRow(int *array, int row, int column);
-
-int getElement(int *array, int row, int column, int i, int j);
-
-void setElement(int *array, int row, int column, int i, int j, int value);
+void sum2DArrays(int row, int column, int array[][column], int array2[][column], int sum[][column]);
 
 #endif
-			</pre>
+		</pre>
 		</div>
 		<div class = "block">
-			<pre class = "prettyprint linenums">
+		<pre class = "prettyprint linenums">
 // util.c
 #include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
-#include &lt;string.h&gt;
 #include "util.h"
 
-void sort1DArray(int *array, int size)
+void assign2DArray(int row, int column, int array[][column])
 {
-   for (int i = 0; i &lt; size-1; i++)
-       for (int j = 0; j &lt; size-i-1; j++)
-           if (array[j] &gt; array[j+1])
-	   {
-		   int temp = array[j];
-		   array[j] = array[j+1];
-		   array[j+1] = temp;
-	   }
-}
-
-int * get2DArray(int row, int column)
-{
-	int *ptr = (int *) malloc(row*column*sizeof(int));
-
 	for(int i = 0; i &lt; row; i++)
 		for(int j = 0; j &lt; column; j++)
-			setElement(ptr, row, column, i, j, rand()%10+1);
-
-	return ptr;
+			array[i][j] = rand()%10+1;
 }
 
-int * copy2DArray(int *array, int row, int column)
+void sum2DArrays(int row, int column, int array[][column], int array2[][column], int sum[][column])
 {
-	int *copy = (int *) malloc(row*column*sizeof(int));
-	memcpy(copy, array, sizeof(int)*row*column);
-
-	return copy;
-}
-
-int * sortByRow(int *array, int row, int column)
-{
-	int *copy = copy2DArray(array, row, column);
-
 	for(int i = 0; i &lt; row; i++)
-	{
-		sort1DArray(copy + i*column, column);
-	}
-
-	return copy;
+		for(int j = 0; j &lt; column; j++)
+			sum[i][j] = array[i][j] + array2[i][j];
 }
-
-int getElement(int *array, int row, int column, int i, int j)
-{
-	return array[i*column+j];
-}
-
-void setElement(int *array, int row, int column, int i, int j, int value)
-{
-	array[i*column+j] = value;
-}
-			</pre>
+		</pre>
 		</div>
 		<div class = "block">
-			<pre class = "prettyprint linenums">
+		<pre class = "prettyprint linenums">
 # Makefile
 vpath %.h include
 vpath %.c src
- 
+
 SRC = src
 OBJECTIVES = main.o io.o util.o
 CFLAGS = -I include
 CC = gcc
-PROG = Sorting
+PROG = Sum
 DEST = ~/.local/bin
- 
+
 $(PROG): $(OBJECTIVES)
 	$(CC) -o $(PROG) $(OBJECTIVES)
- 
+
 main.o: main.c io.h util.h
 	$(CC) -c $(SRC)/main.c $(CFLAGS)
 io.o: io.c io.h
 	$(CC) -c $(SRC)/io.c $(CFLAGS)
 util.o: util.c util.h
 	$(CC) -c $(SRC)/util.c $(CFLAGS)
- 
+
 .PHONY: clean
 clean:
 	-rm -f *.o $(PROG)
- 
+
 .PHONY: install
 install: $(PROG)
 	-mkdir $(DEST)
 	cp $(PROG) $(DEST)
- 
+
 .PHONY: uninstall
 uninstall:
 	-rm $(DEST)/$(PROG)
-			</pre>
+		</pre>
 		</div>
 	</body>
 </html>
