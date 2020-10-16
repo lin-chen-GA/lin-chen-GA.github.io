@@ -104,9 +104,41 @@ gdb a.out // load the program into gdb
 (gdb) q
 		</pre>
 		</div>
+		<div class = "subtitle"><span>Exercise 5</span></div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int *getArray(int size)
+{
+	int *ptr = (int *) malloc(size*sizeof(int));
+
+	for(int i = 0; i &lt; size; i++)
+		ptr[i] = i;
+
+	return ptr;
+}
+
+void change(int *array, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		array[i] *= 10;
+}
+
+int main()
+{
+	int *array = getArray(10);
+
+	change(array, 10);
+
+	return 0;
+}
+		</pre>
+		</div>
 		<div class = "subtitle">Makefile</div>
 		<div class = "block">
-			<p style = "text-align:center;"><img src = "img/GDB.png" width = "30%"></p>
+			<p style = "text-align:center;"><img src = "img/CS3335_14.png" width = "30%"></p>
 		</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
