@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Lab 9: Sorting Strings
+		</div>
+
+		<div class = "block">
+			<li>Enter several strings from the keyboard</li>
+			<li>Sort the strings</li>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+Enter the number of the strings: 3
+Enter 1th string: One
+Enter 2th string: Two
+Enter 3th string: Three
+|One|
+|Three|
+|Two|
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+int main()
+{
+	int num = getNum();
+
+	char **strings = getStrings(num);
+
+	sortStrings(strings, num);
+
+	display(strings, num);
+
+	// add your code to free the memory
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Grading Criteria</div>
+		<div class = "block">
+			<li>The program that is not able to be compiled with makefile will receive a <span>zero</span></li>
+			<li>The program that has no the required code layout will receive a <span>zero</span></li>
+			<li>The program can be compiled with make(10%)</li>
+			<li>No warning information from compiling (10%)</li>
+			<li>The program can generate the expected results (80%)</li>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>Compress the folder containing the code to "Lab_9.tar"</li>
+			<li>Submit the compressed tar file to the BlazeView</li>
+		</div>
+	</body>
+</html>
