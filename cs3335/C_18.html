@@ -328,18 +328,24 @@ int main()
 
 int main()
 {
+	// type 1
 	// pointer
-	char * str = "Hello"; // constant char data, do not free
+	// constant char array, controled by system, do not need to be freed manually
+	char * str = "Hello";
 
 	//str[0] = 'W'; // bus error
 	str = "World";
 	printf("%s\n", str); //World
 
+	// type 2
 	// array
 	char str2 [] = "Hello";
 	str2[0] = 'W';
 	//str2 = "World"; // not allowed
 	printf("%s\n", str2); //Wello
+
+	// type 3
+	// pointer allocated by malloc, need to release memory allocated by free
 
 	return 0;
 }
