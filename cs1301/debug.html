@@ -13,31 +13,14 @@
 	</head>
 	<body>
 		<div class = "title">
-			Chapter 6
+			Debug
 		</div>
 
-		<div class = "subtitle">Define Method</div>
+		<div class = "subtitle">Why Not Use Print Statement</div>
 		<div class = "block">
-			<pre class = "prettyprint linenums">
-public class Ch6_1
-{
-	//define a function
-	public static int getSum(int a, int b)
-	{
-		int s = a + b;
-		return s;
-	}
-
-	public static void main(String [] args)
-	{
-		int sum;
-		sum = getSum(1, 2);
-		System.out.println(sum);
-
-		System.out.println(getSum(10, 20));
-	}
-}
-			</pre>
+			<li>It is slow. You need to add print statement and recompile</li>
+			<li>Print is part of the code and may affect performance</li>
+			<li>Debugger is a more powerful tool to setup breakpoints and evaluate expression</li>
 		</div>
 		<div class = "block">
 			<p style = "text-align:center;"><img src = "./img/Ch6_1.png" width=40% /></p>
@@ -576,69 +559,6 @@ public class E11
 		<div class = "block">
 			<li>Write f2c() functions to convert Fahrenheit temperature to Celsius temperate, which receive int/float/double arguments and return double output</li>
 			<li>In your main() function, call the functions by passing 100, (float)100.0, 100.0 as parameters</li>
-		</div>
-		<div class = "subtitle">Recursion</div>
-		<div class = "block">
-			<li>factorial: n! = 1*2*3*...(n-1)*n</li>
-			<li>Recursive Expression
-				<ol>
-					<li>1! = 1</li>
-					<li>n! = n*(n-1)!</li>
-				</ol>
-			</li>
-			<pre class = "prettyprint linenums">
-public class C2
-{
-	/* Calcualte factorial of an integer with a loop
-	 * @param n an positive integer
-	 * @return factorial value
-	 */
-	public static int factorialS(int n)
-	{
-		int r = 1;
-
-		for(int i = 1; i L&lt;= n; i++)
-			r *= i;
-
-		return r;
-	}
-
-	/* Calculate factorial of an integer with a recursive method
-	 * @param n an positive integer
-	 * @return factorial value
-	 */
-	public static int factorialR(int n)
-	{
-		if(n &lt;= 1)
-			return 1;
-		return n*factorialR(n-1);
-	}
- 
-	public static void main(String args[])
-	{
-		System.out.println(factorialS(10));
-		System.out.println(factorialR(10));
-	}
-}
-			</pre>
-		</div>
-		<div class = "subtitle"><span>Exercise 11</span></div>
-		<div class = "block">
-			<li>fibonacci number
-				<ol>
-					<li>fib(0) = 0, fib(1) = 1</li>
-					<li>fib(n) = fib(n-1) + fib(n-2)</li>
-				</ol>
-			</li>
-		</div>
-		<div class = "subtitle"><span>Exercise 12</span></div>
-		<div class = "block">
-			<li>great common divisor (GCD)
-				<ol>
-					<li>gcd(0, b) = b</li>
-					<li>gcd(a, b) = gcd(a%b, b)</li>
-				</ol>
-			</li>
 		</div>
 		<div class = "subtitle"><a href = "../Java/Javadoc.htm">Documentation</a></div>
 		<div class = "subtitle"><a href = "./e6.html">Solutions for Exercise Questions</a></div>
