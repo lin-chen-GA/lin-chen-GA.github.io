@@ -16,6 +16,24 @@
 			IO
 		</div>
 
+		<div class = "subtitle">Write into a File with Redirection</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+
+int main()
+{
+	printf("Hello World!\n");
+
+	return 0;
+}
+		</pre>
+		<pre class = "prettyprint linenums">
+gcc hello.c
+./a.out &gt; output.txt // redirect outputs to a file
+./a.out &gt;&gt; output.txt // attach outputs to the exist file, if the file does not exist, create it
+		</pre>
+		</div>
 		<div class = "subtitle">Write into a File</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
@@ -78,6 +96,11 @@ int main()
 
 	return 0;
 }
+		</pre>
+		</div>
+		<div class = "subtitle">Parameters to C Program</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
 		</pre>
 		</div>
 		<div class = "subtitle">Standard Files</div>
