@@ -38,7 +38,6 @@ gcc hello.c
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 #include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
 
 int main()
 {
@@ -57,16 +56,6 @@ int main()
 
 	return 0;
 }
-		</pre>
-		</div>
-		<div class = "subtitle"><span>Exercise 1</span></div>
-		<div class = "block">
-			<li>Write a C program, output your information to "info.csv"</li>
-			<li>Use FILE to define a file pointer for writing</li>
-		<pre class = "prettyprint linenums">
-Name,Lin
-Office,2205
-Hobby,Swimming
 		</pre>
 		</div>
 		<div class = "subtitle">Read a File Line by Line</div>
@@ -152,10 +141,6 @@ int main()
 }
 		</pre>
 		</div>
-		<div class = "subtitle"><span>Exercise 2</span></div>
-		<div class = "block">
-			<li>Write a C program, read information from "info.csv", print them to console</li>
-		</div>
 		<div class = "subtitle">Parameters to C Program</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
@@ -175,10 +160,6 @@ int main(int argc, char *argv[])
 gcc main.c
 ./a.out 1 2 3 Hello World
 		</pre>
-		</div>
-		<div class = "subtitle"><span>Exercise 3</span></div>
-		<div class = "block">
-			<li>Write a C program, read two integer numbers from the commands, print out the summation</li>
 		</div>
 		<div class = "subtitle">Standard Files</div>
 		<div class = "block">
@@ -223,6 +204,5 @@ gcc main.c
 ./a.out 1&gt; message.txt // redirect stdout to a file, no space between 1 and &gt;
 		</pre>
 		</div>
-		<div class = "subtitle"><a href = "C_19_S.html">Solution</a></div>
 	</body>
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Solution
+		</div>
+
+		<div class = "subtitle">Exercise 1</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+ 
+int main()
+{
+	FILE * fp; // define a file pointer
+	fp = fopen ("info.csv", "w"); // open a file with writing mode
+ 
+	// exit program if the file cannot be openned
+	if (fp == NULL)
+        	exit(EXIT_FAILURE);
+ 
+	// write into file
+	fprintf(fp, "%s,%s\n", "Name", "Lin");
+	fprintf(fp, "%s,%s\n", "Office", "2205");
+	fprintf(fp, "%s,%s\n", "Hobby", "Swim");
+ 
+	fclose(fp);
+ 
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Exercise 2</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+void processLine(char *str)
+{
+	char *token;
+	token = strtok(str, ",");
+	while( token != NULL ) {
+		printf( "%s\n", token );
+      		token = strtok(NULL, ",");
+   	}
+}
+
+int main()
+{
+    FILE* stream = fopen("info.csv", "r");
+
+    char line[1024];
+
+    while (fgets(line, 1024, stream))
+    {
+	    processLine(line);
+    }
+
+    fclose(stream);
+
+    return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Exercise 3</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char *argv[])
+{
+	if(argc != 3)
+	{
+		printf("./sum [num_1] [num_2]\n");
+		exit(EXIT_FAILURE);
+	}
+
+	int a = atoi(argv[1]);
+	int b = atoi(argv[2]);
+
+	printf("%d + %d = %d\n", a, b, a+b);
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>
