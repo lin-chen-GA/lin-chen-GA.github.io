@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Solution 3
+		</div>
+
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "html.h"
+
+int main(int argc, char * argv[])
+{
+	if(argc != 2)
+		exit(EXIT_FAILURE);
+
+	FILE *html;
+
+	html = fopen("index.html", "w");
+
+	if (html == NULL)
+        	exit(EXIT_FAILURE);
+
+	writeHead(html);
+	writeTable(html, argv[1]);
+	writeTail(html);
+
+	fclose(html);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// html.h
+#ifndef HTML_H
+#define HTML_H
+
+void writeHead(FILE *f);
+void writeLine(FILE *f, char *str);
+void writeTable(FILE *f, char * inputFile);
+void writeTail(FILE *f);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// html.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include "html.h"
+
+void writeHead(FILE *f)
+{
+	fprintf(f, "%s\n", "&lt;!DOCTYPE html&gt;");
+	fprintf(f, "%s\n", "&lt;html&gt;");
+	fprintf(f, "%s\n", "&lt;body&gt;");
+}
+
+void writeLine(FILE *f, char *str)
+{
+	char *token;
+
+	fprintf(f, "&lt;tr&gt;");
+
+	token = strtok(str, ",");
+	fprintf(f, "&lt;td&gt;");
+	fprintf(f, "%s", token);
+	fprintf(f, "&lt;/td&gt;");
+
+	while( token != NULL ) {
+      		token = strtok(NULL, ",");
+		if(token != NULL)
+		{
+			fprintf(f, "&lt;td&gt;");
+			fprintf(f, "%s", token);
+			fprintf(f, "&lt;/td&gt;\n");
+		}
+   	}
+
+	fprintf(f, "&lt;/tr&gt;\n");
+}
+
+void writeTable(FILE *f, char * inputFile)
+{
+	FILE* inStream = fopen(inputFile, "r");
+	char line[1024];
+
+	if (inStream == NULL)
+        	exit(EXIT_FAILURE);
+
+	fprintf(f, "&lt;table border&gt;\n");
+
+    	while (fgets(line, 1024, inStream))
+    	{
+    		writeLine(f, line);
+    	}
+
+	fprintf(f, "&lt;/table&gt;\n");
+}
+
+void writeTail(FILE *f)
+{
+	fprintf(f, "%s\n", "&lt;/body&gt;");
+	fprintf(f, "%s\n", "&lt;/html&gt;");
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# Makefile
+vpath %.h include
+vpath %.c src
+
+SRC = src
+OBJECTIVES = main.o html.o
+CFLAGS = -I include
+CC = gcc
+PROG = HTML
+DEST = ~/.local/bin
+
+$(PROG): $(OBJECTIVES)
+	$(CC) -o $(PROG) $(OBJECTIVES)
+
+main.o: main.c html.h
+	$(CC) -c $(SRC)/main.c $(CFLAGS)
+html.o: html.c html.h
+	$(CC) -c $(SRC)/html.c $(CFLAGS)
+
+.PHONY: clean
+clean:
+	-rm -f *.o $(PROG)
+
+.PHONY: install
+install: $(PROG)
+	-mkdir $(DEST)
+	cp $(PROG) $(DEST)
+
+.PHONY: uninstall
+uninstall:
+	-rm $(DEST)/$(PROG)
+		</pre>
+		</div>
+	</body>
+</html>
