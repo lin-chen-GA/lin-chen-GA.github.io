@@ -451,6 +451,117 @@ int main()
 }
 		</pre>
 		</div>
-		<div class = "subtitle"><a href = "C_19_S.html">Solution</a></div>
+		<div class = "subtitle">Pointer Member</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#ifndef STUDENT_H
+#define STUDENT_H
+
+typedef struct
+{
+	int num; // number of exames
+	int *grades;
+} Student;
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include "Student.h"
+
+void display(Student s)
+{
+	for(int i = 0; i &lt; s.num; i++)
+		printf("Grade: %d\n", s.grades[i]);
+}
+
+int main()
+{
+	Student s;
+	s.num = 3;
+	s.grades = (int *) malloc(s.num*sizeof(int));
+	s.grades[0] = 100;
+	s.grades[1] = 95;
+	s.grades[2] = 90;
+	display(s);
+
+	Student s2;
+	s2 = s;
+	display(s2);
+
+	s.grades[0] = 60;
+	display(s2);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_31.png" width=30% /></p>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#ifndef STUDENT_H
+#define STUDENT_H
+
+typedef struct
+{
+	int num; // number of exames
+	int *grades;
+} Student;
+
+#endif
+		</pre>
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include "Student.h"
+
+void display(Student s)
+{
+	for(int i = 0; i &lt; s.num; i++)
+		printf("Grade: %d\n", s.grades[i]);
+}
+
+void setS(Student *s)
+{
+	s-&gt;num = 3;
+	s-&gt;grades = (int *) malloc(s-&gt;num*sizeof(int));
+	s-&gt;grades[0] = 100;
+	s-&gt;grades[1] = 95;
+	s-&gt;grades[2] = 90;
+}
+
+void copy(Student *dest, Student *source)
+{
+	dest-&gt;num = source-&gt;num;
+	dest-&gt;grades = (int *) malloc(source-&gt;num*sizeof(int));
+	memcpy(dest-&gt;grades, source-&gt;grades, source-&gt;num*sizeof(int));
+}
+
+int main()
+{
+	Student s;
+	setS(&amp;s);
+	display(s);
+
+	Student s2;
+	copy(&amp;s2, &amp;s);
+	display(s2);
+
+	s.grades[0] = 60;
+	display(s2);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "block">
+			<p style = "text-align:center;"><img src = "./img/CS3335_32.png" width=40% /></p>
+		</div>
+		<div class = "subtitle"><a href = "C_20_S.html">Solution</a></div>
 	</body>
 </html>
