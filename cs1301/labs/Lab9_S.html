@@ -20,13 +20,13 @@
 			<pre class = "prettyprint linenums">
 import java.util.Arrays;
 
-/** Source Code for Lab 12
+/** Source Code for Lab 9
  * @author Lin Chen
  * @author Yanhua Feng
  * @version 1.0
  * @since 12.03.2019
  */
-public class Lab12
+public class Lab9
 {
 	/** Merge two sorted arrays
 	 * @param array_1 sorted integer array
@@ -81,6 +81,65 @@ public class Lab12
 		int [] mergedArray = merge(array1, array2);
 		System.out.println(Arrays.toString(mergedArray));
 	}
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<pre class = "prettyprint linenums">
+import java.util.Arrays;
+
+public class Lab_9
+{
+   /** Merge two sorted arrays
+   * @param array_1 sorted integer array
+   * @param array_2 sorted integer array
+   * @return merged sorted integer array
+   */
+   public static int [] merge(int [] array1, int [] array2)
+   {
+   	int [] copy = new int[array1.length + array2.length];
+      int left = 0;
+      int right = 0;
+      
+      for(int i = 0; i &lt; copy.length; i++)
+      {
+         if(left &gt;= array1.length)
+         {
+            copy[i] = array2[right];
+            right++;
+            continue;
+         }
+         
+         if(right &gt;= array2.length)
+         {
+            copy[i] = array1[left];
+            left++;
+            continue;
+         }
+         
+         if(array1[left] &lt; array2[right])
+         {
+            copy[i] = array1[left];
+            left++;
+         }
+         else
+         {
+            copy[i] = array2[right];
+            right++;
+         }
+      }
+      
+      return copy;
+   }
+   
+   public static void main(String [] args)
+   {
+   	int [] array1 = {1, 5, 16, 61, 111};
+   	int [] array2 = {2, 4, 5, 6};
+   
+   	int [] mergedArray = merge(array1, array2);
+   	System.out.println(Arrays.toString(mergedArray));
+   }
 }
 			</pre>
 		</div>
