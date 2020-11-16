@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Exam 6
+		</div>
+
+		<div class = "subtitle">Matrix Operations</div>
+		<div class = "block">
+			<li>Create two random square matrices, the size should be entered from the keyboard</li>
+			<li>Write Java code to make the program can generate matrix transpose</li>
+			<li>Do not change the given code, add the methods you need</li>
+			<li>implement transpose (10 points), scalar multiplication (10 points), matrix summation (10 points), matrix multiplication (30 points)</li>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+public class E1
+{
+	public static void main(String [] args)
+	{
+		int [][] array_1 = getArray(3, 3);
+		int [][] array_2 = getArray(3, 3);
+
+		display(array_1);
+		display(array_2);
+
+		int [][] arrayTranspose = transpose(array_1);
+		display(arrayTranspose);
+
+		int [][] arrayScaleMul = scaleMultiplication(array_1, 10);
+		display(arrayScaleMul);
+
+		int [][] arraySum = sum(array_1, array_2);
+		display(arraySum);
+
+		int [][] arrayMul = mul(array_1, array_2);
+		display(arrayMul);
+	}
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Grading Criteria</div>
+		<div class = "block">
+			<li>Similarity will be checked. If two submissions have the similarity above 90%, both them will receive a <span>zero</span>. And <span>5%</span> will ben taken off from the overall grade of CS1301 for the penalty</li>
+			<li>The program that is not able to be compiled with makefile will receive a <span>zero</span></li>
+			<li>Changing the given code will receive a <span>zero</span></li>
+			<li>The program that has no the required code layout will receive a <span>zero</span></li>
+			<li>transpose (20 points)</li>
+			<li>scalar multiplication (10 points)</li>
+			<li>matrix summation (10 points)</li>
+			<li>matrix multiplication (40 points)</li>
+			<li>Doc string (10 points)</li>
+			<li>Generate documents (10 points)</li>
+		</div>
+		<div class = "subtitle">Submission</div>
+		<div class = "block">
+			<li>Compress the folder containing the code to "Exam_2.zip"</li>
+			<li>Submit the compressed zip file to the BlazeView</li>
+		</div>
+	</body>
+</html>
