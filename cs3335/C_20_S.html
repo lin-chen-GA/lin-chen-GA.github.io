@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Solution
+		</div>
+
+		<div class = "subtitle">Exercise 1</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// Student.h
+#ifndef STUDENT_H
+#define STUDENT_H
+
+typedef struct{
+	int id;
+	float gpa;
+} Student;
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include "Student.h"
+
+int main()
+{
+	Student s;
+
+	printf("Enter id:");
+	scanf("%d", &amp;(s.id));
+
+	printf("Enter gpa:");
+	scanf("%f", &amp;(s.gpa));
+
+	printf("----------Info---------\n");
+	printf("%10s:%10d\n", "ID", s.id);
+	printf("%10s:%10.2f\n", "GPA", s.gpa);
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Exercise 2</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// Student.h
+#ifndef STUDENT_H
+#define STUDENT_H
+
+typedef struct{
+	int id;
+	float gpa;
+} Student;
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+#include "Student.h"
+
+void setStudents(Student students [], int size);
+
+void display(Student students [], int size);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include "Student.h"
+
+void setStudents(Student students [], int size)
+{
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("Enter id:");
+		scanf("%d", &amp;(students[i].id));
+
+		printf("Enter GPA:");
+		scanf("%f", &amp;(students[i].gpa));
+	}
+}
+
+void display(Student students [], int size)
+{
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("---------------\n");
+		printf("%10s%10d\n", "ID", students[i].id);
+		printf("%10s%10.2f\n", "GPA", students[i].gpa);
+	}
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include "Student.h"
+#include "util.h"
+
+int main()
+{
+	Student s[3];
+
+	setStudents(s, 3);
+
+	display(s, 3);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Exercise 3</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// Student.h
+#ifndef STUDENT_H
+#define STUDENT_H
+
+typedef struct{
+	int id;
+	float gpa;
+} Student;
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+#include "Student.h"
+
+Student * getStudents(int size);
+
+void display(Student students [], int size);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include "Student.h"
+
+Student * getStudents(int size)
+{
+	Student * students = (Student *) malloc(size*sizeof(Student));
+
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("Enter id:");
+		scanf("%d", &amp;(students[i].id));
+
+		printf("Enter GPA:");
+		scanf("%f", &amp;(students[i].gpa));
+	}
+
+	return students;
+}
+
+void display(Student * students, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("---------------\n");
+		printf("%10s%10d\n", "ID", students[i].id);
+		printf("%10s%10.2f\n", "GPA", students[i].gpa);
+	}
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include "Student.h"
+#include "util.h"
+
+int main()
+{
+	Student * s = getStudents(3);
+
+	display(s, 3);
+
+	return 0;
+}
+		</pre>
+		</div>
+		<div class = "subtitle">Exercise 4</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// Background.h
+#ifndef BACKGROUND_H
+#define BACKGROUND_H
+
+typedef struct{
+	float preGPA;
+	char county[20];
+} Background;
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// Student.h
+#ifndef STUDENT_H
+#define STUDENT_H
+
+#include "Background.h"
+
+typedef struct{
+	char name[20];
+	float gpa;
+	Background background;
+} Student;
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.h
+#ifndef UTIL_H
+#define UTIL_H
+
+#include "Student.h"
+
+char *getString();
+
+float getFloat();
+
+Student * getStudents(int size);
+
+void display(Student students [], int size);
+
+void sortStudents(Student * students, int size);
+
+#endif
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// util.c
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include "Student.h"
+
+char *getString()
+{
+	char *str = (char *) malloc(100*sizeof(char));
+	fgets(str, 100, stdin);
+
+	str[strlen(str)-1] = '\0'; // remove \n in the string
+
+	return str;
+}
+
+float getFloat()
+{
+	float f;
+	scanf("%f", &amp;f);
+
+	getc(stdin); // read \n character
+
+	return f;
+}
+
+Student * getStudents(int size)
+{
+	Student * students = (Student *) malloc(size*sizeof(Student));
+
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("Enter name:");
+		char *name;
+		name = getString();
+		strcpy(students[i].name, name);
+		free(name);
+
+		printf("Enter GPA:");
+		students[i].gpa = getFloat();
+
+		printf("Enter county:");
+		char *county;
+		county = getString();
+		strcpy(students[i].background.county, county);
+		free(county);
+
+		printf("Enter previous GPA:");
+		students[i].background.preGPA = getFloat();
+	}
+
+	return students;
+}
+
+void display(Student * students, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+	{
+		printf("---------------\n");
+		printf("%10s%10s\n", "Name", students[i].name);
+		printf("%10s%10.2f\n", "GPA", students[i].gpa);
+		printf("%10s%10s\n", "Name", students[i].background.county);
+		printf("%10s%10.2f\n", "GPA", students[i].background.preGPA);
+	}
+}
+
+void sortStudents(Student *students, int size)
+{
+        for (int i = 0; i &lt; size-1; i++)
+                for (int j = 0; j &lt; size-i-1; j++)
+                {
+                        if (students[j].gpa &lt; students[j+1].gpa)
+                        {
+                                Student s;
+                                s = students[j];
+                                students[j] = students[j+1];
+                                students[j+1] = s;
+                        }
+                }
+}
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// main.c
+#include "Student.h"
+#include "util.h"
+
+int main()
+{
+	Student * s = getStudents(3);
+
+	sortStudents(s, 3);
+
+	display(s, 3);
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>
