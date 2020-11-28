@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cloud</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span.red {color: red; font-weight: bold;}
+			span.blue {color: blue; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">Lab 3: Random Number</div>
+		<div class = "subtitle">1. Learn rand()</div>
+		<div class = "block">
+			<li>rand() function generates a <span class = "red">pseudo-random integral</span> number in the range between 0 and RAND_MAX</li>
+			<li>rand() is defined in stdlib.h</li>
+			<li>Run the code below a couple of times, you can see the same random sequence</li>
+			<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main()
+{
+	for(int i = 0; i &lt; 10; i++)
+		printf("%d\n", rand());
+
+	return 0;
+}
+			</pre>
+		</div>
+		<div class = "block">
+			<li>Use the system time as the seed</li>
+			<li>srand() is the fuction to take a seed for generating  random numbers, which is defined in stdlib</li>
+			<li>time(NULL) take the system's current time, which is defined in time.h</li>
+			<li>Run the code below a couple of time, observe the random numbers generated</li>
+			<pre class = "prettyprint linenums">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+
+int main()
+{
+	srand(time(NULL));
+
+	for(int i = 0; i &lt; 10; i++)
+		printf("%d\n", rand());
+
+	return 0;
+}
+			</pre>
+		</div>
+		<div class = "subtitle">2. Write a C Program</div>
+		<div class = "block">
+			<li>Under the home directory (/home/username), create a folder "Lab_3"</li>
+			<li>Under "Lab_3", write a C program, shoot a dice 1000 times, count the times of getting a "1", "2", "3", "4", "5", and "6", print the results to the terminal</li>
+				</ul>
+			</li>
+		</div>
+		<div class = "subtitle">Reference</div>
+		<div class = "block">
+			<li><a href = "http://www.cplusplus.com/reference/cstdlib/rand/">cplusplus.com</a></li>
+		</div>
+	</body>
+</html>
