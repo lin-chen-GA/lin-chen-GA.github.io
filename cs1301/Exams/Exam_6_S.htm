@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Solution of Exam 6
+		</div>
+
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+import java.util.Scanner;
+
+public class E1
+{
+	public static int [][] getArray(int row, int column)
+	{
+		int [][] array = new int[row][column];
+
+		for(int i = 0; i &lt; row; i++)
+			for(int j = 0; j &lt; column; j++)
+				array[i][j] = (int)(Math.random()*10) + 1;
+
+		return array;
+	}
+
+	public static int [][] transpose(int [][] array)
+	{
+		int rowT = array[0].length;
+		int columnT = array.length;
+
+		int [][] arrayT = new int[rowT][columnT];
+
+		for(int i = 0; i &lt; array.length; i++)
+			for(int j = 0; j &lt; array[0].length; j++)
+				arrayT[j][i] = array[i][j];
+
+		return arrayT;
+	}
+
+	public static int [][] scaleMultiplication(int [][] array, int scale)
+	{
+		int row = array.length;
+		int column = array[0].length;
+
+		int [][] arrayS = new int[row][column];
+
+		for(int i = 0; i &lt; row; i++)
+			for(int j = 0; j &lt; column; j++)
+				arrayS[i][j] = array[i][j]*scale;
+
+		return arrayS;
+	}
+
+	public static int [][] sum(int [][] array_1, int [][] array_2)
+	{
+		int row = array_1.length;
+		int column = array_1[0].length;
+
+		int [][] array = new int[row][column];
+
+		for(int i = 0; i &lt; array.length; i++)
+			for(int j = 0; j &lt; array[0].length; j++)
+				array[i][j] = array_1[i][j] + array_2[i][j];
+
+		return array;
+	}
+
+	public static int rowColumnMul(int [][] array_1, int [][] array_2, int row, int column)
+	{
+		int sum = 0;
+		int size = array_2.length;
+
+		for(int i = 0; i &lt; size; i++)
+			sum += array_1[row][i] * array_2[i][column];
+
+		return sum;
+	}
+
+	public static int [][] mul(int [][] array_1, int [][] array_2)
+	{
+		int row = array_1.length;
+		int column = array_1[0].length;
+
+		int [][] array = new int[row][column];
+
+		for(int i = 0; i &lt; array.length; i++)
+			for(int j = 0; j &lt; array[0].length; j++)
+				array[i][j] = rowColumnMul(array_1, array_2, i, j);
+
+		return array;
+	}
+
+	public static void display(int [][] array)
+	{
+		for(int i = 0; i &lt; array.length; i++)
+		{
+			for(int j = 0; j &lt; array[i].length; j++)
+				System.out.printf("%5d", array[i][j]);
+			System.out.println();
+		}
+		System.out.println();
+	}
+
+	public static void main(String [] args)
+	{
+		int [][] array_1 = getArray(3, 3);
+		int [][] array_2 = getArray(3, 3);
+
+		display(array_1);
+		display(array_2);
+
+		int [][] arrayTranspose = transpose(array_1);
+		display(arrayTranspose);
+
+		int [][] arrayScaleMul = scaleMultiplication(array_1, 10);
+		display(arrayScaleMul);
+
+		int [][] arraySum = sum(array_1, array_2);
+		display(arraySum);
+
+		int [][] arrayMul = mul(array_1, array_2);
+		display(arrayMul);
+	}
+}
+		</pre>
+		</div>
+	</body>
+</html>
