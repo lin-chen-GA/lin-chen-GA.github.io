@@ -109,12 +109,21 @@ int main()
 		<pre class = "prettyprint linenums">
 # CMakeLists.txt 1
 cmake_minimum_required(VERSION 2.6)
-project (Hello)
 
+project(Test)
+
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/lib)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/bin)
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/include /usr/include)
+
+link_directories(${PROJECT_SOURCE_DIR}/build/lib)
+
 add_subdirectory(src)
+
+file(COPY ${PROJECT_SOURCE_DIR}/README.md DESTINATION ${CMAKE_INSTALL_PREFIX})
+
+file(COPY ${PROJECT_SOURCE_DIR}/LICENSE DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 enable_testing()
 		</pre>
@@ -122,20 +131,29 @@ enable_testing()
 		<div class = "block">
 		<pre class = "prettyprint linenums">
 # CMakeLists.txt 2
-aux_source_directory(. SRC_LIST)
-add_executable(Hello ${SRC_LIST})
+set(CMAKE_MACOSX_RPATH 1)
+
+add_library(hello_shared  SHARED hello.c util.c)
+
+add_executable(Hello main.c)
+target_link_libraries(Hello hello_shared)
 add_test(NAME test_Hello COMMAND Hello)
 
 INSTALL(TARGETS Hello
 	RUNTIME DESTINATION bin)
- 
+
+INSTALL(TARGETS hello_shared
+     	LIBRARY DESTINATION lib)
+
 INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
-file(COPY ${PROJECT_SOURCE_DIR}/README.md DESTINATION ${CMAKE_INSTALL_PREFIX})
- 
-file(COPY ${PROJECT_SOURCE_DIR}/LICENSE DESTINATION ${CMAKE_INSTALL_PREFIX})
-
 enable_testing()
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+// add LD_LIBRARY_PATH to .bashrc or .bash_profile
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PAH"
 		</pre>
 		</div>
 		<div class = "block">
@@ -265,28 +283,18 @@ int main()
 		<pre class = "prettyprint linenums">
 # CMakeLists.txt 1
 cmake_minimum_required(VERSION 2.6)
-project (Hello)
 
+project(Test)
+
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/lib)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/build/bin)
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/include /usr/include)
+
+link_directories(${PROJECT_SOURCE_DIR}/build/lib)
+
 add_subdirectory(src)
 add_subdirectory(test)
-
-enable_testing()
-		</pre>
-		</div>
-		<div class = "block">
-		<pre class = "prettyprint linenums">
-// CMakeLists.txt 2
-aux_source_directory(. SRC_LIST)
-add_executable(Hello ${SRC_LIST})
-add_test(NAME test_main COMMAND Hello)
-
-INSTALL(TARGETS Hello
-	RUNTIME DESTINATION bin)
-
-INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
 file(COPY ${PROJECT_SOURCE_DIR}/README.md DESTINATION ${CMAKE_INSTALL_PREFIX})
 
@@ -297,14 +305,40 @@ enable_testing()
 		</div>
 		<div class = "block">
 		<pre class = "prettyprint linenums">
-// CMakeLists.txt 3
-file(GLOB_RECURSE test_files *c)
+# CMakeLists.txt 2
+set(CMAKE_MACOSX_RPATH 1)
 
-add_executable(my_unit_test ${test_files} ${PROJECT_SOURCE_DIR}/src/hello.c ${PROJECT_SOURCE_DIR}/src/util.c)
-find_library(TEST_LIBRARY cunit HINTS /usr/include/)
-target_link_libraries(my_unit_test ${TEST_LIBRARY})
+add_library(hello_shared  SHARED hello.c util.c)
 
-add_test(NAME Test_A COMMAND my_unit_test)
+add_executable(Hello main.c)
+target_link_libraries(Hello hello_shared)
+add_test(NAME test_Hello COMMAND Hello)
+
+INSTALL(TARGETS Hello
+	RUNTIME DESTINATION bin)
+
+INSTALL(TARGETS hello_shared
+     	LIBRARY DESTINATION lib)
+
+INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
+
+enable_testing()
+		</pre>
+		</div>
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+# CMakeLists.txt 3
+file(GLOB_RECURSE c_files *.c)
+
+add_executable(my_unit_test ${c_files})
+find_library(TEST_LIBRARY cunit HINTS /usr/local/lib)
+message("Test: " ${TEST_LIBRARY})
+target_link_libraries(my_unit_test ${TEST_LIBRARY} hello_shared)
+
+add_test(NAME test_unit_test COMMAND my_unit_test)
+
+INSTALL(TARGETS my_unit_test
+	RUNTIME DESTINATION bin)
 
 enable_testing()
 		</pre>
@@ -363,6 +397,7 @@ xargs rm &lt; install_manifest.txt, uninstall
 		</div>
 		<div class = "subtitle">Reference</div>
 		<div class = "block">
+			<li><a href = "https://gitlab.kitware.com/cmake/community/-/wikis/doc/cmake/RPATH-handling">RPath</a></li>
 			<li><a href = "http://cunit.sourceforge.net/">CUnit</a></li>
 			<li><a href = "http://people.cs.aau.dk/~bnielsen/TOV07/lektioner/cunit-intro-07.pdf">C Language Unit Test</a></li>
 		</div>
