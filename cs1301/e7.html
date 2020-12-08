@@ -270,7 +270,7 @@ public class E2
 	{
 		//return a copy if array is empty or only has one element
 		if(array.length &lt;= 1)
-			return (new int[array.length]);
+			return Arrays.copyOf(array, array.length);
 
 		//create an array with the same size to save the elements without duplicates
 		int size = 1;
