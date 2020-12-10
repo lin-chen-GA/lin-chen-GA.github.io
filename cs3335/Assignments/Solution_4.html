@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>C</title>
+		<link rel="stylesheet" href="../../css/atelier-sulphurpool-light.css" type="text/css">
+		<script src="../../js/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css"></script>
+		<style>
+			div.title {color: navy; font-weight: bold; width: 80%; font-size: 32px; text-align: center; position: relative; margin: auto;}
+			div.subtitle {color: navy; font-weight: bold; width: 80%; font-size: 24px; text-align: position: relative; margin: auto;}
+			div.block {color: navy; font-weight: bold; width: 80%; border-style: solid; padding: 5px; position: relative; margin: 10px auto; border-radius: 5px;}
+			span {color: red; font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div class = "title">
+			Solution 4
+		</div>
+
+		<div class = "block">
+		<pre class = "prettyprint linenums">
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+
+typedef struct
+{
+	char atomName[10];
+	char residueName[10];
+	char chain[10];
+	int atomIndex;
+	int residueIndex;
+	float x, y, z;
+} Atom;
+
+typedef struct
+{
+	int atomNum;
+	Atom *atoms;
+} Residue;
+
+void displayAtom(Atom atom)
+{
+	printf("ATOM %5d%5s%5s%5s%5d%10.3f%10.3f%10.3f\n", atom.atomIndex, atom.atomName, atom.residueName, atom.chain, atom.residueIndex, atom.x, atom.y, atom.z);
+}
+
+Atom * getAtom(char *line)
+{
+	Atom * atom = (Atom *) malloc(sizeof(Atom));
+
+	char * type = strtok(line, " ");
+	if (strcmp(type, "ATOM") != 0) 
+		return NULL;
+	atom-&gt;atomIndex = atoi(strtok(NULL, " ")); // get atom index
+	strcpy(atom-&gt;atomName, strtok(NULL, " ")); // get atom name
+	strcpy(atom-&gt;residueName, strtok(NULL, " ")); // get residue name
+	strcpy(atom-&gt;chain, strtok(NULL, " ")); // get chain
+	atom-&gt;residueIndex = atoi(strtok(NULL, " ")); // get residue index
+	atom-&gt;x = atof(strtok(NULL, " ")); // get x
+	atom-&gt;y = atof(strtok(NULL, " ")); // get y
+	atom-&gt;z = atof(strtok(NULL, " ")); // get z
+
+	return atom;
+}
+
+int getAtomNum(FILE *f)
+{
+	fseek(f, 0, SEEK_SET); // move reading pointer to the beginning of the file
+
+	char line[1024];
+	int size = 0;
+
+	// find out the number of atoms
+	while(fgets(line, 1024, f))
+	{
+		Atom *atom = getAtom(line);
+		if( atom != NULL)
+			size++;
+	}
+
+	return size;
+}
+
+Atom * getAtoms(FILE *f, int size)
+{
+	fseek(f, 0, SEEK_SET); // move reading pointer to the beginning of the file
+
+	Atom * atoms = (Atom *) malloc(size*sizeof(Atom));
+
+	char line[1024];
+
+	int index = 0;
+	while (fgets(line, 1024, f))
+    	{
+		Atom *atom = getAtom(line);
+		if( atom != NULL)
+		{
+			atoms[index] = *atom;
+			index++;
+		}
+    	}
+
+	return atoms;
+}
+
+int getResidueNum(Atom *atoms, int size)
+{
+	int currentIndex = atoms[0].residueIndex;
+	int residueSize = 1;
+	for(int i = 0; i &lt; size; i++)
+	{
+		if(atoms[i].residueIndex != currentIndex)
+		{
+			residueSize++;
+			currentIndex = atoms[i].residueIndex;
+		}
+	}
+
+	return residueSize;
+}
+
+void displayResidue(Residue residue)
+{
+	printf("%10s%10d", residue.atoms[0].residueName, residue.atoms[0].residueIndex);
+	for(int i = 0; i &lt; residue.atomNum; i++)
+		printf("%5s", residue.atoms[i].atomName);
+	printf("\n");
+}
+
+Residue * getResidues(Atom *atoms, int atomSize, int residueSize)
+{
+	Residue * residues = (Residue *) malloc(residueSize*sizeof(Residue));
+
+	int currentIndex = atoms[0].residueIndex;
+	int endIndex = atoms[atomSize-1].residueIndex;
+
+	int residueIndex = 0;
+	while(currentIndex &lt;= endIndex)
+	{
+		int atomNum = 0;
+		for(int i = 0; i &lt; atomSize; i++)
+			if(atoms[i].residueIndex == currentIndex)
+				atomNum++;
+
+		residues[residueIndex].atomNum = atomNum;
+
+		residues[residueIndex].atoms = (Atom *) malloc(atomNum*sizeof(Atom));
+
+		int atomIndex = 0;
+		for(int i = 0; i &lt; atomSize; i++)
+			if(atoms[i].residueIndex == currentIndex)
+			{
+				residues[residueIndex].atoms[atomIndex] = atoms[i];
+				atomIndex++;
+			}
+
+		//displayResidue(residues[residueIndex]);
+
+		currentIndex++;
+		residueIndex++;
+	}
+
+	return residues;
+}
+
+int getNIndex(Atom *atoms, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		if(strcmp(atoms[i].atomName, "N") == 0)
+			return i;
+
+	return -1;
+}
+
+int getCAIndex(Atom *atoms, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		if(strcmp(atoms[i].atomName, "CA") == 0)
+			return i;
+
+	return -1;
+}
+
+int getCIndex(Atom *atoms, int size)
+{
+	for(int i = 0; i &lt; size; i++)
+		if(strcmp(atoms[i].atomName, "C") == 0)
+			return i;
+
+	return -1;
+}
+
+float *getCenter(Atom a, Atom b, Atom c)
+{
+	float *center = (float *)malloc(3*sizeof(float));
+	center[0] = (a.x + b.x + c.x)/3.0;
+	center[1] = (a.y + b.y + c.y)/3.0;
+	center[2] = (a.z + b.z + c.z)/3.0;
+
+	return center;
+}
+
+void writeCenter(Residue *residues, int size)
+{
+	FILE *output = fopen("center.csv", "w");
+
+	for(int i = 0; i &lt; size; i++)
+	{
+		int NIndex = getNIndex(residues[i].atoms, residues[i].atomNum);
+		int CAIndex = getCAIndex(residues[i].atoms, residues[i].atomNum);
+		int CIndex = getCIndex(residues[i].atoms, residues[i].atomNum);
+
+		float *center = getCenter(residues[i].atoms[NIndex], residues[i].atoms[CAIndex], residues[i].atoms[CIndex]);
+
+		fprintf(output, "%s,%d,%.3f,%.3f,%.3f\n", residues[i].atoms[0].residueName, residues[i].atoms[0].residueIndex, center[0], center[1], center[2]);
+	}
+
+	fclose(output);
+}
+
+float getDist(Atom a, Atom b)
+{
+	float x = a.x - b.x;
+	float y = a.y - b.y;
+	float z = a.z - b.z;
+
+	return sqrt(x*x + y*y + z*z);
+}
+
+void writeCADist(Residue *residues, int size)
+{
+	FILE *output = fopen("cadist.csv", "w");
+
+	for(int i = 0; i &lt; size-1; i++)
+	{
+		int index_1 = getCAIndex(residues[i].atoms, residues[i].atomNum);
+		int index_2 = getCAIndex(residues[i+1].atoms, residues[i+1].atomNum);
+		float dist = getDist(residues[i].atoms[index_1], residues[i+1].atoms[index_2]);
+
+		fprintf(output, "%s, %d, %s, %d, %.3f\n", residues[i].atoms[0].residueName, residues[i].atoms[0].residueIndex, residues[i+1].atoms[0].residueName, residues[i+1].atoms[0].residueIndex, dist);
+	}
+
+	fclose(output);
+}
+
+int main(int argc, char *argv[])
+{
+	if(argc != 2)
+	{
+		printf("Protein [pdb]\n");
+		exit(1);
+	}
+
+	FILE *inputFile = fopen(argv[1], "r");
+
+	int atomNum = getAtomNum(inputFile);
+	//getResidues(inputFile);
+
+	Atom *atoms = getAtoms(inputFile, atomNum);
+
+	int residueNum = getResidueNum(atoms, atomNum);
+
+	Residue * residues = getResidues(atoms, atomNum, residueNum);
+
+	for(int i = 0; i &lt; residueNum; i++)
+		displayResidue(residues[i]);
+
+	writeCenter(residues, residueNum);
+
+	writeCADist(residues, residueNum);
+
+	return 0;
+}
+		</pre>
+		</div>
+	</body>
+</html>
