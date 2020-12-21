@@ -1,3 +1,0 @@
-Mark, 3.9, Freshman
-Tom, 3.5, Sophomore
-Lisa, 4.0, Freshman
